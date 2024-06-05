@@ -1,0 +1,10 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:44492",
+"RedirectUrl": "",
+"LaunchCommand": "npm start",
+"WorkingDirectory": "C:\\Users\\user\\source\\repos\\FinalProject\\FinalProject\\ClientApp\\",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
+}
+}
