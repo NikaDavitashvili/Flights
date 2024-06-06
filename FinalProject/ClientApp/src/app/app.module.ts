@@ -11,6 +11,8 @@ import { SearchFlightsComponent } from './search-flights/search-flights.componen
 import { BookFlightComponent } from './book-flight/book-flight.component';
 import { RegisterPassengerComponent } from './register-passenger/register-passenger.component';
 import { MyBookingsComponent } from './my-bookings/my-bookings.component';
+import { AuthService } from './auth/auth.service';
+import { LoginPassengerComponent } from './login-passenger/login-passenger.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { MyBookingsComponent } from './my-bookings/my-bookings.component';
     SearchFlightsComponent,
     BookFlightComponent,
     RegisterPassengerComponent,
+    LoginPassengerComponent,
     MyBookingsComponent
   ],
   imports: [
@@ -30,12 +33,13 @@ import { MyBookingsComponent } from './my-bookings/my-bookings.component';
       { path: '', component: SearchFlightsComponent, pathMatch: 'full' },
       { path: 'search-flights', component: SearchFlightsComponent },
       { path: 'book-flight/:flightId', component: BookFlightComponent, canActivate: [AuthGuard] },
+      { path: 'login-passenger', component: LoginPassengerComponent },
       { path: 'register-passenger', component: RegisterPassengerComponent },
       { path: 'my-booking', component: MyBookingsComponent, canActivate: [AuthGuard]  }
 
     ])
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,20 +1,58 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private _currentUser?: User;
+  private authorized = false;
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+    this.authorized = sessionStorage.getItem('Authorized') === 'true';
+    const storedUser = sessionStorage.getItem('CurrentUser');
+    if (storedUser) {
+      this._currentUser = JSON.parse(storedUser);
+    }
+  }
 
-  currentUser?: User;
+  isAuthorized(): boolean {
+    return this.authorized;
+  }
 
-  loginUser(user: User) {
-    console.log("Log in the user with email " + user.email)
-    this.currentUser = user
+  setAuthorized(value: boolean): void {
+    this.authorized = value;
+    sessionStorage.setItem('Authorized', value.toString());
+  }
+
+  get currentUser(): User | undefined {
+    return this._currentUser;
+  }
+
+  login(Email: string, Password: string): Observable<any> {
+    const user = { Email, Password };
+    return this.http.post('/api/PassengerController/login', user);
+  }
+
+  loginUser(user: User): void {
+    this._currentUser = user;
+    this.setAuthorized(true);
+    sessionStorage.setItem('CurrentUser', JSON.stringify(user));
+  }
+
+  logoutUser(): void {
+    this._currentUser = undefined;
+    this.setAuthorized(false);
+    sessionStorage.removeItem('CurrentUser');
+    sessionStorage.removeItem('Authorized');
   }
 }
 
 interface User {
-  email: string
+  email: string;
+  password: string;
+  username: string;
 }
+
+// Ensure that the User interface is correctly defined.

@@ -17,47 +17,42 @@ export class RegisterPassengerComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute) { }
 
-  requestedUrl?: string = undefined
+  requestedUrl?: string = undefined;
+  showPassword: boolean = false;
 
   form = this.fb.group({
-    email: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
+    userName: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
     firstName: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(35)])],
     lastName: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(35)])],
-    isFemale: [true, Validators.required]
-  })
+    email: ['', Validators.email],
+    password: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(25)])],
+    gender: ['', Validators.required]
+  });
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(p => this.requestedUrl = p['requestedUrl'])
+    this.activatedRoute.params.subscribe(p => this.requestedUrl = p['requestedUrl']);
   }
 
-  checkPassenger(): void {
-    const params = { email: this.form.get('email')?.value }
-
-    this.passengerService
-      .findPassenger(params)
-      .subscribe(
-        this.login, e => {
-          if(e.status != 404)
-            console.error(e)
-        }
-      )
-  }
-
-  register() {
-
+  register(): void {
     if (this.form.invalid)
       return;
 
-    console.log("Form Values:", this.form.value);
-
     this.passengerService.registerPassenger({ body: this.form.value })
-      .subscribe(this.login, console.error)
-        
+      .subscribe(
+        () => this.login(),
+        error => console.error(error)
+      );
   }
 
   private login = () => {
-    this.authService.loginUser({ email: this.form.get('email')?.value })
+    const { email, password, userName } = this.form.value;
+    const user = { email, password, username: userName };
+    this.authService.loginUser(user)
     this.router.navigate([this.requestedUrl ?? '/search-flights'])
+  }
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 
 }

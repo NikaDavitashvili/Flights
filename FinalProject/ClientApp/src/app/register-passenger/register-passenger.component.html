@@ -1,18 +1,19 @@
 <form [formGroup]="form">
   <div class="container d-grid gap-3" style="max-width: 700px;">
 
-    <div class="form-floating">
-      <input (blur)="checkPassenger()" formControlName="email" placeholder="Email" class="form-control" type="text" />
-      <label for="email">Email</label>
 
-      <div class="invalid-feedback d-block" *ngIf="form.controls.email.invalid && (form.controls.email.dirty || form.controls.email.touched)">
-        <div *ngIf="form.controls.email.errors">
-          Email is invalid
+    <div class="d-grid gap-3">
+      <div class="form-floating">
+        <input formControlName="userName" placeholder="User Name" class="form-control" id="userName" type="text" />
+        <label class="form-label" for="userName">User Name</label>
+
+        <div class="invalid-feedback d-block" *ngIf="form.controls.userName.invalid && (form.controls.userName.dirty || form.controls.userName.touched)">
+          <div *ngIf="form.controls.userName.errors">
+            User name is invalid
+          </div>
+
         </div>
       </div>
-
-    </div>
-    <div class="d-grid gap-3">
 
       <div class="form-floating">
 
@@ -40,19 +41,45 @@
         </div>
       </div>
 
+      <div class="form-floating">
+        <input formControlName="email" placeholder="Email" class="form-control" type="email" />
+        <label for="email">Email</label>
+
+        <div class="invalid-feedback d-block" *ngIf="form.controls.email.invalid && (form.controls.email.dirty || form.controls.email.touched)">
+          <div *ngIf="form.controls.email.errors">
+            Email is invalid
+          </div>
+        </div>
+      </div>
+      <div class="form-floating">
+        <div class="input-group">
+          <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Password" class="form-control" />
+          <label for="password">
+            <button type="button" class="btn btn-outline-secondary input-group-text" (click)="togglePasswordVisibility()" style="margin-left: -42px; z-index: 2; border: none; position: absolute;">
+              <i [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword" class="fa"></i>
+            </button>
+          </label>
+          <div class="invalid-feedback d-block" *ngIf="form.controls.password.invalid && (form.controls.password.dirty || form.controls.password.touched)">
+            <div *ngIf="form.controls.password.errors">
+              Password is invalid
+            </div>
+          </div>
+        </div>
+      </div>
+
 
       <div>
 
-        <input formControlName="isFemale" id="isFemale" class="form-check-input" [value]=true type="radio" />
-        <label class="ms-2 form-check-label" for="isFemale">Female</label>
+        <input formControlName="gender" id="gender" class="form-check-input" [value]=true type="radio" />
+        <label class="ms-2 form-check-label" for="gender">Female</label>
       </div>
       <div>
-        <input formControlName="isFemale" id="isFemale" class="form-check-input" [value]=false type="radio" />
-        <label class="ms-2 form-check-label" for="isFemale">Male</label>
+        <input formControlName="gender" id="gender" class="form-check-input" [value]=false type="radio" />
+        <label class="ms-2 form-check-label" for="gender">Male</label>
       </div>
     </div>
     <div class="d-flex justify-content-center center">
-      <button (click)="register()" type="submit" class="btn btn-primary">Login <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+      <button (click)="register()" type="submit" class="btn btn-primary">Register and Login <i class="fa fa-sign-in" aria-hidden="true"></i></button>
     </div>
   </div>
 </form>
