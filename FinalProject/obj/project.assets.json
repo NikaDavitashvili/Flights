@@ -3278,9 +3278,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\FinalProject.csproj",
-      "projectName": "FinalProject",
-      "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\FinalProject.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\FinalProject.Web.csproj",
+      "projectName": "FinalProject.Web",
+      "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\FinalProject.Web.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\obj\\",
       "projectStyle": "PackageReference",
