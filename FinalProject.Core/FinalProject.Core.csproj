@@ -8,7 +8,10 @@
 
   <ItemGroup>
     <Folder Include="Common\" />
-    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FinalProject.Domain\FinalProject.Domain.csproj" />
   </ItemGroup>
 
 </Project>
