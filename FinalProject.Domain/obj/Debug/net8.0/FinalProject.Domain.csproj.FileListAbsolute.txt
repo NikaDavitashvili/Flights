@@ -1,7 +1,6 @@
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\bin\Debug\net8.0\FinalProject.Domain.deps.json
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\bin\Debug\net8.0\FinalProject.Domain.dll
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\bin\Debug\net8.0\FinalProject.Domain.pdb
-C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\obj\Debug\net8.0\FinalProject.Domain.csproj.AssemblyReference.cache
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\obj\Debug\net8.0\FinalProject.Domain.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\obj\Debug\net8.0\FinalProject.Domain.AssemblyInfoInputs.cache
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\obj\Debug\net8.0\FinalProject.Domain.AssemblyInfo.cs

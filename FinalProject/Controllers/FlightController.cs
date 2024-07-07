@@ -1,26 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using FinalProject.Domain.Models.Data;
 using FinalProject.Domain.Models.DTOs;
 using FinalProject.Domain.Models.ReadModels;
 using FinalProject.Domain.Interfaces.Services;
 
 namespace FinalProject.Controllers;
-
 [ApiController]
 [Route("[controller]")]
 public class FlightController : ControllerBase
 {
     private readonly ILogger<FlightController> _logger;
-
-    private readonly Entities _entities;
     private readonly IFlightService _flightService;
 
-
-    public FlightController(ILogger<FlightController> logger, Entities entities, IFlightService flightService)
+    public FlightController(ILogger<FlightController> logger, IFlightService flightService)
     {
         _logger = logger;
-        _entities = entities;
         _flightService = flightService;
     }
 
@@ -33,39 +26,18 @@ public class FlightController : ControllerBase
 
         _logger.LogInformation("Searching for a flight for: {Destination}", @params.Destination);
 
-        IQueryable<Flight> flights = _entities.Flights;
-
-        if (!string.IsNullOrWhiteSpace(@params.Destination))
-            flights = flights.Where(f => f.Arrival.Place.Contains(@params.Destination));
-
-        if (!string.IsNullOrWhiteSpace(@params.From))
-            flights = flights.Where(f => f.Departure.Place.Contains(@params.From));
-
-        if (@params.FromDate != null)
-            flights = flights.Where(f => f.Departure.Time >= @params.FromDate.Value.Date);
-
-        if (@params.ToDate != null)
-            flights = flights.Where(f => f.Departure.Time >= @params.ToDate.Value.Date.AddDays(1).AddTicks(-1));
-
-        if (@params.NumberOfPassengers != 0 && @params.NumberOfPassengers != null)
-            flights = flights.Where(f => f.RemainingNumberOfSeats >= @params.NumberOfPassengers);
-        else
-            flights = flights.Where(f => f.RemainingNumberOfSeats >= 1);
-
-
-        var flightRmList = flights
-            .Select(flight => new FlightRm(
-            flight.Id,
-            flight.Airline,
-            flight.Price,
-            new TimePlaceRm(flight.Departure.Place.ToString(), flight.Departure.Time),
-            new TimePlaceRm(flight.Arrival.Place.ToString(), flight.Arrival.Time),
-            flight.RemainingNumberOfSeats
-            ));
-
-        return flightRmList;
+        try
+        {
+            var flights = await _flightService.Search(@params);
+            return flights;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error occurred while searching for flights");
+            return new List<FlightRm>();
+            //return StatusCode(500, "Internal server error");
+        }
     }
-
 
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [HttpGet("{id}")]
@@ -74,21 +46,20 @@ public class FlightController : ControllerBase
     [ProducesResponseType(typeof(FlightRm), 200)]
     public async Task<ActionResult<FlightRm>> Find(Guid id)
     {
-        var flight = _entities.Flights.SingleOrDefault(f => f.Id == id);
-
-        if (flight == null)
-            return NotFound();
-
-        var readModel = new FlightRm(
-            flight.Id,
-            flight.Airline,
-            flight.Price,
-            new TimePlaceRm(flight.Departure.Place.ToString(), flight.Departure.Time),
-            new TimePlaceRm(flight.Arrival.Place.ToString(), flight.Arrival.Time),
-            flight.RemainingNumberOfSeats
-            );
-
-        return Ok(readModel);
+        try
+        {
+            var flight = await _flightService.Find(id);
+            if (flight == null)
+            {
+                return NotFound();
+            }
+            return Ok(flight);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error occurred while finding the flight");
+            return StatusCode(500, "Internal server error");
+        }
     }
 
     [HttpPost]
@@ -98,29 +69,21 @@ public class FlightController : ControllerBase
     [ProducesResponseType(200)]
     public async Task<IActionResult> Book(BookDTO dto)
     {
-        System.Diagnostics.Debug.WriteLine($"Booking a new flight {dto.FlightId}");
-
-        var flight = _entities.Flights.SingleOrDefault(f => f.Id == dto.FlightId);
-
-        if (flight == null)
-            return NotFound();
-
-        var error = flight.MakeBooking(dto.PassengerEmail, dto.NumberOfSeats);
-
-        if (error is OverbookErrorDTO)
-            return Conflict(new { message = "Not enough seats." });
-
+        _logger.LogInformation($"Booking a new flight {dto.FlightId}");
 
         try
         {
-            _entities.SaveChanges();
+            await _flightService.Book(dto);
+            return CreatedAtAction(nameof(Find), new { id = dto.FlightId }, null);
         }
-        catch (DbUpdateConcurrencyException e)
+        catch (Exception ex)
         {
-            return Conflict(new { message = "An error occurred while booking. Please try again." });
+            _logger.LogError(ex, "Error occurred while booking the flight");
+            if (ex.Message.Contains("ERROR: Flight not found"))
+                return NotFound();
+            if (ex.Message.Contains("ERROR: Not enough seats"))
+                return Conflict(new { message = "Not enough seats." });
+            return StatusCode(500, "Internal server error");
         }
-
-        return CreatedAtAction(nameof(Find), new { id = dto.FlightId });
     }
-
 }

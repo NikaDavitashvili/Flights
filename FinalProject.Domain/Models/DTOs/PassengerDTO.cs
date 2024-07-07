@@ -1,5 +1,5 @@
 ﻿namespace FinalProject.Domain.Models.DTOs;
-public record Passenger(
+public record PassengerDTO(
     string Email,
     string PasswordHash,
     string UserName,
