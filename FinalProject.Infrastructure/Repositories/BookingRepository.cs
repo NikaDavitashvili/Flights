@@ -76,22 +76,18 @@ public class BookingRepository : IBookingRepository
         var query = @"
             DECLARE @RemainingSeats INT;
 
-            -- Find the booking
             SELECT @RemainingSeats = NumberOfSeats
             FROM Booking
             WHERE FlightId = @FlightId AND PassengerEmail = @PassengerEmail AND NumberOfSeats = @NumberOfSeats;
 
-            -- Check if booking exists
             IF @RemainingSeats IS NULL
             BEGIN
                 THROW 500, 'Booking not found', 1;
             END
 
-            -- Remove the booking
             DELETE FROM Booking
             WHERE FlightId = @FlightId AND PassengerEmail = @PassengerEmail AND NumberOfSeats = @NumberOfSeats;
 
-            -- Update the remaining number of seats in the flight
             UPDATE Flights
             SET RemainingNumberOfSeats = RemainingNumberOfSeats + @NumberOfSeats
             WHERE Id = @FlightId;";
