@@ -5,5 +5,5 @@ namespace FinalProject.Domain.Interfaces.Repositories;
 public interface IBookingRepository
 {
     Task<IEnumerable<BookingRm>> List(string email);
-    Task Cancel(BookDTO dto);
+    Task CancelBooking(BookDTO dto);
 }

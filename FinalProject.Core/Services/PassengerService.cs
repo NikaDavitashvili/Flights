@@ -1,66 +1,55 @@
 ﻿using FinalProject.Domain.Interfaces.Repositories;
 using FinalProject.Domain.Interfaces.Services;
-using FinalProject.Domain.Models.Data;
 using FinalProject.Domain.Models.DTOs;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace FinalProject.Core.Services;
 public class PassengerService : IPassengerService
 {
-    private readonly Entities _entities;
     private readonly IPassengerRepository _passengerRepository;
+    private readonly IHelper _helper;
 
-    public PassengerService(Entities entities, IPassengerRepository passengerRepository)
+    public PassengerService(IPassengerRepository passengerRepository, IHelper helper)
     {
-        _entities = entities;
         _passengerRepository = passengerRepository;
+        _helper = helper;
     }
 
     public async Task Register(NewPassengerDTO dto)
     {
-        var password = PasswordHash(dto.Password);
+        var passwordHash = _helper.PasswordHash(dto.Password);
         var gender = dto.Gender ? "Female" : "Male";
-        _entities.Passengers.Add(new Passenger(
+        var passenger = new PassengerDTO(
             dto.Email,
-            password,
+            passwordHash,
             dto.UserName,
             dto.FirstName,
             dto.LastName,
             gender
-            ));
+        );
 
-        _entities.SaveChanges();
-    }
+        var result = await _passengerRepository.AddPassenger(passenger);
 
-    public async Task<UserDTO?> Login(string email, string password)
-    {
-        var passwordHash = PasswordHash(password);
-        var passenger = _entities.Passengers.FirstOrDefault(p => p.Email == email && p.PasswordHash == passwordHash);
-
-            if (passenger == null)
-                return null;
-
-            var rm = new UserDTO(
-                passenger.Email,
-                passenger.PasswordHash,
-                passenger.UserName
-            );
-
-            return rm;
-    }
-
-    private string PasswordHash(string password)
-    {
-        using (SHA256 sha256Hash = SHA256.Create())
+        if (result.Values.Any(message => message.StartsWith("The input string '")))
         {
-            byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < bytes.Length; i++)
-            {
-                builder.Append(bytes[i].ToString("x2"));
-            }
-            return builder.ToString();
+            throw new Exception("Registration Failed!");
         }
     }
+
+    public async Task<UserDTO> Login(string email, string password)
+    {
+        var passwordHash = _helper.PasswordHash(password);
+        var passenger = await _passengerRepository.GetPassengerByEmailAndPassword(email, passwordHash);
+
+        if (passenger == null)
+        {
+            throw new Exception("Passenger not found");
+        }
+
+        return new UserDTO(
+            passenger.Email,
+            passenger.PasswordHash,
+            passenger.UserName
+        );
+    }
 }
+

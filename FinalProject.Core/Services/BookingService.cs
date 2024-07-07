@@ -1,18 +1,15 @@
 ﻿using FinalProject.Domain.Interfaces.Repositories;
 using FinalProject.Domain.Interfaces.Services;
-using FinalProject.Domain.Models.Data;
 using FinalProject.Domain.Models.DTOs;
 using FinalProject.Domain.Models.ReadModels;
 
 namespace FinalProject.Core.Services;
 public class BookingService : IBookingService
 {
-    private readonly Entities _entities;
     private readonly IBookingRepository _bookingRepository;
 
-    public BookingService(Entities entities, IBookingRepository bookingRepository)
+    public BookingService(IBookingRepository bookingRepository)
     {
-        _entities = entities;
         _bookingRepository = bookingRepository;
     }
 
@@ -25,19 +22,16 @@ public class BookingService : IBookingService
 
     public async Task Cancel(BookDTO dto)
     {
-        var flight = _entities.Flights.Find(dto.FlightId);
-
-        var error = flight?.CancelBooking(dto.PassengerEmail, dto.NumberOfSeats);
-
-        if (error == null)
+        try
         {
-            _entities.SaveChanges();
+            await _bookingRepository.CancelBooking(dto);
         }
+        catch (Exception ex)
+        {
+            if (ex.Message.Contains("Booking not found"))
+                throw new Exception("ERROR");
 
-        if (error is NotFoundErrorDTO)
-            throw new Exception("ERROR");
-
-        throw new Exception($"The error of type: {error.GetType().Name} occurred while canceling the booking made by {dto.PassengerEmail}");
-
+            throw new Exception($"The error of type: {ex.GetType().Name} occurred while canceling the booking made by {dto.PassengerEmail}");
+        }
     }
 }

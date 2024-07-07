@@ -1,10 +1,8 @@
-﻿using FinalProject.Domain.Common;
-using FinalProject.Domain.Interfaces.Repositories;
+﻿using FinalProject.Domain.Interfaces.Repositories;
 using FinalProject.Domain.Models.DTOs;
 using FinalProject.Domain.Models.ReadModels;
 using FinalProject.Infrastructure.Common;
 using System.Data;
-using System.Data.SqlClient;
 
 namespace FinalProject.Infrastructure.Repositories;
 public class BookingRepository : IBookingRepository
@@ -66,8 +64,41 @@ public class BookingRepository : IBookingRepository
 
     }
 
-    public async Task Cancel(BookDTO dto)
+    public async Task CancelBooking(BookDTO dto)
     {
-        throw new NotImplementedException();
+        var dic = new Dictionary<string, object>
+        {
+            { "FlightId", dto.FlightId },
+            { "PassengerEmail", dto.PassengerEmail },
+            { "NumberOfSeats", dto.NumberOfSeats }
+        };
+
+        var query = @"
+            DECLARE @RemainingSeats INT;
+
+            -- Find the booking
+            SELECT @RemainingSeats = NumberOfSeats
+            FROM Booking
+            WHERE FlightId = @FlightId AND PassengerEmail = @PassengerEmail AND NumberOfSeats = @NumberOfSeats;
+
+            -- Check if booking exists
+            IF @RemainingSeats IS NULL
+            BEGIN
+                THROW 500, 'Booking not found', 1;
+            END
+
+            -- Remove the booking
+            DELETE FROM Booking
+            WHERE FlightId = @FlightId AND PassengerEmail = @PassengerEmail AND NumberOfSeats = @NumberOfSeats;
+
+            -- Update the remaining number of seats in the flight
+            UPDATE Flights
+            SET RemainingNumberOfSeats = RemainingNumberOfSeats + @NumberOfSeats
+            WHERE Id = @FlightId;";
+
+        DataTable dt = DB.Select(query, dic, out string errorMessage);
+
+        if (errorMessage != null)
+            throw new Exception(errorMessage);
     }
 }
