@@ -121,26 +121,22 @@ public class FlightRepository : IFlightRepository
         var query = @"
         DECLARE @BookingId INT;
 
-        -- Check if the booking already exists for this flight and passenger
         SELECT @BookingId = Id
         FROM Booking
         WHERE FlightId = @FlightId AND PassengerEmail = @PassengerEmail;
 
         IF @BookingId IS NOT NULL
         BEGIN
-            -- Update the existing booking
             UPDATE Booking
             SET NumberOfSeats = NumberOfSeats + @NumberOfSeats
             WHERE Id = @BookingId;
         END
         ELSE
         BEGIN
-            -- Insert a new booking
             INSERT INTO Booking (FlightId, PassengerEmail, NumberOfSeats)
             VALUES (@FlightId, @PassengerEmail, @NumberOfSeats);
         END
 
-        -- Update the remaining number of seats in the flight
         UPDATE Flights
         SET RemainingNumberOfSeats = RemainingNumberOfSeats - @NumberOfSeats
         WHERE Id = @FlightId;";
