@@ -1,0 +1,38 @@
+.card {
+  border: 1px solid #dee2e6; /* Light grey border for the card */
+  border-radius: 8px; /* Rounded corners for the card */
+}
+
+.card-header {
+  background-color: #f8f9fa; /* Light grey background for the card header */
+  padding: 10px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+  .card-header.bg-silver {
+    background-color: #c0c0c0; /* Silver background for Silver packet */
+  }
+
+  .card-header.bg-golden {
+    background-color: #ffd700; /* Golden background for Golden packet */
+  }
+
+  .card-header.bg-platinum {
+    background-color: #1e90ff; /* Electric blue background for Platinum packet */
+  }
+
+.card-body {
+  background-color: #343a40; /* Dark grey background for the card body */
+  padding: 15px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.shadow {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow effect for the cards */
+}
+
+.bg-dark-grey {
+  color: #ffffff; /* White text color for better readability on dark background */
+}

@@ -2,6 +2,9 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "FontAwesome/4.7.0": {
+        "type": "package"
+      },
       "Microsoft.AspNetCore.SpaProxy/8.0.6": {
         "type": "package",
         "compile": {
@@ -302,6 +305,27 @@
     }
   },
   "libraries": {
+    "FontAwesome/4.7.0": {
+      "sha512": "n4H/brfszElyoZ4kmGh8E75uqvLzLvFr3h2PFVdPH1LwUmWIpeqdaW2pcC4oZAhg7sESyObh0IZpAI8COCNeUg==",
+      "type": "package",
+      "path": "fontawesome/4.7.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/Content/font-awesome.css",
+        "Content/Content/font-awesome.min.css",
+        "Content/fonts/FontAwesome.otf",
+        "Content/fonts/fontawesome-webfont.eot",
+        "Content/fonts/fontawesome-webfont.svg",
+        "Content/fonts/fontawesome-webfont.ttf",
+        "Content/fonts/fontawesome-webfont.woff",
+        "Content/fonts/fontawesome-webfont.woff2",
+        "fontawesome.4.7.0.nupkg.sha512",
+        "fontawesome.nuspec",
+        "tools/install.ps1"
+      ]
+    },
     "Microsoft.AspNetCore.SpaProxy/8.0.6": {
       "sha512": "LBIMKEYxs06TJi/7ekqbfJ8VuoBqC3EORy+mw7Xp0gDIdDGhuaKkeT8BWIzetBbGVix4Tpn3k9GEdJ8Z7E7YOw==",
       "type": "package",
@@ -1010,6 +1034,7 @@
       "FinalProject.Core >= 1.0.0",
       "FinalProject.Domain >= 1.0.0",
       "FinalProject.Infrastructure >= 1.0.0",
+      "FontAwesome >= 4.7.0",
       "Microsoft.AspNetCore.SpaProxy >= 8.0.6",
       "Newtonsoft.Json >= 13.0.3",
       "Swashbuckle.AspNetCore >= 6.4.0"
@@ -1075,6 +1100,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "FontAwesome": {
+            "target": "Package",
+            "version": "[4.7.0, )"
+          },
           "Microsoft.AspNetCore.SpaProxy": {
             "target": "Package",
             "version": "[8.0.6, )"

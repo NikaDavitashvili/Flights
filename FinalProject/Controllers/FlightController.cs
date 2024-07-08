@@ -73,7 +73,8 @@ public class FlightController : ControllerBase
 
         try
         {
-            await _flightService.Book(dto);
+            string result = await _flightService.Book(dto);
+            HttpContext.Session.SetString("TicketAmountErrorMessage", result);
             return CreatedAtAction(nameof(Find), new { id = dto.FlightId }, null);
         }
         catch (Exception ex)

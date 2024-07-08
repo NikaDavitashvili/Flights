@@ -11,6 +11,10 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./book-flight.component.css']
 })
 export class BookFlightComponent implements OnInit {
+  showCardInsertionPopup = false;
+  cardNumber = '';
+  expiryDate = '';
+  cvv = '';
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -22,7 +26,7 @@ export class BookFlightComponent implements OnInit {
   flight: FlightRm = {};
 
   form = this.fb.group({
-    number: [1, Validators.compose([Validators.required, Validators.min(1), Validators.max(254)])]
+    number: [1, Validators.compose([Validators.required, Validators.min(1), Validators.max(10)])]
   });
 
   ngOnInit(): void {
@@ -59,6 +63,19 @@ export class BookFlightComponent implements OnInit {
 
     console.log(`Booking ${this.form.get('number')?.value} passengers for the flight: ${this.flight.id}`);
 
+    // Open the card insertion popup here
+    this.showCardInsertionPopup = true;
+
+    // Disable scroll
+    document.body.classList.add('no-scroll');
+  }
+
+  buyTickets() {
+    if (!this.cardNumber || !this.expiryDate || !this.cvv) {
+      alert('Please enter all card details.');
+      return;
+    }
+
     const booking: BookDto = {
       flightId: this.flight.id,
       passengerEmail: this.authService.currentUser?.email || '',
@@ -67,9 +84,23 @@ export class BookFlightComponent implements OnInit {
 
     this.flightService.bookFlight({ body: booking })
       .subscribe(_ => this.router.navigate(['/my-booking']), this.handleError);
+
+    this.closePopup();
+  }
+
+  closePopup() {
+    this.showCardInsertionPopup = false;
+
+    // Enable scroll
+    document.body.classList.remove('no-scroll');
   }
 
   get number() {
-    return this.form.controls.number;
+    return this.form.get('number');
+  }
+
+  get cardNumberInvalid() {
+    // Basic validation for card number
+    return this.cardNumber.length < 16 || isNaN(Number(this.cardNumber));
   }
 }

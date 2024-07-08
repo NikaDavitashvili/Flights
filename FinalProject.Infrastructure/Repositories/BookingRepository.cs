@@ -67,30 +67,55 @@ public class BookingRepository : IBookingRepository
     public async Task CancelBooking(BookDTO dto)
     {
         var dic = new Dictionary<string, object>
-        {
-            { "FlightId", dto.FlightId },
-            { "PassengerEmail", dto.PassengerEmail },
-            { "NumberOfSeats", dto.NumberOfSeats }
-        };
+    {
+        { "FlightId", dto.FlightId },
+        { "PassengerEmail", dto.PassengerEmail },
+        { "NumberOfSeats", dto.NumberOfSeats }
+    };
 
         var query = @"
-            DECLARE @RemainingSeats INT;
+        DECLARE @RemainingSeats INT;
 
-            SELECT @RemainingSeats = NumberOfSeats
-            FROM Booking
-            WHERE FlightId = @FlightId AND PassengerEmail = @PassengerEmail AND NumberOfSeats = @NumberOfSeats;
+        -- Check if the booking with exact number of seats exists
+        SELECT @RemainingSeats = NumberOfSeats
+        FROM Booking
+        WHERE FlightId = @FlightId AND PassengerEmail = @PassengerEmail;
 
-            IF @RemainingSeats IS NULL
-            BEGIN
-                THROW 500, 'Booking not found', 1;
-            END
+        IF @NumberOfSeats IS NULL OR @NumberOfSeats <= 0
+        BEGIN
+            THROW 500, 'Invalid input: Number of seats must be greater than zero.', 1;
+        END
 
+        IF @RemainingSeats IS NULL
+        BEGIN
+            THROW 500, 'Booking not found', 1;
+        END
+
+        IF @NumberOfSeats > @RemainingSeats
+        BEGIN
+            THROW 500, 'Cannot cancel more seats than booked.', 1;
+        END
+
+        IF @NumberOfSeats = @RemainingSeats
+        BEGIN
+            -- Delete the booking with exactly @NumberOfSeats
             DELETE FROM Booking
-            WHERE FlightId = @FlightId AND PassengerEmail = @PassengerEmail AND NumberOfSeats = @NumberOfSeats;
+            WHERE FlightId = @FlightId
+              AND PassengerEmail = @PassengerEmail
+        END
+        ELSE
+        BEGIN
+            -- Update the existing booking with reduced seats
+            UPDATE Booking
+            SET NumberOfSeats = @RemainingSeats - @NumberOfSeats
+            WHERE FlightId = @FlightId
+              AND PassengerEmail = @PassengerEmail
+        END
 
-            UPDATE Flights
-            SET RemainingNumberOfSeats = RemainingNumberOfSeats + @NumberOfSeats
-            WHERE Id = @FlightId;";
+        -- Update remaining seats in the flight
+        UPDATE Flights
+        SET RemainingNumberOfSeats = RemainingNumberOfSeats + @NumberOfSeats
+        WHERE Id = @FlightId;";
 
         DataTable dt = DB.Select(query, dic, out string errorMessage);
 

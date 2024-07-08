@@ -44,10 +44,12 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IFlightRepository, FlightRepository>();
 builder.Services.AddScoped<IPassengerRepository, PassengerRepository>();
+builder.Services.AddScoped<IPacketRepository, PacketRepository>();
 
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IFlightService, FlightService>();
 builder.Services.AddScoped<IPassengerService, PassengerService>();
+builder.Services.AddScoped<IPacketService, PacketService>();
 builder.Services.AddScoped<IHelper, Helper>();
 
 var app = builder.Build();
