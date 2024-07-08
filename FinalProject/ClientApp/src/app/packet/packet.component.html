@@ -1,0 +1,43 @@
+<h5 class="text-md-center m-5">Available Packets & Special Offers</h5>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let packet of packets">
+      <div class="card h-100 shadow">
+        <div class="card-header" [ngClass]="{
+          'bg-silver': packet.name === 'Silver',
+          'bg-golden': packet.name === 'Golden',
+          'bg-platinum': packet.name === 'Platinum'
+        }">
+          <h4 class="card-title">{{ packet.name }}</h4>
+        </div>
+        <div class="card-body bg-dark-grey">
+          <h5 class="card-title">Prices:</h5>
+          <ul class="list-unstyled mb-4">
+            <li>1 Month: ${{ packet.price1 }}</li>
+            <li>3 Months: ${{ packet.price3 }}</li>
+            <li>6 Months: ${{ packet.price6 }}</li>
+            <li>12 Months: ${{ packet.price12 }}</li>
+          </ul>
+          <h5 class="card-title">Percentage Details:</h5>
+          <ul class="list-unstyled mb-4">
+            <li>Purchase Percent: {{ packet.purchasePercent }}%</li>
+            <li>Cancel Percent: {{ packet.cancelPercent }}%</li>
+          </ul>
+          <form (submit)="buyPacket(authService.currentUser?.email || '', packet.name, selectedMonths)">
+            <div class="form-group">
+              <label>Select Months:</label>
+              <select class="form-control" [(ngModel)]="selectedMonths">
+                <option value="1">1 Month</option>
+                <option value="3">3 Months</option>
+                <option value="6">6 Months</option>
+                <option value="12">12 Months</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Buy Now</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

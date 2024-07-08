@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "VmgoXPTy9tg=",
+  "dgSpecHash": "bmh10yuxII8=",
   "success": true,
   "projectFilePath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\FinalProject.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\fontawesome\\4.7.0\\fontawesome.4.7.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\8.0.6\\microsoft.aspnetcore.spaproxy.8.0.6.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",

@@ -1,0 +1,37 @@
+.blur-background {
+  filter: blur(5px);
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.card-insertion-popup {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+}
+
+  .card-insertion-popup h5 {
+    margin-bottom: 20px;
+  }
+
+  .card-insertion-popup .form-group {
+    margin-bottom: 15px;
+  }

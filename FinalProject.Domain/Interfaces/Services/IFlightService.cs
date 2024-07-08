@@ -6,5 +6,5 @@ public interface IFlightService
 {
     Task<IEnumerable<FlightRm>> Search(FlightSearchParametersDTO @params);
     Task<FlightRm> Find(Guid id);
-    Task Book(BookDTO dto);
+    Task<string> Book(BookDTO dto);
 }

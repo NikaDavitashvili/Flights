@@ -54,5 +54,3 @@ interface User {
   password: string;
   username: string;
 }
-
-// Ensure that the User interface is correctly defined.

@@ -17,7 +17,7 @@ public class FlightService : IFlightService
     {
         try
         {
-            return _flightRepository.Search(@params);
+            return await _flightRepository.Search(@params);
         }
         catch (Exception ex)
         {
@@ -29,7 +29,7 @@ public class FlightService : IFlightService
     {
         try
         {
-            return _flightRepository.Find(id);
+            return await _flightRepository.Find(id);
         }
         catch (Exception ex)
         {
@@ -37,11 +37,13 @@ public class FlightService : IFlightService
         }
     }
 
-    public async Task Book(BookDTO dto)
+    public async Task<string> Book(BookDTO dto)
     {
         try
         {
-            _flightRepository.Book(dto);
+            string result = await _flightRepository.Book(dto);
+
+            return result;
         }
         catch (Exception ex)
         {

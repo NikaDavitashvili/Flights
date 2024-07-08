@@ -13,6 +13,7 @@ import { RegisterPassengerComponent } from './register-passenger/register-passen
 import { MyBookingsComponent } from './my-bookings/my-bookings.component';
 import { AuthService } from './auth/auth.service';
 import { LoginPassengerComponent } from './login-passenger/login-passenger.component';
+import { PacketComponent } from './packet/packet.component'; // Import your PacketComponent here
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LoginPassengerComponent } from './login-passenger/login-passenger.compo
     BookFlightComponent,
     RegisterPassengerComponent,
     LoginPassengerComponent,
-    MyBookingsComponent
+    MyBookingsComponent,
+    PacketComponent // Add PacketComponent to declarations
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -35,8 +37,8 @@ import { LoginPassengerComponent } from './login-passenger/login-passenger.compo
       { path: 'book-flight/:flightId', component: BookFlightComponent, canActivate: [AuthGuard] },
       { path: 'login-passenger', component: LoginPassengerComponent },
       { path: 'register-passenger', component: RegisterPassengerComponent },
-      { path: 'my-booking', component: MyBookingsComponent, canActivate: [AuthGuard]  }
-
+      { path: 'my-booking', component: MyBookingsComponent, canActivate: [AuthGuard] },
+      { path: 'packet', component: PacketComponent, canActivate: [AuthGuard] } // Add route for packets
     ])
   ],
   providers: [AuthService],

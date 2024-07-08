@@ -45,7 +45,7 @@ public class BookingController : ControllerBase
         try
         {
             await _bookingService.Cancel(dto);
-            return NoContent();
+            return CreatedAtAction(nameof(List), new { email = dto.PassengerEmail }, null);
         }
         catch (Exception ex)
         {
