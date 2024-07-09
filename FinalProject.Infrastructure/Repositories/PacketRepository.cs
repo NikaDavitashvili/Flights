@@ -3,6 +3,7 @@ using FinalProject.Domain.Models.DTOs;
 using FinalProject.Domain.Models.ReadModels;
 using FinalProject.Infrastructure.Common;
 using System.Data;
+using System.Net.Sockets;
 
 namespace FinalProject.Infrastructure.Repositories;
 public class PacketRepository : IPacketRepository
@@ -40,7 +41,29 @@ public class PacketRepository : IPacketRepository
         }
 
         return packets;
-    } 
+    }
+
+    public async Task<int> GetCurrentPacketId(string userEmail)
+    {
+        var parameters = new Dictionary<string, object>
+        {
+            { "Email", userEmail }
+        };
+
+        var query = @"SELECT PacketId FROM Passengers Where Email = @Email";
+
+        DataTable dt = DB.Select(query, parameters, out string errorMessage);
+
+        if (errorMessage != null)
+            throw new Exception(errorMessage);
+
+        if (dt == null || dt.Rows.Count == 0)
+            throw new Exception("Data Not Found!");
+
+        int packetId = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
+
+        return packetId; 
+    }
 
     public async Task<Dictionary<int, string>> UpdatePassengerPacket(PacketDTO Packet)
     {

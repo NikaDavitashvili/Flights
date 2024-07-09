@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PacketService } from '../api/services/packet.service';
 import { AuthService } from '../auth/auth.service';
-import { PacketRm } from '../api/models/packet';
+import { PacketResponseDto } from '../api/models/packet-response-dto';
 
 @Component({
   selector: 'app-packet',
@@ -9,9 +9,17 @@ import { PacketRm } from '../api/models/packet';
   styleUrls: ['./packet.component.css']
 })
 export class PacketComponent implements OnInit {
-  packets: any[] = [];
+  PacketResponseDto: any;
   email: string = '';
-  selectedMonths: number = 0; // Initialize with default value
+  selectedMonths: number = 0;
+  showCardInsertionPopup = false;
+  showSuccessAlert = false;
+  packetId: number = 0; // Initialize packetId
+
+  cardNumber = '';
+  expiryDate = '';
+  cvv = '';
+  currentPacketName = '';
 
   constructor(
     private packetService: PacketService,
@@ -23,9 +31,9 @@ export class PacketComponent implements OnInit {
   }
 
   loadPackets(): void {
-    this.packetService.getPackets().subscribe(
-      (data: PacketRm[]) => {
-        this.packets = data;
+    this.packetService.getPackets(this.authService.currentUser!.email).subscribe(
+      (response: PacketResponseDto) => {
+        this.PacketResponseDto = response;
       },
       (error) => {
         console.error('Error fetching packets:', error);
@@ -34,36 +42,47 @@ export class PacketComponent implements OnInit {
     );
   }
 
-  getCardClass(packetName: string): string {
-    // Example logic, customize based on your packet names
-    switch (packetName.toLowerCase()) {
-      case 'silver':
-        return 'bg-silver';
-      case 'golden':
-        return 'bg-golden';
-      case 'platinum':
-        return 'bg-platinum';
-      default:
-        return '';
-    }
-  }
-
-  buyPacket(userEmail: string, packetName: string, months: number): void {
+  openCardPopup(packetName: string, selectedMonths: number): void {
     if (!this.authService.isAuthorized()) {
       alert('Please log in to buy a packet.');
       return;
     }
+    this.currentPacketName = packetName;
+    this.selectedMonths = selectedMonths;
+    this.showCardInsertionPopup = true;
+    document.body.classList.add('no-scroll'); // Disable scroll
+  }
 
-    this.packetService.buyPacket(userEmail, packetName, months)
+  submitCardDetails(): void {
+    if (!this.cardNumber || !this.expiryDate || !this.cvv) {
+      alert('Please enter all card details.');
+      return;
+    }
+
+    const userEmail = this.authService.currentUser?.email || '';
+    this.packetService.buyPacket(userEmail, this.currentPacketName, this.selectedMonths)
       .subscribe(
         response => {
           console.log('Packet bought successfully:', response);
-          // Optionally, update UI or navigate to a different page upon success
+          this.showSuccessAlert = true;
+          this.closePopup();
         },
         error => {
           console.error('Error buying packet:', error);
-          // Optionally, handle errors and display to the user
         }
-      );
+    );
+  }
+
+  closePopup(): void {
+    this.showCardInsertionPopup = false;
+    document.body.classList.remove('no-scroll'); // Enable scroll
+    setTimeout(location.reload.bind(location), 1000);
+  }
+
+  closeSuccessAlert(): void {
+    this.showSuccessAlert = false;
+  }
+  get cardNumberInvalid(): boolean {
+    return this.cardNumber.length < 16 || isNaN(Number(this.cardNumber));
   }
 }

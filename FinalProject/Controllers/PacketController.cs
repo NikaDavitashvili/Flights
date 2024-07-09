@@ -19,13 +19,18 @@ public class PacketController : ControllerBase
         _packetService = packetService;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<PacketRm>>> GetPackets()
+    [HttpGet("{email}")]
+    public async Task<ActionResult<PacketResponseDto>> GetPackets(string email)
     {
         try
         {
-            var packets = await _packetService.GetPackets();
-            return Ok(packets);
+            var responseDto = new PacketResponseDto
+            {
+                Packets = await _packetService.GetPackets(),
+                PacketId = await _packetService.GetCurrentPacketId(email)
+            };
+
+            return Ok(responseDto);
         }
         catch (Exception ex)
         {

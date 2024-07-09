@@ -6,6 +6,7 @@ import { RequestBuilder } from '../request-builder';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { map, filter } from 'rxjs/operators';
 import { PacketRm } from '../models/packet';
+import { PacketResponseDto } from '../models/packet-response-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -20,15 +21,20 @@ export class PacketService extends BaseService {
 
   static readonly PacketPath = '/api/Packet';
 
-  getPackets(): Observable<PacketRm[]> {
-    const rb = new RequestBuilder(this.rootUrl, PacketService.PacketPath, 'get');
+  getPackets(UserEmail: string): Observable<PacketResponseDto/*, packetId: number*/ > {
+    const rb = new RequestBuilder(this.rootUrl, PacketService.PacketPath +'/'+ UserEmail, 'get');
+    rb.body({ UserEmail }, 'application/json');
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r.body as PacketRm[];
+        return r.body as PacketResponseDto;
+          //packets: r.body.packets as PacketRm[],
+          
+          //packetId: r.body.packetId as number,
+        
       })
     );
   }

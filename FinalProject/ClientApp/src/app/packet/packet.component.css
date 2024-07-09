@@ -1,38 +1,172 @@
-.card {
-  border: 1px solid #dee2e6; /* Light grey border for the card */
-  border-radius: 8px; /* Rounded corners for the card */
+.bg-silver {
+  background-color: #C0C0C0;
+  color: #fff;
 }
 
-.card-header {
-  background-color: #f8f9fa; /* Light grey background for the card header */
-  padding: 10px;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+.bg-golden {
+  background-color: #FFD700;
+  color: #fff;
 }
 
-  .card-header.bg-silver {
-    background-color: #c0c0c0; /* Silver background for Silver packet */
-  }
-
-  .card-header.bg-golden {
-    background-color: #ffd700; /* Golden background for Golden packet */
-  }
-
-  .card-header.bg-platinum {
-    background-color: #1e90ff; /* Electric blue background for Platinum packet */
-  }
-
-.card-body {
-  background-color: #343a40; /* Dark grey background for the card body */
-  padding: 15px;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+.bg-platinum {
+  background-color: #1B4F72; /* Electric blue */
+  color: #fff;
 }
 
-.shadow {
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow effect for the cards */
-}
-
+/* Dark grey background for card body */
 .bg-dark-grey {
-  color: #ffffff; /* White text color for better readability on dark background */
+  background-color: #343a40;
+  color: #fff;
 }
+
+/* 3D effect for the card */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+  .card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    transform: translateY(-5px);
+  }
+
+/* Styles for the form */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+select.form-control {
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+/* Button styles */
+button.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+  button.btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+
+
+
+
+
+
+/* Popup overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Card insertion popup */
+.card-insertion-popup {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  width: 350px;
+  text-align: center;
+}
+
+  .card-insertion-popup h5 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .card-insertion-popup .form-group {
+    margin-bottom: 15px;
+  }
+
+  .card-insertion-popup .form-control {
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .card-insertion-popup .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin-right: 10px;
+  }
+
+  .card-insertion-popup .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
+    .card-insertion-popup .btn-primary:hover,
+    .card-insertion-popup .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+  .card-insertion-popup .invalid-feedback {
+    color: red;
+    font-size: 0.9rem;
+  }
+
+.paymentPopupTitleName1 {
+  margin-left: -12em;
+}
+.paymentPopupTitleName2 {
+  margin-left: -13em;
+}
+.paymentPopupTitleName3 {
+  margin-left: -16em;
+}
+
+
+
+
+
+
+
+
+/* Success alert */
+.alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1002;
+}
+
+  .alert .close {
+    font-size: 1.5rem;
+    color: #6c757d; /* Light gray color for the close button */
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+    .alert .close:hover {
+      color: #343a40; /* Darker gray color on hover */
+    }

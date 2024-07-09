@@ -19,6 +19,12 @@ public class PacketService : IPacketService
 
         return packets;
     }
+    public async Task<int> GetCurrentPacketId(string userEmail)
+    {
+        var packetId = await _packetRepository.GetCurrentPacketId(userEmail);
+
+        return packetId;
+    }
 
     public async Task<Dictionary<int, string>> BuyPacket(PacketDTO Packet)
     {
