@@ -2,8 +2,8 @@
   <h5 class="text-md-center m-5">Purchase Flight</h5>
 
   <div class="card-body text-center" style="padding: 20px; background-color:#e5ecf26e">
-    <h6 class="card-title ">{{flight.airline}}</h6>
-    <div class="card-title" style="color: #ff3939">{{flight.remainingNumberOfSeats}} remaining seats</div>
+    <h6 class="card-title ">{{ flight.airline }}</h6>
+    <div class="card-title" style="color: #ff3939">{{ flight.remainingNumberOfSeats }} remaining seats</div>
     <div class="d-grid text-center g-2">
       <div class="row">
         <div class="col">
@@ -12,16 +12,16 @@
           </div>
           <div class="col">
             <i class="fa-solid fa-location-dot">
-              {{flight.departure?.place}}
+              {{ flight.departure?.place }}
             </i>
           </div>
           <div class="col m-2">
             <i class="fa-regular"></i>
-            {{flight.departure?.time | date}}
+            {{ flight.departure?.time | date }}
           </div>
           <div class="col">
             <i class="fa-regular fa-clock">
-              {{flight.departure?.time | date:'shortTime'}}
+              {{ flight.departure?.time | date:'shortTime' }}
             </i>
           </div>
         </div>
@@ -31,8 +31,17 @@
             <hr style="display:block;width: 100%;margin-top: 55px;">
             <i class="fas fa-plane" style="margin-top: 48px;"></i>
           </div>
-          <i class="fa fa-usd" aria-hidden="true">{{flight.price}}</i>
-          <br>
+          <div *ngIf="getDiscountedPrice(flight.price) !== null">
+            <span style="text-decoration: line-through;">$ {{ flight.price }}</span><br>
+            <span>$ {{ getDiscountedPrice(flight.price) }}</span>
+          </div>
+          <div *ngIf="getDiscountedPrice(flight.price) === null">
+            <span>$ {{ flight.price }}</span>
+          </div>
+          <br />
+          <a [routerLink]="['/book-flight', flight.id]" class="btn btn-primary btn-lg mt-2">
+            <i class="fas fa-ticket"></i> Purchase
+          </a>
         </div>
         <div class="col">
           <div class="col m-3">
@@ -40,22 +49,23 @@
           </div>
           <div class="col">
             <i class="fa-solid fa-location-dot">
-              {{flight.arrival?.place}}
+              {{ flight.arrival?.place }}
             </i>
           </div>
           <div class="col m-2 text-primary">
             <i class="fa-regular "></i>
-            {{flight.arrival?.time | date}}
+            {{ flight.arrival?.time | date }}
           </div>
           <div class="col">
             <i class="fa-regular fa-clock">
-              {{flight.arrival?.time | date:'shortTime'}}
+              {{ flight.arrival?.time | date:'shortTime' }}
             </i>
           </div>
         </div>
       </div>
     </div>
   </div>
+
   <div class="card-footer d-flex justify-content-center">
     <form [formGroup]="form" (ngSubmit)="purchase(flight)">
       <label class="form-label mt-5" for="numberOfSeats">Number of Seats</label>
@@ -69,6 +79,7 @@
       </div>
     </form>
   </div>
+
   <div *ngIf="number?.invalid && (number?.dirty || number?.touched)" class="invalid-feedback d-block">
     <div *ngIf="number?.errors?.['required']">
       How many people do you want to Purchase the flight for?

@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class MyBookingsComponent implements OnInit {
 
   bookings: BookingRm[] = [];
+  currentUser: User | null = null;
   form!: FormGroup;
   showReturnPopup: boolean = false;
   currentBooking: BookingRm | null = null;
@@ -27,6 +28,10 @@ export class MyBookingsComponent implements OnInit {
   ngOnInit(): void {
     this.loadBookings();
     this.initializeForm();
+    const userJson = sessionStorage.getItem('CurrentUser');
+    if (userJson) {
+      this.currentUser = JSON.parse(userJson);
+    }
   }
 
   private loadBookings(): void {
@@ -67,8 +72,10 @@ export class MyBookingsComponent implements OnInit {
       const user: User = JSON.parse(userJson);
       this.cancelPercent = user.cancelpercent / 100;
     }
-    
-    this.returnAmount = priceAsInt * numberOfTickets * this.cancelPercent;
+
+
+    this.returnAmount = (priceAsInt * numberOfTickets) * (this.cancelPercent ? this.cancelPercent : 1);
+    console.log(this.returnAmount);
     this.showReturnPopup = true;
     document.body.classList.add('no-scroll');
   }
@@ -111,6 +118,14 @@ export class MyBookingsComponent implements OnInit {
           this.handleError(error);
         }
       );
+  }
+
+  getDiscountedPrice(price: any): number | null {
+    if (this.currentUser && this.currentUser.packetid !== 1) {
+      var discountedPrice = (price * (1 - this.currentUser.purchasepercent / 100));
+      return Math.round(discountedPrice);
+    }
+    return null;
   }
 
 }

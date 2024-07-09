@@ -29,7 +29,13 @@
             <hr style="display:block;width: 100%;margin-top: 55px;">
             <i class="fas fa-plane" style="margin-top: 48px;"></i>
           </div>
-          <i class="fa fa-usd" aria-hidden="true">{{ booking.price }}</i>
+          <div *ngIf="getDiscountedPrice(booking.price) !== null">
+            <span style="text-decoration: line-through;">$ {{ booking.price }}</span><br>
+            <span>$ {{ getDiscountedPrice(booking.price) }}</span>
+          </div>
+          <div *ngIf="getDiscountedPrice(booking.price) === null">
+            <span>$ {{ booking.price }}</span>
+          </div>
         </div>
 
         <!-- Arrival Details -->
@@ -64,6 +70,7 @@
       </div>
     </form>
   </div>
+
   <div *ngIf="form.get('number')?.invalid && (form.get('number')?.dirty || form.get('number')?.touched)"
        class="invalid-feedback d-block">
     <div *ngIf="form.get('number')?.errors?.['min']">
@@ -89,7 +96,7 @@
     </div>
     <div class="form-group">
       <label for="expiryDate">Expiry Date</label>
-      <input type="text" id="expiryDate" class="form-control" placeholder="MM/YY"  required>
+      <input type="text" id="expiryDate" class="form-control" placeholder="MM/YY" required>
     </div>
     <div class="form-group">
       <label for="cvv">CVV</label>

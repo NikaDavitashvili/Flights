@@ -12,6 +12,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class BookFlightComponent implements OnInit {
   currentFlight: FlightRm | null = null;
+  currentUser: User | null = null;
   purchasePercent: number = 0;
   paymentAmount: number = 0;
   showCardInsertionPopup = false;
@@ -34,6 +35,10 @@ export class BookFlightComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(p => this.findFlight(p.get("flightId")));
+    const userJson = sessionStorage.getItem('CurrentUser');
+    if (userJson) {
+      this.currentUser = JSON.parse(userJson);
+    }
   }
 
   private findFlight = (flightId: string | null) => {
@@ -119,6 +124,14 @@ export class BookFlightComponent implements OnInit {
   get cardNumberInvalid() {
     // Basic validation for card number
     return this.cardNumber.length < 16 || isNaN(Number(this.cardNumber));
+  }
+
+  getDiscountedPrice(price: any): number | null {
+    if (this.currentUser && this.currentUser.packetid !== 1) {
+      var discountedPrice = (price * (1 - this.currentUser.purchasepercent / 100));
+      return Math.round(discountedPrice);
+    }
+    return null;
   }
 }
 
