@@ -9,4 +9,8 @@ export interface PacketRm {
   price12: number;
   purchasePercent: number;
   cancelPercent: number;
+  selectedMonths: number;
+
+  //MAYBE HERE
+  packetId: number;
 }
