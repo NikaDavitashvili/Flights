@@ -1,5 +1,5 @@
 <div [ngClass]="{'blur-background': showCardInsertionPopup}">
-  <h5 class="text-md-center m-5">Book Flight</h5>
+  <h5 class="text-md-center m-5">Purchase Flight</h5>
 
   <div class="card-body text-center" style="padding: 20px; background-color:#e5ecf26e">
     <h6 class="card-title ">{{flight.airline}}</h6>
@@ -57,7 +57,7 @@
     </div>
   </div>
   <div class="card-footer d-flex justify-content-center">
-    <form [formGroup]="form" (ngSubmit)="book()">
+    <form [formGroup]="form" (ngSubmit)="purchase(flight)">
       <label class="form-label mt-5" for="numberOfSeats">Number of Seats</label>
       <div class="center input-group">
         <input formControlName="number" type="number" class="form-control" id="numberOfSeats" name="numberOfSeats"
@@ -71,10 +71,10 @@
   </div>
   <div *ngIf="number?.invalid && (number?.dirty || number?.touched)" class="invalid-feedback d-block">
     <div *ngIf="number?.errors?.['required']">
-      How many people do you want to book the flight for?
+      How many people do you want to Purchase the flight for?
     </div>
     <div *ngIf="number?.errors?.['min']">
-      You can not book for less than 1 passenger!
+      You can not Purchase for less than 1 passenger!
     </div>
     <div *ngIf="number?.errors?.['max']">
       Our planes do not have more than 10 seats.
@@ -85,6 +85,7 @@
 <div *ngIf="showCardInsertionPopup" class="popup-overlay">
   <div class="card-insertion-popup">
     <h5>Enter Card Details</h5>
+    <p>Total Payment: {{ paymentAmount | currency }}</p>
     <div class="form-group">
       <label for="cardNumber">Card Number</label>
       <input type="text" id="cardNumber" class="form-control" placeholder="Enter card number" [(ngModel)]="cardNumber" required>

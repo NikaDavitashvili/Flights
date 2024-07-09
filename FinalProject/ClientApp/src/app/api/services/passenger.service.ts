@@ -81,7 +81,7 @@ export class PassengerService extends BaseService {
     const url = `${this.rootUrl}/Passenger/${encodeURIComponent(email)}&${encodeURIComponent(password)}`;
     return this.http.post<User>(url, null).pipe(
       map(response => {
-        return response; // Make sure 'response' contains the data you expect
+        return response;
       })
     );
   }
@@ -89,5 +89,8 @@ export class PassengerService extends BaseService {
 interface User {
   email: string;
   password: string;
-  username: string; // Add this line
+  username: string;
+  packetid: number;
+  purchasepercent: number;
+  cancelpercent: number;
 }

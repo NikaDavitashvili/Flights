@@ -18,13 +18,19 @@ public class PassengerService : IPassengerService
     {
         var passwordHash = _helper.PasswordHash(dto.Password);
         var gender = dto.Gender ? "Female" : "Male";
+        int packetId = 1;
+        int purchasePercent = 0;
+        int cancelPercent = 0;
         var passenger = new PassengerDTO(
             dto.Email,
             passwordHash,
             dto.UserName,
             dto.FirstName,
             dto.LastName,
-            gender
+            gender,
+            packetId,
+            purchasePercent,
+            cancelPercent                
         );
 
         var result = await _passengerRepository.AddPassenger(passenger);
@@ -48,7 +54,10 @@ public class PassengerService : IPassengerService
         return new UserDTO(
             passenger.Email,
             passenger.PasswordHash,
-            passenger.UserName
+            passenger.UserName,
+            passenger.PacketID,
+            passenger.PurchasePercent,
+            passenger.CancelPercent
         );
     }
 }

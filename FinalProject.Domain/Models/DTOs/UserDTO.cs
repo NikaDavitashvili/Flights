@@ -2,4 +2,8 @@
 public record UserDTO(
     string Email,
     string PasswordHash,
-    string UserName);
+    string UserName,
+    int PacketId,
+    int PurchasePercent,
+    int CancelPercent
+    );

@@ -53,4 +53,7 @@ interface User {
   email: string;
   password: string;
   username: string;
+  packetid: number;
+  purchasepercent: number;
+  cancelpercent: number;
 }

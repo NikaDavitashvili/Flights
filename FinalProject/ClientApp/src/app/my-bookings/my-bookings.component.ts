@@ -14,8 +14,9 @@ export class MyBookingsComponent implements OnInit {
   bookings: BookingRm[] = [];
   form!: FormGroup;
   showReturnPopup: boolean = false;
-  currentBooking: BookingRm | null = null; // Initialize with null
-  amountToReturn: number = 0;
+  currentBooking: BookingRm | null = null;
+  returnAmount: number = 0;
+  cancelPercent: number = 0;
 
   constructor(
     private bookingService: BookingService,
@@ -60,7 +61,14 @@ export class MyBookingsComponent implements OnInit {
     }
     const priceAsInt = parseInt(booking.price!.toString(), 10);
     this.currentBooking = booking;
-    this.amountToReturn = priceAsInt * numberOfTickets;
+
+    const userJson = sessionStorage.getItem('CurrentUser');
+    if (userJson) {
+      const user: User = JSON.parse(userJson);
+      this.cancelPercent = user.cancelpercent / 100;
+    }
+    
+    this.returnAmount = priceAsInt * numberOfTickets * this.cancelPercent;
     this.showReturnPopup = true;
     document.body.classList.add('no-scroll');
   }
@@ -104,4 +112,13 @@ export class MyBookingsComponent implements OnInit {
         }
       );
   }
+
+}
+interface User {
+  email: string;
+  password: string;
+  username: string;
+  packetid: number;
+  purchasepercent: number;
+  cancelpercent: number;
 }

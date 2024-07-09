@@ -67,7 +67,7 @@
   <div *ngIf="form.get('number')?.invalid && (form.get('number')?.dirty || form.get('number')?.touched)"
        class="invalid-feedback d-block">
     <div *ngIf="form.get('number')?.errors?.['min']">
-      You cannot book for less than 1 passenger!
+      You cannot Return for less than 1 passenger!
     </div>
     <div *ngIf="form.get('number')?.errors?.['max']">
       Our planes do not have more than 10 seats.
@@ -78,7 +78,7 @@
 <div *ngIf="showReturnPopup" class="popup-overlay">
   <div class="card-insertion-popup">
     <h5>Return Tickets</h5>
-    <p>You will be refunded: {{ amountToReturn | currency }}</p>
+    <p>You will be refunded: {{ returnAmount | currency }}</p>
     <h5>Enter Card Details</h5>
     <div class="form-group">
       <label for="cardNumber">Card Number</label>

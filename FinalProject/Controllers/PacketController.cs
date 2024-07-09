@@ -40,12 +40,12 @@ public class PacketController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<IEnumerable<PacketRm>>> BuyPacket(PacketDTO Packet)
+    public async Task<ActionResult<PacketRm>> BuyPacket(PacketDTO Packet)
     {
         try
         {
-            var packets = await _packetService.BuyPacket(Packet);
-            return CreatedAtAction(nameof(GetPackets), null, null);
+            var packet = await _packetService.BuyPacket(Packet);
+            return packet;
         }
         catch (Exception ex)
         {

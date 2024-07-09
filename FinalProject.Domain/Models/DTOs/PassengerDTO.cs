@@ -5,4 +5,7 @@ public record PassengerDTO(
     string UserName,
     string FirstName,
     string LastName,
-    string Gender);
+    string Gender,
+    int PacketID,
+    int PurchasePercent,
+    int CancelPercent);

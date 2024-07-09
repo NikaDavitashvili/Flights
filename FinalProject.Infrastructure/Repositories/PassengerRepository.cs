@@ -15,12 +15,15 @@ public class PassengerRepository : IPassengerRepository
             { "UserName", passenger.UserName },
             { "FirstName", passenger.FirstName },
             { "LastName", passenger.LastName },
-            { "Gender", passenger.Gender }
+            { "Gender", passenger.Gender },
+            { "PacketID", passenger.PacketID },
+            { "PurchasePercent", passenger.PurchasePercent },
+            { "CancelPercent", passenger.CancelPercent },
         };
 
         var query = @"
-        INSERT INTO Passengers (Email, PasswordHash, UserName, FirstName, LastName, Gender)
-        VALUES (@Email, @PasswordHash, @UserName, @FirstName, @LastName, @Gender)";
+        INSERT INTO Passengers (Email, PasswordHash, UserName, FirstName, LastName, Gender, PacketID, PurchasePercent, CancelPercent)
+        VALUES (@Email, @PasswordHash, @UserName, @FirstName, @LastName, @Gender, @PacketID, @PurchasePercent, @CancelPercent)";
 
         Dictionary<int, string> result = DB.Run(query, parameters);
 
@@ -36,8 +39,9 @@ public class PassengerRepository : IPassengerRepository
         };
 
         var query = @"
-            SELECT Email, PasswordHash, UserName, FirstName, LastName, Gender
-            FROM Passengers
+            SELECT Email, PasswordHash, UserName, FirstName, LastName, Gender, PacketID, PurchasePercent, CancelPercent
+            FROM Passengers psg
+            INNER JOIN Packets pck on psg.PacketID = pck.Id
             WHERE Email = @Email AND PasswordHash = @PasswordHash";
 
         string errorMessage;
@@ -61,7 +65,10 @@ public class PassengerRepository : IPassengerRepository
             row["UserName"].ToString(),
             row["FirstName"].ToString(),
             row["LastName"].ToString(),
-            row["Gender"].ToString()
+            row["Gender"].ToString(),
+            Convert.ToInt32(row["PacketID"]),
+            Convert.ToInt32(row["PurchasePercent"]),
+            Convert.ToInt32(row["CancelPercent"])
         );
     }
 }

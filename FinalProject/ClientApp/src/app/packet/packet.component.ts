@@ -63,14 +63,27 @@ export class PacketComponent implements OnInit {
     this.packetService.buyPacket(userEmail, this.currentPacketName, this.selectedMonths)
       .subscribe(
         response => {
-          console.log('Packet bought successfully:', response);
           this.showSuccessAlert = true;
           this.closePopup();
+          console.log('Packet bought successfully:', response);
+          this.updatePacketInfoInSesssion(response.id, response.purchasePercent, response.cancelPercent);
         },
         error => {
           console.error('Error buying packet:', error);
         }
     );
+  }
+
+  updatePacketInfoInSesssion(packetId: number, purchasePercent: number, cancelPercent: number): void {
+    const userJson = sessionStorage.getItem('CurrentUser');
+    if (userJson) {
+      const user: User = JSON.parse(userJson);
+      user.packetid = packetId;
+      user.purchasepercent = purchasePercent;
+      user.cancelpercent = cancelPercent;
+
+      sessionStorage.setItem('CurrentUser', JSON.stringify(user));
+    }
   }
 
   closePopup(): void {
@@ -85,4 +98,12 @@ export class PacketComponent implements OnInit {
   get cardNumberInvalid(): boolean {
     return this.cardNumber.length < 16 || isNaN(Number(this.cardNumber));
   }
+}
+interface User {
+  email: string;
+  password: string;
+  username: string;
+  packetid: number;
+  purchasepercent: number;
+  cancelpercent: number;
 }

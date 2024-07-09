@@ -11,6 +11,9 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./book-flight.component.css']
 })
 export class BookFlightComponent implements OnInit {
+  currentFlight: FlightRm | null = null;
+  purchasePercent: number = 0;
+  paymentAmount: number = 0;
   showCardInsertionPopup = false;
   cardNumber = '';
   expiryDate = '';
@@ -56,12 +59,26 @@ export class BookFlightComponent implements OnInit {
     console.log(err);
   }
 
-  book() {
+  purchase(flight: FlightRm): void {
     if (this.form.invalid) {
       return;
     }
 
-    console.log(`Booking ${this.form.get('number')?.value} passengers for the flight: ${this.flight.id}`);
+    const numberOfTickets = this.form.get('number')?.value;
+    if (numberOfTickets <= 0) {
+      alert('Please enter a valid number of tickets to cancel.');
+      return;
+    }
+    const priceAsInt = parseInt(flight.price!.toString(), 10);
+    this.currentFlight = flight;
+
+    const userJson = sessionStorage.getItem('CurrentUser');
+    if (userJson) {
+      const user: User = JSON.parse(userJson);
+      this.purchasePercent = 1 - user.purchasepercent / 100;
+    }
+
+    this.paymentAmount = priceAsInt * numberOfTickets * this.purchasePercent;
 
     // Open the card insertion popup here
     this.showCardInsertionPopup = true;
@@ -103,4 +120,13 @@ export class BookFlightComponent implements OnInit {
     // Basic validation for card number
     return this.cardNumber.length < 16 || isNaN(Number(this.cardNumber));
   }
+}
+
+interface User {
+  email: string;
+  password: string;
+  username: string;
+  packetid: number;
+  purchasepercent: number;
+  cancelpercent: number;
 }
