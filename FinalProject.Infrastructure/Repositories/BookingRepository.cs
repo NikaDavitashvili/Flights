@@ -76,7 +76,6 @@ public class BookingRepository : IBookingRepository
         var query = @"
         DECLARE @RemainingSeats INT;
 
-        -- Check if the booking with exact number of seats exists
         SELECT @RemainingSeats = NumberOfSeats
         FROM Booking
         WHERE FlightId = @FlightId AND PassengerEmail = @PassengerEmail;
@@ -98,21 +97,18 @@ public class BookingRepository : IBookingRepository
 
         IF @NumberOfSeats = @RemainingSeats
         BEGIN
-            -- Delete the booking with exactly @NumberOfSeats
             DELETE FROM Booking
             WHERE FlightId = @FlightId
               AND PassengerEmail = @PassengerEmail
         END
         ELSE
         BEGIN
-            -- Update the existing booking with reduced seats
             UPDATE Booking
             SET NumberOfSeats = @RemainingSeats - @NumberOfSeats
             WHERE FlightId = @FlightId
               AND PassengerEmail = @PassengerEmail
         END
 
-        -- Update remaining seats in the flight
         UPDATE Flights
         SET RemainingNumberOfSeats = RemainingNumberOfSeats + @NumberOfSeats
         WHERE Id = @FlightId;";

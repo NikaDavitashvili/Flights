@@ -122,55 +122,46 @@ public class FlightRepository : IFlightRepository
         DECLARE @BookingId INT;
         DECLARE @CurrentRemainingSeats INT;
         
-        -- Get the current remaining seats for the flight
         SELECT @CurrentRemainingSeats = RemainingNumberOfSeats
         FROM Flights
         WHERE Id = @FlightId;
         
-        -- Check if there are enough seats available
         IF @CurrentRemainingSeats < @NumberOfSeats
         BEGIN
             THROW 50003, 'Not enough seats available for this booking.', 1;
         END
         
-        -- Check if the current booking exists for the passenger
         SELECT @BookingId = Id
         FROM Booking
         WHERE FlightId = @FlightId AND PassengerEmail = @PassengerEmail;
         
         IF @BookingId IS NOT NULL
         BEGIN
-            -- Calculate the new total number of seats if the booking exists
             DECLARE @TotalSeats INT;
             SELECT @TotalSeats = NumberOfSeats + @NumberOfSeats
             FROM Booking
             WHERE Id = @BookingId;
         
-            -- Check if the total number of seats exceeds the limit (10 seats)
             IF @TotalSeats > 10
             BEGIN
                 THROW 500, 'Cannot add more than 10 seats for this booking.', 1;
             END
         
-            -- Update the existing booking
             UPDATE Booking
             SET NumberOfSeats = @TotalSeats
             WHERE Id = @BookingId;
         END
         ELSE
         BEGIN
-            -- Check if the new booking will exceed the limit (10 seats)
             IF @NumberOfSeats > 10
             BEGIN
                 THROW 50002, 'Cannot add more than 10 seats in a single booking.', 1;
             END
         
-            -- Insert a new booking
             INSERT INTO Booking (FlightId, PassengerEmail, NumberOfSeats)
             VALUES (@FlightId, @PassengerEmail, @NumberOfSeats);
         END
         
-        -- Update remaining seats in the flight
         UPDATE Flights
         SET RemainingNumberOfSeats = RemainingNumberOfSeats - @NumberOfSeats
         WHERE Id = @FlightId;";

@@ -11,8 +11,8 @@ import { FormBuilder } from '@angular/forms';
 })
 export class SearchFlightsComponent implements OnInit {
 
-
   searchResult: FlightRm[] = []
+  currentUser: User | null = null;
 
   constructor(private flightService: FlightService,
     private fb: FormBuilder ) { }
@@ -27,6 +27,10 @@ export class SearchFlightsComponent implements OnInit {
 
   ngOnInit(): void {
     this.search();
+    const userJson = sessionStorage.getItem('CurrentUser');
+    if (userJson) {
+      this.currentUser = JSON.parse(userJson);
+    }
   }
 
   search() {
@@ -41,4 +45,19 @@ export class SearchFlightsComponent implements OnInit {
     console.log(err)
   }
 
+  getDiscountedPrice(price: any): number | null {
+    if (this.currentUser && this.currentUser.packetid !== 1) {
+      var discountedPrice = (price * (1 - this.currentUser.purchasepercent / 100));
+      return Math.round(discountedPrice);
+    }
+    return null;
+  }
+}
+interface User {
+  email: string;
+  password: string;
+  username: string;
+  packetid: number;
+  purchasepercent: number;
+  cancelpercent: number;
 }
