@@ -26,7 +26,7 @@ public class PacketService : IPacketService
         return packetId;
     }
 
-    public async Task<Dictionary<int, string>> BuyPacket(PacketDTO Packet)
+    public async Task<PacketRm> BuyPacket(PacketDTO Packet)
     {
        var result = await _packetRepository.UpdatePassengerPacket(Packet);
 

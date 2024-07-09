@@ -6,5 +6,5 @@ public interface IPacketService
 {
     Task<IEnumerable<PacketRm>> GetPackets();
     Task<int> GetCurrentPacketId(string userEmail);
-    Task<Dictionary<int, string>> BuyPacket(PacketDTO Packet);
+    Task<PacketRm> BuyPacket(PacketDTO Packet);
 }

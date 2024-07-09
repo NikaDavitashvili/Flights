@@ -39,7 +39,7 @@ export class PacketService extends BaseService {
     );
   }
 
-  buyPacket(PassengerEmail: string, Name: string, ValidityMonths: number): Observable<PacketRm[]> {
+  buyPacket(PassengerEmail: string, Name: string, ValidityMonths: number): Observable<PacketRm> {
     const rb = new RequestBuilder(this.rootUrl, PacketService.PacketPath, 'post');
     rb.body({ PassengerEmail, Name, ValidityMonths }, 'application/json'); // Set request body here
     return this.http.request(rb.build({
@@ -48,7 +48,7 @@ export class PacketService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r.body as PacketRm[];
+        return r.body as PacketRm;
       })
     );
   }

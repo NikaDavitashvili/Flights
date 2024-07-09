@@ -65,7 +65,7 @@ public class PacketRepository : IPacketRepository
         return packetId; 
     }
 
-    public async Task<Dictionary<int, string>> UpdatePassengerPacket(PacketDTO Packet)
+    public async Task<PacketRm> UpdatePassengerPacket(PacketDTO Packet)
     {
         var parameters = new Dictionary<string, object>
         {
@@ -77,10 +77,25 @@ public class PacketRepository : IPacketRepository
         var query = @"UPDATE Passengers
                       SET PacketID = (SELECT Id FROM Packets WHERE Name = @Name), 
                           PacketStartDate = GETDATE(), PacketEndDate = DATEADD(MONTH, convert (int,@Months), GETDATE()) 
-                      Where Email = @Email";
+                      Where Email = @Email
+                      SELECT Id, Name, PurchasePercent, CancelPercent FROM Packets WHERE Name = @Name";
 
-        Dictionary<int, string> result = DB.Run(query, parameters);
+        DataTable dt = DB.Select(query, parameters, out string errorMessage);
 
-        return result;
+        if (errorMessage != null)
+            throw new Exception(errorMessage);
+
+        if (dt == null || dt.Rows.Count == 0)
+            throw new Exception("Data Not Found!");
+
+        var packet = new PacketRm(
+            Convert.ToInt32(dt.Rows[0]["Id"].ToString()),
+            dt.Rows[0]["Name"].ToString(),
+            0,0,0,0,
+            Convert.ToInt32(dt.Rows[0]["PurchasePercent"].ToString()),
+            Convert.ToInt32(dt.Rows[0]["CancelPercent"].ToString())
+        );
+
+        return packet;
     }
 }

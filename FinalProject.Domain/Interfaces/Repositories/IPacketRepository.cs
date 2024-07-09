@@ -6,5 +6,5 @@ public interface IPacketRepository
 {
     Task<IEnumerable<PacketRm>> GetPackets();
     Task<int> GetCurrentPacketId(string userEmail);
-    Task<Dictionary<int, string>> UpdatePassengerPacket(PacketDTO Packet);
+    Task<PacketRm> UpdatePassengerPacket(PacketDTO Packet);
 }
