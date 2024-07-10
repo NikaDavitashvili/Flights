@@ -21,22 +21,6 @@ export class MapService extends BaseService {
     super(config, http);
   }
 
-/*  getCities(): Observable<any[]> {
-    return this.http.get<any[]>('/api/map').pipe(
-      mergeMap(cities => from(cities)),
-      mergeMap(city => this.getCoordinates(city.Departure).pipe(
-        map(coords => ({
-          name: city.Departure,
-          lat: coords.lat,
-          lng: coords.lng,
-          description: 'Departure City'
-        }))
-      )),
-      toArray()
-    );
-  }
-*/
-
   getCoordinates(cityName: string): Observable<{ lat: number, lng: number }> {
     const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(cityName)}&key=${this.apiKey}`;
     return this.http.get<any>(url).pipe(
@@ -49,8 +33,6 @@ export class MapService extends BaseService {
       })
     );
   }
-
-
 
   getCities(): Observable<CitiesRm[]> {
     const rb = new RequestBuilder(this.rootUrl, MapService.MapPath, 'get');
