@@ -23,17 +23,10 @@ export class FlightService extends BaseService {
     super(config, http);
   }
 
-  /**
-   * Path part for operation searchFlight
-   */
+
   static readonly SearchFlightPath = '/Flight';
 
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `searchFlight$Plain()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
+
   searchFlight$Plain$Response(params?: {
     fromDate?: string;
     toDate?: string;

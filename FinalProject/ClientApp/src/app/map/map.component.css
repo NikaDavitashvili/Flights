@@ -14,10 +14,16 @@ body {
   padding: 0;
   background: none;
 }
-
-
+  
 .leaflet-control {
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.plane-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #3498db; /* Adjust color as needed */
 }

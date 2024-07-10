@@ -1,5 +1,10 @@
 {
   "dependencies": {
-    "@ng-bootstrap/ng-bootstrap": "^12.0.0"
+    "@ng-bootstrap/ng-bootstrap": "^12.0.0",
+    "leaflet-curve": "^1.0.0",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "@types/leaflet-curve": "^0.1.5"
   }
 }
