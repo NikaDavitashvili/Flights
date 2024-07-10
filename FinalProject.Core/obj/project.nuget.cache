@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "/NA2L43eZuk=",
+  "dgSpecHash": "mhHfaVdIwg8=",
   "success": true,
   "projectFilePath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Core\\FinalProject.Core.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\leaflet\\0.7.3\\leaflet.0.7.3.nupkg.sha512"
+  ],
   "logs": []
 }

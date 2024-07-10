@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <PackageReference Include="FontAwesome" Version="4.7.0" />
+    <PackageReference Include="leaflet" Version="0.7.3" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="8.0.6" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />

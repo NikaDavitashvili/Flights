@@ -49,6 +49,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "leaflet": {
+              "target": "Package",
+              "version": "[0.7.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -122,6 +128,10 @@
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.6, )"
+            },
+            "leaflet": {
+              "target": "Package",
+              "version": "[0.7.3, )"
             }
           },
           "imports": [
