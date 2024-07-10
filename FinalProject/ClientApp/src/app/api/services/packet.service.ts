@@ -21,7 +21,7 @@ export class PacketService extends BaseService {
 
   static readonly PacketPath = '/api/Packet';
 
-  getPackets(UserEmail: string): Observable<PacketResponseDto/*, packetId: number*/ > {
+  getPackets(UserEmail: string): Observable<PacketResponseDto > {
     const rb = new RequestBuilder(this.rootUrl, PacketService.PacketPath +'/'+ UserEmail, 'get');
     rb.body({ UserEmail }, 'application/json');
     return this.http.request(rb.build({
@@ -31,17 +31,13 @@ export class PacketService extends BaseService {
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
         return r.body as PacketResponseDto;
-          //packets: r.body.packets as PacketRm[],
-          
-          //packetId: r.body.packetId as number,
-        
       })
     );
   }
 
   buyPacket(PassengerEmail: string, Name: string, ValidityMonths: number): Observable<PacketRm> {
     const rb = new RequestBuilder(this.rootUrl, PacketService.PacketPath, 'post');
-    rb.body({ PassengerEmail, Name, ValidityMonths }, 'application/json'); // Set request body here
+    rb.body({ PassengerEmail, Name, ValidityMonths }, 'application/json');
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'application/json'

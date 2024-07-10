@@ -1,11 +1,37 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "leaflet/0.7.3": {
+        "type": "package"
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "leaflet/0.7.3": {
+      "sha512": "R20Vv1lXuqcu6lKeHFy8KnahLxetHaKBS0S2y/mrq+phhkTtz0zIr6isxJR89LuQR9v53aKNMFVyaxLU+zagEw==",
+      "type": "package",
+      "path": "leaflet/0.7.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/Content/images/layers-2x.png",
+        "content/Content/images/layers.png",
+        "content/Content/images/marker-icon-2x.png",
+        "content/Content/images/marker-icon.png",
+        "content/Content/images/marker-shadow.png",
+        "content/Content/leaflet.css",
+        "content/Scripts/leaflet-0.7.3.js",
+        "content/Scripts/leaflet-0.7.3.min.js",
+        "leaflet.0.7.3.nupkg.sha512",
+        "leaflet.nuspec"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "leaflet >= 0.7.3"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\User\\.nuget\\packages\\": {},
@@ -56,6 +82,12 @@
     "frameworks": {
       "net8.0": {
         "targetAlias": "net8.0",
+        "dependencies": {
+          "leaflet": {
+            "target": "Package",
+            "version": "[0.7.3, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

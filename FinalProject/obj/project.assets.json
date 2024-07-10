@@ -5,6 +5,9 @@
       "FontAwesome/4.7.0": {
         "type": "package"
       },
+      "leaflet/0.7.3": {
+        "type": "package"
+      },
       "Microsoft.AspNetCore.SpaProxy/8.0.6": {
         "type": "package",
         "compile": {
@@ -269,7 +272,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "FinalProject.Domain": "1.0.0"
+          "FinalProject.Domain": "1.0.0",
+          "leaflet": "0.7.3"
         },
         "compile": {
           "bin/placeholder/FinalProject.Core.dll": {}
@@ -281,6 +285,9 @@
       "FinalProject.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "leaflet": "0.7.3"
+        },
         "compile": {
           "bin/placeholder/FinalProject.Domain.dll": {}
         },
@@ -293,7 +300,8 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "FinalProject.Domain": "1.0.0",
-          "System.Data.SqlClient": "4.8.6"
+          "System.Data.SqlClient": "4.8.6",
+          "leaflet": "0.7.3"
         },
         "compile": {
           "bin/placeholder/FinalProject.Infrastructure.dll": {}
@@ -324,6 +332,25 @@
         "fontawesome.4.7.0.nupkg.sha512",
         "fontawesome.nuspec",
         "tools/install.ps1"
+      ]
+    },
+    "leaflet/0.7.3": {
+      "sha512": "R20Vv1lXuqcu6lKeHFy8KnahLxetHaKBS0S2y/mrq+phhkTtz0zIr6isxJR89LuQR9v53aKNMFVyaxLU+zagEw==",
+      "type": "package",
+      "path": "leaflet/0.7.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/Content/images/layers-2x.png",
+        "content/Content/images/layers.png",
+        "content/Content/images/marker-icon-2x.png",
+        "content/Content/images/marker-icon.png",
+        "content/Content/images/marker-shadow.png",
+        "content/Content/leaflet.css",
+        "content/Scripts/leaflet-0.7.3.js",
+        "content/Scripts/leaflet-0.7.3.min.js",
+        "leaflet.0.7.3.nupkg.sha512",
+        "leaflet.nuspec"
       ]
     },
     "Microsoft.AspNetCore.SpaProxy/8.0.6": {
@@ -1037,7 +1064,8 @@
       "FontAwesome >= 4.7.0",
       "Microsoft.AspNetCore.SpaProxy >= 8.0.6",
       "Newtonsoft.Json >= 13.0.3",
-      "Swashbuckle.AspNetCore >= 6.4.0"
+      "Swashbuckle.AspNetCore >= 6.4.0",
+      "leaflet >= 0.7.3"
     ]
   },
   "packageFolders": {
@@ -1115,6 +1143,10 @@
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[6.4.0, )"
+          },
+          "leaflet": {
+            "target": "Package",
+            "version": "[0.7.3, )"
           }
         },
         "imports": [
