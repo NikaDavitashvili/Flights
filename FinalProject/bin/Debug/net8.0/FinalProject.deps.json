@@ -14,13 +14,15 @@
           "FontAwesome": "4.7.0",
           "Microsoft.AspNetCore.SpaProxy": "8.0.6",
           "Newtonsoft.Json": "13.0.3",
-          "Swashbuckle.AspNetCore": "6.4.0"
+          "Swashbuckle.AspNetCore": "6.4.0",
+          "leaflet": "0.7.3"
         },
         "runtime": {
           "FinalProject.dll": {}
         }
       },
       "FontAwesome/4.7.0": {},
+      "leaflet/0.7.3": {},
       "Microsoft.AspNetCore.SpaProxy/8.0.6": {
         "runtime": {
           "lib/net8.0/Microsoft.AspNetCore.SpaProxy.dll": {
@@ -161,13 +163,17 @@
       "System.Security.Principal.Windows/4.7.0": {},
       "FinalProject.Core/1.0.0": {
         "dependencies": {
-          "FinalProject.Domain": "1.0.0"
+          "FinalProject.Domain": "1.0.0",
+          "leaflet": "0.7.3"
         },
         "runtime": {
           "FinalProject.Core.dll": {}
         }
       },
       "FinalProject.Domain/1.0.0": {
+        "dependencies": {
+          "leaflet": "0.7.3"
+        },
         "runtime": {
           "FinalProject.Domain.dll": {}
         }
@@ -175,7 +181,8 @@
       "FinalProject.Infrastructure/1.0.0": {
         "dependencies": {
           "FinalProject.Domain": "1.0.0",
-          "System.Data.SqlClient": "4.8.6"
+          "System.Data.SqlClient": "4.8.6",
+          "leaflet": "0.7.3"
         },
         "runtime": {
           "FinalProject.Infrastructure.dll": {}
@@ -195,6 +202,13 @@
       "sha512": "sha512-n4H/brfszElyoZ4kmGh8E75uqvLzLvFr3h2PFVdPH1LwUmWIpeqdaW2pcC4oZAhg7sESyObh0IZpAI8COCNeUg==",
       "path": "fontawesome/4.7.0",
       "hashPath": "fontawesome.4.7.0.nupkg.sha512"
+    },
+    "leaflet/0.7.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-R20Vv1lXuqcu6lKeHFy8KnahLxetHaKBS0S2y/mrq+phhkTtz0zIr6isxJR89LuQR9v53aKNMFVyaxLU+zagEw==",
+      "path": "leaflet/0.7.3",
+      "hashPath": "leaflet.0.7.3.nupkg.sha512"
     },
     "Microsoft.AspNetCore.SpaProxy/8.0.6": {
       "type": "package",

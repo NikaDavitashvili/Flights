@@ -21,7 +21,7 @@ export class MapComponent implements OnInit {
     this.http.get<any[]>('http://your-api-url/GetCities').subscribe(
       data => {
         this.cities = data;
-        this.initializeMap();
+        //this.initializeMap();
       },
       error => {
         console.error('Error fetching cities:', error);
@@ -29,16 +29,16 @@ export class MapComponent implements OnInit {
     );
   }
 
-  initializeMap(): void {
-    // Initialize your map here, e.g., using Leaflet or Angular Google Maps
-    // Example: Leaflet integration
-    const map = L.map('map').setView([0, 0], 2); // Set initial view to center of the world
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+  //initializeMap(): void {
+  //  // Initialize your map here, e.g., using Leaflet or Angular Google Maps
+  //  // Example: Leaflet integration
+  //  const map = L.map('map').setView([0, 0], 2); // Set initial view to center of the world
+  //  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-    // Add markers for each city
-    this.cities.forEach(city => {
-      L.marker([city.lat, city.lng]).addTo(map)
-        .bindPopup(`<b>${city.name}</b><br>${city.description}`); // Example popup with city name and description
-    });
-  }
+  //  // Add markers for each city
+  //  this.cities.forEach(city => {
+  //    L.marker([city.lat, city.lng]).addTo(map)
+  //      .bindPopup(`<b>${city.name}</b><br>${city.description}`); // Example popup with city name and description
+  //  });
+  //}
 }

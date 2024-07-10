@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+//import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 
@@ -39,6 +39,7 @@ import { PacketComponent } from './packet/packet.component'; // Import your Pack
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: SearchFlightsComponent, pathMatch: 'full' },
+      { path: 'map', component: MapComponent },
       { path: 'season-discounts', component: SeasonDiscountsComponent },
       { path: 'search-flights', component: SearchFlightsComponent },
       { path: 'book-flight/:flightId', component: BookFlightComponent, canActivate: [AuthGuard] },
