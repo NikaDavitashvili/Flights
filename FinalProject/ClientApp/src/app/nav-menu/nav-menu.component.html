@@ -25,10 +25,13 @@
           <li class="nav-item" *ngIf="authService.isAuthorized()">
             <button class="btn btn-gray nav-link text-dark" [routerLink]="['/packet']">Packets</button>
           </li>
-          <li class="nav-item" *ngIf="authService.isAuthorized()" style="margin-left: 15rem;">
+          <li class="nav-item" *ngIf="authService.isAuthorized()">
+            <button class="btn btn-gray nav-link text-dark" [routerLink]="['/map']">Map</button>
+          </li>
+          <li class="nav-item" *ngIf="authService.isAuthorized()" style="margin-left: 20rem;">
             <button class="btn btn-gray nav-link text-dark" [routerLink]="['/']" (click)="authService.logoutUser()">Log Out</button>
           </li>
-          <li class="nav-item" *ngIf="!authService.isAuthorized()" style="margin-left: 15rem;">
+          <li class="nav-item" *ngIf="!authService.isAuthorized()" style="margin-left: 20rem;">
             <button class="btn btn-gray nav-link text-dark" [routerLink]="['/login-passenger']">Log in</button>
           </li>
           <li class="nav-item" *ngIf="!authService.isAuthorized()">

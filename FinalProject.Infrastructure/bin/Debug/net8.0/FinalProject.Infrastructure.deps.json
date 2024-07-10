@@ -9,12 +9,14 @@
       "FinalProject.Infrastructure/1.0.0": {
         "dependencies": {
           "FinalProject.Domain": "1.0.0",
-          "System.Data.SqlClient": "4.8.6"
+          "System.Data.SqlClient": "4.8.6",
+          "leaflet": "0.7.3"
         },
         "runtime": {
           "FinalProject.Infrastructure.dll": {}
         }
       },
+      "leaflet/0.7.3": {},
       "Microsoft.NETCore.Platforms/3.1.0": {},
       "Microsoft.Win32.Registry/4.7.0": {
         "dependencies": {
@@ -91,6 +93,9 @@
       },
       "System.Security.Principal.Windows/4.7.0": {},
       "FinalProject.Domain/1.0.0": {
+        "dependencies": {
+          "leaflet": "0.7.3"
+        },
         "runtime": {
           "FinalProject.Domain.dll": {}
         }
@@ -102,6 +107,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "leaflet/0.7.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-R20Vv1lXuqcu6lKeHFy8KnahLxetHaKBS0S2y/mrq+phhkTtz0zIr6isxJR89LuQR9v53aKNMFVyaxLU+zagEw==",
+      "path": "leaflet/0.7.3",
+      "hashPath": "leaflet.0.7.3.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/3.1.0": {
       "type": "package",
