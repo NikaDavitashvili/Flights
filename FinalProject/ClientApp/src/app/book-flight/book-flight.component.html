@@ -32,16 +32,13 @@
             <i class="fas fa-plane" style="margin-top: 48px;"></i>
           </div>
           <div *ngIf="getDiscountedPrice(flight.price) !== null">
-            <span style="text-decoration: line-through;">$ {{ flight.price }}</span><br>
-            <span>$ {{ getDiscountedPrice(flight.price) }}</span>
+            <span style="text-decoration: line-through; font-weight: 100; font-size: 14px;">$ {{ flight.price }}</span><br>
+            <span style="font-weight: bolder; font-size: 18px; ">$ {{ getDiscountedPrice(flight.price) }}</span>
           </div>
           <div *ngIf="getDiscountedPrice(flight.price) === null">
             <span>$ {{ flight.price }}</span>
           </div>
           <br />
-          <a [routerLink]="['/book-flight', flight.id]" class="btn btn-primary btn-lg mt-2">
-            <i class="fas fa-ticket"></i> Purchase
-          </a>
         </div>
         <div class="col">
           <div class="col m-3">

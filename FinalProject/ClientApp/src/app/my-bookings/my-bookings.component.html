@@ -30,8 +30,8 @@
             <i class="fas fa-plane" style="margin-top: 48px;"></i>
           </div>
           <div *ngIf="getDiscountedPrice(booking.price) !== null">
-            <span style="text-decoration: line-through;">$ {{ booking.price }}</span><br>
-            <span>$ {{ getDiscountedPrice(booking.price) }}</span>
+            <span style="text-decoration: line-through; font-weight: 100; font-size: 14px;">$ {{ booking.price }}</span><br>
+            <span style="font-weight: bolder; font-size: 18px;">$ {{ getDiscountedPrice(booking.price) }}</span>
           </div>
           <div *ngIf="getDiscountedPrice(booking.price) === null">
             <span>$ {{ booking.price }}</span>

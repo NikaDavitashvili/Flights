@@ -19,22 +19,15 @@ public class FlightRepository : IFlightRepository
         };
 
         var query = @"
-            SELECT 
-                Id,
-                Airline,
-                Price,
-                Departure_Place,
-                Departure_Time,
-                Arrival_Place,
-                Arrival_Time,
-                RemainingNumberOfSeats
+            SELECT Id, Airline, Price, Departure_Place, Departure_Time, Arrival_Place, Arrival_Time, RemainingNumberOfSeats
             FROM Flights
             WHERE 
                 (@Destination = '' OR Arrival_Place LIKE '%' + @Destination + '%') AND
                 (@From = '' OR Departure_Place LIKE '%' + @From + '%') AND
                 (@FromDate IS NULL OR Departure_Time >= @FromDate) AND
                 (@ToDate IS NULL OR Departure_Time <= @ToDate) AND
-                RemainingNumberOfSeats >= @NumberOfPassengers";
+                RemainingNumberOfSeats >= @NumberOfPassengers
+            ORDER BY Departure_Time asc";
 
         DataTable dt = DB.Select(query, dic, out string errorMessage);
 
@@ -65,22 +58,105 @@ public class FlightRepository : IFlightRepository
 
         return flights;
     }
+
+    public async Task<IEnumerable<FlightRm>> SearchByCurrentSeason(int m1, int m2, int m3, int currentYear)
+    {
+        var dic = new Dictionary<string, object>
+        {
+            { "Month1", m1 },
+            { "Month2", m2 },
+            { "Month3", m3 },
+            { "CurrentYear", currentYear }
+        };
+
+        var query = @"
+            SELECT TOP(5) Id, Airline, Price, Departure_Place, Departure_Time, Arrival_Place, Arrival_Time, RemainingNumberOfSeats
+            FROM Flights
+            WHERE YEAR(Departure_Time) = @CurrentYear AND MONTH(Departure_Time) IN (@Month1, @Month2, @Month3)
+            ORDER BY RemainingNumberOfSeats DESC, Departure_Time ASC";
+
+        DataTable dt = DB.Select(query, dic, out string errorMessage);
+
+        if (errorMessage != null)
+            throw new Exception(errorMessage);
+
+        var flights = new List<FlightRm>();
+
+        foreach (DataRow row in dt.Rows)
+        {
+            var flight = new FlightRm(
+                Guid.Parse(row["Id"].ToString()),
+                row["Airline"].ToString(),
+                row["Price"].ToString(),
+                new TimePlaceRm(
+                    row["Departure_Place"].ToString(),
+                    DateTime.Parse(row["Departure_Time"].ToString())
+                ),
+                new TimePlaceRm(
+                    row["Arrival_Place"].ToString(),
+                    DateTime.Parse(row["Arrival_Time"].ToString())
+                ),
+                int.Parse(row["RemainingNumberOfSeats"].ToString())
+            );
+
+            flights.Add(flight);
+        }
+
+        return flights;
+    }
+
+    public async Task<IEnumerable<FlightRm>> SearchBySeason(int m1, int m2, int m3)
+    {
+        var dic = new Dictionary<string, object>
+        {
+            { "Month1", m1 },
+            { "Month2", m2 },
+            { "Month3", m3 }
+        };
+
+        var query = @"
+            SELECT TOP(5) Id, Airline, Price, Departure_Place, Departure_Time, Arrival_Place, Arrival_Time, RemainingNumberOfSeats
+            FROM Flights
+            WHERE MONTH(Departure_Time) IN (@Month1, @Month2, @Month3)
+            ORDER BY NEWID()";
+
+        DataTable dt = DB.Select(query, dic, out string errorMessage);
+
+        if (errorMessage != null)
+            throw new Exception(errorMessage);
+
+        var flights = new List<FlightRm>();
+
+        foreach (DataRow row in dt.Rows)
+        {
+            var flight = new FlightRm(
+                Guid.Parse(row["Id"].ToString()),
+                row["Airline"].ToString(),
+                row["Price"].ToString(),
+                new TimePlaceRm(
+                    row["Departure_Place"].ToString(),
+                    DateTime.Parse(row["Departure_Time"].ToString())
+                ),
+                new TimePlaceRm(
+                    row["Arrival_Place"].ToString(),
+                    DateTime.Parse(row["Arrival_Time"].ToString())
+                ),
+                int.Parse(row["RemainingNumberOfSeats"].ToString())
+            );
+
+            flights.Add(flight);
+        }
+
+        return flights;
+    }
+
     public async Task<FlightRm> Find(Guid id)
     {
         var dic = new Dictionary<string, object> { { "Id", id } };
 
         var query = @"
-            SELECT 
-                Id,
-                Airline,
-                Price,
-                Departure_Place,
-                Departure_Time,
-                Arrival_Place,
-                Arrival_Time,
-                RemainingNumberOfSeats
-            FROM Flights
-            WHERE Id = @Id";
+            SELECT Id, Airline, Price, Departure_Place, Departure_Time, Arrival_Place, Arrival_Time, RemainingNumberOfSeats
+            FROM Flights WHERE Id = @Id";
 
         DataTable dt = DB.Select(query, dic, out string errorMessage);
 

@@ -19,6 +19,7 @@ export class BookFlightComponent implements OnInit {
   cardNumber = '';
   expiryDate = '';
   cvv = '';
+  seasonName: string | null = null; 
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -127,11 +128,22 @@ export class BookFlightComponent implements OnInit {
   }
 
   getDiscountedPrice(price: any): number | null {
+    this.seasonName = sessionStorage.getItem('SeasonName');
+
+    var seasonDiscountedPrice = 0;
     if (this.currentUser && this.currentUser.packetid !== 1) {
       var discountedPrice = (price * (1 - this.currentUser.purchasepercent / 100));
-      return Math.round(discountedPrice);
+
+      if (this.seasonName === 'Summer')
+        seasonDiscountedPrice = discountedPrice * 0.85;
+      else seasonDiscountedPrice = discountedPrice * 0.90;
     }
-    return null;
+    else {
+      if (this.seasonName === 'Summer')
+        seasonDiscountedPrice = price * 0.85;
+      else seasonDiscountedPrice = price * 0.90;
+    }
+    return Math.round(seasonDiscountedPrice);
   }
 }
 

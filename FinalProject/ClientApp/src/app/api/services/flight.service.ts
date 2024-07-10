@@ -127,10 +127,25 @@ export class FlightService extends BaseService {
     from?: string;
     destination?: string;
     numberOfPassengers?: number;
+    seasonName?: string;
   }): Observable<Array<FlightRm>> {
 
-    return this.searchFlight$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<FlightRm>>) => r.body as Array<FlightRm>)
+    const rb = new RequestBuilder(this.rootUrl, FlightService.SearchFlightPath, 'get');
+    if (params) {
+      rb.query('fromDate', params.fromDate, {});
+      rb.query('toDate', params.toDate, {});
+      rb.query('from', params.from, {});
+      rb.query('destination', params.destination, {});
+      rb.query('numberOfPassengers', params.numberOfPassengers, {});
+      rb.query('seasonName', params.seasonName, {}); // Ensure seasonName is included
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => r.body as Array<FlightRm>)
     );
   }
 

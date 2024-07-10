@@ -7,6 +7,7 @@ import { AuthGuard } from './auth/auth.guard';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { SeasonDiscountsComponent } from './season-discounts/season-discounts.component';
 import { SearchFlightsComponent } from './search-flights/search-flights.component';
 import { BookFlightComponent } from './book-flight/book-flight.component';
 import { RegisterPassengerComponent } from './register-passenger/register-passenger.component';
@@ -19,6 +20,7 @@ import { PacketComponent } from './packet/packet.component'; // Import your Pack
   declarations: [
     AppComponent,
     NavMenuComponent,
+    SeasonDiscountsComponent,
     SearchFlightsComponent,
     BookFlightComponent,
     RegisterPassengerComponent,
@@ -33,6 +35,7 @@ import { PacketComponent } from './packet/packet.component'; // Import your Pack
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: SearchFlightsComponent, pathMatch: 'full' },
+      { path: 'season-discounts', component: SeasonDiscountsComponent },
       { path: 'search-flights', component: SearchFlightsComponent },
       { path: 'book-flight/:flightId', component: BookFlightComponent, canActivate: [AuthGuard] },
       { path: 'login-passenger', component: LoginPassengerComponent },

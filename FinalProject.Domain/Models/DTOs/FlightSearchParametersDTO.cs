@@ -16,7 +16,9 @@ public record FlightSearchParametersDTO(
     string? Destination,
 
     [DefaultValue(1)]
-    int? NumberOfPassengers
+    int? NumberOfPassengers,
+
+    string? SeasonName
 
     );
 
