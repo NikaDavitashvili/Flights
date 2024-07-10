@@ -1,12 +1,11 @@
 .header {
   background-image: url('/assets/images/PLANE1.png');
-  height: 70vh; /* Using viewport height for responsiveness */
-  background-size: cover; /* Cover ensures the image covers the entire element */
+  height: 70vh;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   animation: fadeInAnimation ease 1s;
   animation-iteration-count: 1;
-  /* animation-fill-mode: forwards; */
 }
 
 .footer {
@@ -29,15 +28,14 @@
   }
 }
 
-/* Media Queries for responsiveness */
 @media (max-width: 768px) {
   .header {
-    height: 50vh; /* Adjust the height for smaller screens */
+    height: 50vh;
   }
 }
 
 @media (max-width: 480px) {
   .header {
-    height: 40vh; /* Adjust the height for even smaller screens */
+    height: 40vh;
   }
 }

@@ -1,27 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { MapService } from '../api/services/map.service';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnDestroy {
 
-  cities: any[] = []; // Assuming city data structure
+  cities: any[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private mapService: MapService) { }
 
   ngOnInit(): void {
-    this.fetchCities();
+    document.body.classList.add('map-active');
+    this.getCities();
   }
 
-  fetchCities(): void {
-    // Replace with your actual API endpoint to fetch city data
-    this.http.get<any[]>('http://your-api-url/GetCities').subscribe(
+  ngOnDestroy(): void {
+    document.body.classList.remove('map-active');
+  }
+
+  getCities(): void {
+    this.mapService.getCities().subscribe(
       data => {
         this.cities = data;
-        //this.initializeMap();
+        this.initializeMap();
       },
       error => {
         console.error('Error fetching cities:', error);
@@ -29,16 +35,13 @@ export class MapComponent implements OnInit {
     );
   }
 
-  //initializeMap(): void {
-  //  // Initialize your map here, e.g., using Leaflet or Angular Google Maps
-  //  // Example: Leaflet integration
-  //  const map = L.map('map').setView([0, 0], 2); // Set initial view to center of the world
-  //  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-
-  //  // Add markers for each city
-  //  this.cities.forEach(city => {
-  //    L.marker([city.lat, city.lng]).addTo(map)
-  //      .bindPopup(`<b>${city.name}</b><br>${city.description}`); // Example popup with city name and description
-  //  });
-  //}
+  initializeMap(): void {
+    const map = L.map('map').setView([0, 0], 2);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    
+    this.cities.forEach(city => {
+      L.marker([city.lat, city.lng]).addTo(map)
+        .bindPopup(`<b>${city.name}</b><br>${city.description}`);
+    });
+  }
 }
