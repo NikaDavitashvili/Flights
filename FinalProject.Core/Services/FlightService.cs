@@ -24,6 +24,51 @@ public class FlightService : IFlightService
             throw new Exception($"Error occurred while searching for flights: {ex.Message}");
         }
     }
+    public async Task<IEnumerable<FlightRm>> SearchBySeason(string seasonName)
+    {
+        try
+        {
+            int m1, m2, m3;
+            int currentMonth = DateTime.Now.Month;
+            int currentYear = DateTime.Now.Year;
+
+            if (seasonName == "Spring")
+            {
+                m1 = 3;
+                m2 = 4;
+                m3 = 5;
+            }
+            else if (seasonName == "Summer")
+            {
+                m1 = 6;
+                m2 = 7;
+                m3 = 8;
+            }
+            else if (seasonName == "Autumn")
+            {
+                m1 = 9;
+                m2 = 10;
+                m3 = 11;
+            }
+            else if (seasonName == "Winter")
+            {
+                m1 = 12;
+                m2 = 1;
+                m3 = 2;
+            }
+            else
+                throw new Exception();
+
+            if(currentMonth == m1 || currentMonth == m2 || currentMonth == m3)
+                return await _flightRepository.SearchByCurrentSeason(m1, m2, m3, currentYear);
+
+            return await _flightRepository.SearchBySeason(m1, m2, m3);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Error occurred while searching for flights: {ex.Message}");
+        }
+    }
 
     public async Task<FlightRm> Find(Guid id)
     {

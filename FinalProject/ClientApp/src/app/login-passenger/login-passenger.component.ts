@@ -30,6 +30,8 @@ export class LoginPassengerComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    sessionStorage.removeItem("SeasonName");
+
     this.activatedRoute.params.subscribe(p => this.requestedUrl = p['requestedUrl']);
   }
 

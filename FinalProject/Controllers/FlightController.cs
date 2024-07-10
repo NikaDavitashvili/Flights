@@ -23,11 +23,15 @@ public class FlightController : ControllerBase
     [ProducesResponseType(typeof(IEnumerable<FlightRm>), 200)]
     public async Task<IEnumerable<FlightRm>> Search([FromQuery] FlightSearchParametersDTO @params)
     {
-
-        _logger.LogInformation("Searching for a flight for: {Destination}", @params.Destination);
-
         try
         {
+            if(!string.IsNullOrEmpty(@params.SeasonName))
+            {
+                var discountedFlightsBySeasons = await _flightService.SearchBySeason(@params.SeasonName);
+
+                return discountedFlightsBySeasons;
+            }
+
             var flights = await _flightService.Search(@params);
             return flights;
         }

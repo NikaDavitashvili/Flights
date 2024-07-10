@@ -1,7 +1,12 @@
 .header {
-  background-image: url('/assets/images/plane.jpg');
-  height: 337px;
-  background-size: cover;
+  background-image: url('/assets/images/PLANE1.png');
+  height: 70vh; /* Using viewport height for responsiveness */
+  background-size: cover; /* Cover ensures the image covers the entire element */
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: fadeInAnimation ease 1s;
+  animation-iteration-count: 1;
+  /* animation-fill-mode: forwards; */
 }
 
 .footer {
@@ -12,12 +17,6 @@
     color: white;
   }
 
-.header {
-  animation: fadeInAnimation ease 1s;
-  animation-iteration-count: 1;
-  /* animation-fill-mode: forwards; */
-}
-
 @keyframes fadeInAnimation {
   0% {
     opacity: 0;
@@ -27,5 +26,18 @@
   100% {
     margin-left: 0px;
     opacity: 1;
+  }
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  .header {
+    height: 50vh; /* Adjust the height for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    height: 40vh; /* Adjust the height for even smaller screens */
   }
 }

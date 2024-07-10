@@ -2,7 +2,6 @@
 using FinalProject.Domain.Models.ReadModels;
 using FinalProject.Domain.Interfaces.Services;
 using FinalProject.Domain.Models.DTOs;
-using System.Collections.Generic;
 
 namespace FinalProject.Controllers;
 

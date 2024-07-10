@@ -4,11 +4,11 @@ import { FlightRm } from '../api/models';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-search-flights',
-  templateUrl: './search-flights.component.html',
-  styleUrls: ['./search-flights.component.css']
+  selector: 'app-season-discounts',
+  templateUrl: './season-discounts.component.html',
+  styleUrls: ['./season-discounts.component.css']
 })
-export class SearchFlightsComponent implements OnInit {
+export class SeasonDiscountsComponent implements OnInit {
 
   searchResult: FlightRm[] = [];
   currentUser: User | null = null;
@@ -26,7 +26,6 @@ export class SearchFlightsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.search();
     const userJson = sessionStorage.getItem('CurrentUser');
     if (userJson) {
       this.currentUser = JSON.parse(userJson);
@@ -36,13 +35,13 @@ export class SearchFlightsComponent implements OnInit {
   search(seasonName?: string): void {
     if (seasonName) {
       this.seasonName = seasonName;
+      sessionStorage.setItem('SeasonName', seasonName);
     }
     const formValue = { ...this.searchForm.value, seasonName: this.seasonName };
     this.flightService.searchFlight(formValue).subscribe(
       response => this.searchResult = response,
       err => this.handleError(err)
     );
-    this.seasonName = null;
   }
 
   private handleError(err: any): void {
@@ -52,12 +51,20 @@ export class SearchFlightsComponent implements OnInit {
   }
 
   getDiscountedPrice(price: any): number | null {
-
+    var seasonDiscountedPrice = 0;
     if (this.currentUser && this.currentUser.packetid !== 1) {
       var discountedPrice = (price * (1 - this.currentUser.purchasepercent / 100));
-      return Math.round(discountedPrice);
+
+      if (this.seasonName === 'Summer')
+        seasonDiscountedPrice = discountedPrice * 0.85;
+      else seasonDiscountedPrice = discountedPrice * 0.90;
     }
-    return null;
+    else {
+      if (this.seasonName === 'Summer')
+        seasonDiscountedPrice = price * 0.85;
+      else seasonDiscountedPrice = price * 0.90;
+    }
+    return Math.round(seasonDiscountedPrice);
   }
 }
 
