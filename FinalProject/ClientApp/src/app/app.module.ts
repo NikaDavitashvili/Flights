@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-//import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 
@@ -16,7 +16,7 @@ import { RegisterPassengerComponent } from './register-passenger/register-passen
 import { MyBookingsComponent } from './my-bookings/my-bookings.component';
 import { AuthService } from './auth/auth.service';
 import { LoginPassengerComponent } from './login-passenger/login-passenger.component';
-import { PacketComponent } from './packet/packet.component'; // Import your PacketComponent here
+import { PacketComponent } from './packet/packet.component';
 
 
 @NgModule({
@@ -30,13 +30,14 @@ import { PacketComponent } from './packet/packet.component'; // Import your Pack
     RegisterPassengerComponent,
     LoginPassengerComponent,
     MyBookingsComponent,
-    PacketComponent // Add PacketComponent to declarations
+    PacketComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    LeafletModule,
     RouterModule.forRoot([
       { path: '', component: SearchFlightsComponent, pathMatch: 'full' },
       { path: 'map', component: MapComponent },
@@ -46,7 +47,7 @@ import { PacketComponent } from './packet/packet.component'; // Import your Pack
       { path: 'login-passenger', component: LoginPassengerComponent },
       { path: 'register-passenger', component: RegisterPassengerComponent },
       { path: 'my-booking', component: MyBookingsComponent, canActivate: [AuthGuard] },
-      { path: 'packet', component: PacketComponent, canActivate: [AuthGuard] } // Add route for packets
+      { path: 'packet', component: PacketComponent, canActivate: [AuthGuard] }
     ])
   ],
   providers: [AuthService],

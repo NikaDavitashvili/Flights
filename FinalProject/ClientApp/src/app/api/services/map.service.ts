@@ -18,18 +18,18 @@ export class MapService extends BaseService {
     super(config, http);
   }
 
-  static readonly PacketPath = '/api/Map';
+  static readonly MapPath = '/api/Map';
 
-  getCities(UserEmail: string): Observable<CitiesRm> {
-    const rb = new RequestBuilder(this.rootUrl, MapService.PacketPath, 'get');
-    rb.body({ UserEmail }, 'application/json');
+  getCities(): Observable<CitiesRm[]> {
+    const rb = new RequestBuilder(this.rootUrl, MapService.MapPath, 'get');
+    rb.body(null, 'application/json');
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'application/json',
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r.body as CitiesRm;
+        return r.body as CitiesRm[];
       })
     );
   }
