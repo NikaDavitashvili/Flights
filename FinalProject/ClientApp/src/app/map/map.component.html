@@ -1,1 +1,23 @@
 <div id="map"></div>
+<div class="search-popup">
+  <h3>Find Your Desired Trip Route</h3>
+  <div class="input-container">
+    <label for="departureCity">Departure City</label>
+    <input id="departureCity" type="text" placeholder="Enter departure city">
+  </div>
+  <div class="input-container">
+    <label for="arrivalCity">Arrival City</label>
+    <input id="arrivalCity" type="text" placeholder="Enter arrival city">
+  </div>
+  <div class="button-container">
+    <button class="search-button" (click)="onSearchClick()">
+      <i class="fas fa-search"></i> Search
+    </button>
+    <button id="clean-button" class="clean-button" style="background-color: grey;" (click)="onCleanSearchClick()">
+      Clean Search
+    </button>
+  </div>
+  <div  *ngIf="totalPrice !== 0">
+    Total Price: ${{ totalPrice }}
+  </div>
+</div>

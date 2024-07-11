@@ -16,14 +16,32 @@ public class MapController : ControllerBase
         _mapService = mapService;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<CitiesRm>> GetCities()
+    [HttpGet("{departureCity}&{arrivalCity}")]
+    public async Task<ActionResult<CitiesRm>> GetCities(string departureCity, string arrivalCity)
     {
         try
         {
-            var cities = await _mapService.GetCities();
+            var cities = new List<CitiesRm>();
+            if (string.IsNullOrEmpty(departureCity) || departureCity == "undefined" ||
+                string.IsNullOrEmpty(arrivalCity)   || arrivalCity == "undefined")
+            {
+                cities = (await _mapService.GetCities()).ToList();
+
+                return Ok(cities);
+            }
+
+            var optimalTripRoute = (await _mapService.GetOptimalTripRoute(departureCity, arrivalCity)).ToList();
+
+            if (optimalTripRoute == null || optimalTripRoute.Count == 0)
+                return Ok(cities);
+
+            foreach (var trip in optimalTripRoute)
+            {
+                cities.Add(new CitiesRm(trip!.DepartureCity, trip!.ArrivalCity, trip!.Price)); 
+            }
 
             return Ok(cities);
+
         }
         catch (Exception ex)
         {

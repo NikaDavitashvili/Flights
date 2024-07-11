@@ -2,5 +2,6 @@
 /* eslint-disable */
 export interface CitiesRm {
   departure: string,
-  arrival: string
+  arrival: string,
+  price: number
 }
