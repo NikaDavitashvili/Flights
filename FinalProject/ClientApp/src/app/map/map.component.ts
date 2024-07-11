@@ -13,26 +13,32 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
   cities: CitiesRm[] = [];
   map: L.Map | undefined;
   planes: L.FeatureGroup = L.featureGroup();
+  markers: L.Marker[] = [];
+  polylines: L.Polyline[] = [];
+  departureCity: string | undefined;
+  arrivalCity: string | undefined;
+  totalPrice: number = 0;
 
   constructor(private mapService: MapService) { }
 
   ngOnInit(): void {
     document.body.classList.add('map-active');
-    this.getCities();
+    this.getCities(this.departureCity, this.arrivalCity);
     this.initializeMap();
   }
 
-  ngAfterViewInit(): void {
-  }
+  ngAfterViewInit(): void { }
 
   ngOnDestroy(): void {
     document.body.classList.remove('map-active');
   }
 
-  getCities(): void {
-    this.mapService.getCities().subscribe(
+  getCities(departureCity: string | undefined, arrivalCity: string | undefined): void {
+    this.mapService.getCities(departureCity, arrivalCity).subscribe(
       data => {
         this.cities = data;
+        this.totalPrice = 0;
+
         if (this.map) {
           this.addMarkers();
         }
@@ -43,11 +49,43 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
     );
   }
 
+  getOptimalRoute(departureCity: string, arrivalCity: string): void {
+    this.mapService.getOptimalRoute(departureCity, arrivalCity).subscribe(
+      data => {
+        this.cities = data;
+        this.calculateTotalPrice();
+
+        if (this.map) {
+          this.addMarkers();
+        }
+      },
+      error => {
+        console.error('Error fetching optimal route:', error);
+      }
+    );
+  }
+
+  onCleanSearchClick(): void {
+    this.departureCity = undefined;
+    this.arrivalCity = undefined;
+    this.getCities(this.departureCity, this.arrivalCity);
+  }
+
+  onSearchClick(): void {
+    this.departureCity = (document.getElementById('departureCity') as HTMLInputElement).value;
+    this.arrivalCity = (document.getElementById('arrivalCity') as HTMLInputElement).value;
+    this.getOptimalRoute(this.departureCity, this.arrivalCity);
+  }
+
+  calculateTotalPrice(): void {
+    this.totalPrice = this.cities.reduce((acc, city) => acc + city.price, 0);
+  }
+
   initializeMap(): void {
-    this.map = L.map('map').setView([0, 0], 2);
+    this.map = L.map('map').setView([45, 20], 4.5);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
-      attribution: '© OpenStreetMap'
+      attribution: '© SkyConnect Map'
     }).addTo(this.map);
 
     this.planes.addTo(this.map);
@@ -60,16 +98,25 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
   addMarkers(): void {
     if (!this.map) return;
 
+    this.markers.forEach(marker => marker.remove());
+    this.polylines.forEach(polyline => polyline.remove());
+    this.planes.clearLayers();
+
+    this.markers = [];
+    this.polylines = [];
+
     this.cities.forEach(city => {
       this.mapService.getCoordinates(city.departure).subscribe(
         departureCoords => {
-          L.marker([departureCoords.lat, departureCoords.lng]).addTo(this.map!)
+          const departureMarker = L.marker([departureCoords.lat, departureCoords.lng]).addTo(this.map!)
             .bindPopup(`<b>${city.departure}</b><br>Departure City`);
+          this.markers.push(departureMarker);
 
           this.mapService.getCoordinates(city.arrival).subscribe(
             arrivalCoords => {
-              L.marker([arrivalCoords.lat, arrivalCoords.lng]).addTo(this.map!)
+              const arrivalMarker = L.marker([arrivalCoords.lat, arrivalCoords.lng]).addTo(this.map!)
                 .bindPopup(`<b>${city.arrival}</b><br>Arrival City`);
+              this.markers.push(arrivalMarker);
 
               const polyline = L.polyline([
                 [departureCoords.lat, departureCoords.lng],
@@ -79,6 +126,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
                 weight: 3,
                 opacity: 0.7,
               }).addTo(this.map!);
+              this.polylines.push(polyline);
 
               const planeIcon = L.divIcon({
                 className: 'plane-icon',
