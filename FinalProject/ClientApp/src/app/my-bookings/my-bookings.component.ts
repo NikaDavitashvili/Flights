@@ -19,6 +19,7 @@ export class MyBookingsComponent implements OnInit {
   returnAmount: number = 0;
   cancelPercent: number = 0;
   seasonName: string | null = null;
+  numberOfTickets: number = 1;
 
   constructor(
     private bookingService: BookingService,
@@ -65,18 +66,19 @@ export class MyBookingsComponent implements OnInit {
       alert('Please enter a valid number of tickets to cancel.');
       return;
     }
-    const priceAsInt = parseInt(booking.price!.toString(), 10);
     this.currentBooking = booking;
 
+    if (numberOfTickets > booking.numberOfBookedSeats!) {
+      alert('You can not return more tickets that you have purchased.');
+      return;
+    }
     const userJson = sessionStorage.getItem('CurrentUser');
     if (userJson) {
       const user: User = JSON.parse(userJson);
       this.cancelPercent = user.cancelpercent / 100;
     }
 
-
-    this.returnAmount = (priceAsInt * numberOfTickets) * (this.cancelPercent ? this.cancelPercent : 1);
-    console.log(this.returnAmount);
+    this.numberOfTickets = numberOfTickets;
     this.showReturnPopup = true;
     document.body.classList.add('no-scroll');
   }
@@ -127,10 +129,12 @@ export class MyBookingsComponent implements OnInit {
     var seasonDiscountedPrice = 0;
     if (this.currentUser && this.currentUser.packetid !== 1) {
       var discountedPrice = (price * (1 - this.currentUser.purchasepercent / 100));
+      this.returnAmount = discountedPrice * (this.currentUser.cancelpercent / 100) * this.numberOfTickets;
 
       if (this.seasonName === 'Summer')
         seasonDiscountedPrice = discountedPrice * 0.85;
       else seasonDiscountedPrice = discountedPrice * 0.90;
+      //this.currentBooking!.price = discountedPrice.toString();
     }
     else {
       if (this.seasonName === 'Summer')

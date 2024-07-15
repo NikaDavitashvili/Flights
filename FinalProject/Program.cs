@@ -12,7 +12,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowSpecificOrigin",
         builder =>
         {
-            builder.WithOrigins("https://localhost:44492")
+            builder.WithOrigins("http://localhost:44492")
                    .AllowAnyHeader()
                    .AllowAnyMethod();
         });
@@ -36,7 +36,7 @@ builder.Services.AddSwaggerGen(c =>
     c.AddServer(new OpenApiServer 
     {
         Description = "Development Server",
-        Url = "https://localhost:7280"
+        Url = "http://localhost:5280"
     });
     c.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["action"] + e.ActionDescriptor.RouteValues["controller"]}");
 });

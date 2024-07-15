@@ -16,14 +16,12 @@ public class PassengerRepository : IPassengerRepository
             { "FirstName", passenger.FirstName },
             { "LastName", passenger.LastName },
             { "Gender", passenger.Gender },
-            { "PacketID", passenger.PacketID },
-            { "PurchasePercent", passenger.PurchasePercent },
-            { "CancelPercent", passenger.CancelPercent },
+            { "PacketID", passenger.PacketID }
         };
 
         var query = @"
-        INSERT INTO Passengers (Email, PasswordHash, UserName, FirstName, LastName, Gender, PacketID, PurchasePercent, CancelPercent)
-        VALUES (@Email, @PasswordHash, @UserName, @FirstName, @LastName, @Gender, @PacketID, @PurchasePercent, @CancelPercent)";
+        INSERT INTO Passengers (Email, PasswordHash, UserName, FirstName, LastName, Gender, PacketID)
+        VALUES (@Email, @PasswordHash, @UserName, @FirstName, @LastName, @Gender, @PacketID)";
 
         Dictionary<int, string> result = DB.Run(query, parameters);
 
