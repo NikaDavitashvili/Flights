@@ -2,7 +2,14 @@ import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { MapService } from '../api/services/map.service';
 import * as L from 'leaflet';
 import { CitiesRm } from '../api/models/cities';
-
+const DefaultIcon = L.icon({
+  iconUrl: 'http://localhost:44492/marker-icon.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  tooltipAnchor: [16, -28],
+  shadowSize: [41, 41]
+});
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -88,6 +95,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
       attribution: '© SkyConnect Map'
     }).addTo(this.map);
 
+    L.Marker.prototype.options.icon = DefaultIcon;
     this.planes.addTo(this.map);
 
     if (this.cities.length > 0) {
@@ -104,14 +112,12 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.markers = [];
     this.polylines = [];
-
     this.cities.forEach(city => {
       this.mapService.getCoordinates(city.departure).subscribe(
         departureCoords => {
           const departureMarker = L.marker([departureCoords.lat, departureCoords.lng]).addTo(this.map!)
             .bindPopup(`<b>${city.departure}</b><br>Departure City`);
           this.markers.push(departureMarker);
-
           this.mapService.getCoordinates(city.arrival).subscribe(
             arrivalCoords => {
               const arrivalMarker = L.marker([arrivalCoords.lat, arrivalCoords.lng]).addTo(this.map!)
