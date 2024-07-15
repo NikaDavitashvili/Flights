@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "mhHfaVdIwg8=",
+  "dgSpecHash": "Ryj0k9QQ7nA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Core\\FinalProject.Core.csproj",
+  "projectFilePath": "C:\\Users\\nikadavitashvili\\source\\repos\\SignalR\\Flights\\FinalProject.Core\\FinalProject.Core.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\User\\.nuget\\packages\\leaflet\\0.7.3\\leaflet.0.7.3.nupkg.sha512"
+    "C:\\Users\\nikadavitashvili\\.nuget\\packages\\leaflet\\0.7.3\\leaflet.0.7.3.nupkg.sha512"
   ],
   "logs": []
 }
