@@ -5,6 +5,11 @@
       "leaflet/0.7.3": {
         "type": "package"
       }
+    },
+    "net8.0/win-x64": {
+      "leaflet/0.7.3": {
+        "type": "package"
+      }
     }
   },
   "libraries": {
@@ -105,6 +110,11 @@
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+      }
+    },
+    "runtimes": {
+      "win-x64": {
+        "#import": []
       }
     }
   }
