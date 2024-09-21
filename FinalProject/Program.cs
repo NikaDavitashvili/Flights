@@ -13,7 +13,7 @@ builder.Services.AddCors(options =>
         builder =>
         {
             //("http://localhost:44492")
-            builder.WithOrigins("http://4.210.213.185:80")
+            builder.WithOrigins("https://4.210.213.185:80")
                    .AllowAnyHeader()
                    .AllowAnyMethod();
         });
@@ -31,16 +31,22 @@ builder.Services.AddSession(options =>
 });
 
 // Add Swagger
-builder.Services.AddSwaggerGen(c =>
+
+var swaggerEnabled = builder.Configuration.GetValue<bool>("Swagger:Enabled");
+
+if (swaggerEnabled)
 {
-    c.DescribeAllParametersInCamelCase();
-    c.AddServer(new OpenApiServer 
+    builder.Services.AddSwaggerGen(c =>
     {
-        Description = "Development Server",
-        Url = "http://localhost:5280"
+        c.DescribeAllParametersInCamelCase();
+        c.AddServer(new OpenApiServer
+        {
+            Description = "Development Server",
+            Url = "http://localhost:80"
+        });
+        c.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["action"] + e.ActionDescriptor.RouteValues["controller"]}");
     });
-    c.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["action"] + e.ActionDescriptor.RouteValues["controller"]}");
-});
+}
 
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IFlightRepository, FlightRepository>();
@@ -77,8 +83,11 @@ app.UseCors(builder => builder
     .AllowAnyHeader()
 );
 
-app.UseSwagger();
-app.UseSwaggerUI();
+if (swaggerEnabled)
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseAuthentication();
 app.UseAuthorization();
