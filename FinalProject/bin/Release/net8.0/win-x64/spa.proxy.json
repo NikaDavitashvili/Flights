@@ -1,6 +1,6 @@
 {
 "SpaProxyServer": {
-"ServerUrl": "https://skyc0nnect.com",
+"ServerUrl": "http://localhost:44492",
 "RedirectUrl": "",
 "LaunchCommand": "npm start",
 "WorkingDirectory": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject\\ClientApp\\",

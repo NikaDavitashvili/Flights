@@ -370,3 +370,15 @@ C:\Users\user\source\repos\Flights\FinalProject\obj\Release\net8.0\win-x64\refin
 C:\Users\user\source\repos\Flights\FinalProject\obj\Release\net8.0\win-x64\FinalProject.pdb
 C:\Users\user\source\repos\Flights\FinalProject\obj\Release\net8.0\win-x64\FinalProject.genruntimeconfig.cache
 C:\Users\user\source\repos\Flights\FinalProject\obj\Release\net8.0\win-x64\ref\FinalProject.dll
+C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\win-x64\FluentValidation.dll
+C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\win-x64\Microsoft.Extensions.DependencyModel.dll
+C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\win-x64\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\win-x64\Serilog.dll
+C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\win-x64\Serilog.Extensions.Hosting.dll
+C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\win-x64\Serilog.Extensions.Logging.dll
+C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\win-x64\Serilog.Settings.Configuration.dll
+C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\win-x64\Serilog.Sinks.Console.dll
+C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\win-x64\Serilog.Sinks.File.dll
+C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\win-x64\Serilog.Sinks.Seq.dll
+C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\win-x64\FinalProject.Shared.dll
+C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\win-x64\FinalProject.Shared.pdb
