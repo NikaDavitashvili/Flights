@@ -14,3 +14,5 @@ C:\Users\user\source\repos\Flights\FinalProject.Core\obj\Release\net8.0\FinalPro
 C:\Users\user\source\repos\Flights\FinalProject.Core\obj\Release\net8.0\refint\FinalProject.Core.dll
 C:\Users\user\source\repos\Flights\FinalProject.Core\obj\Release\net8.0\FinalProject.Core.pdb
 C:\Users\user\source\repos\Flights\FinalProject.Core\obj\Release\net8.0\ref\FinalProject.Core.dll
+C:\Users\user\source\repos\Flights\FinalProject.Core\bin\Release\net8.0\FinalProject.Shared.dll
+C:\Users\user\source\repos\Flights\FinalProject.Core\bin\Release\net8.0\FinalProject.Shared.pdb
