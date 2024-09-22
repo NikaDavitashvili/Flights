@@ -29,7 +29,7 @@
             <button class="btn btn-gray nav-link text-dark" [routerLink]="['/map']">Map</button>
           </li>
           <li class="nav-item" *ngIf="authService.isAuthorized()" style="margin-left: 20rem;">
-            <button class="btn btn-gray nav-link text-dark" [routerLink]="['/']" (click)="authService.logoutUser()">Log Out</button>
+            <button class="btn btn-gray nav-link text-dark" [routerLink]="['/logout-passenger']" (click)="authService.logout()">Log Out</button>
           </li>
           <li class="nav-item" *ngIf="!authService.isAuthorized()" style="margin-left: 20rem;">
             <button class="btn btn-gray nav-link text-dark" [routerLink]="['/login-passenger']">Log in</button>

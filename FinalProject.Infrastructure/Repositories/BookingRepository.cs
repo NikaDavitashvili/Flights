@@ -35,7 +35,7 @@ public class BookingRepository : IBookingRepository
             throw new Exception(errorMessage);
 
         if (dt == null || dt.Rows.Count == 0)
-            throw new Exception("Data Not Found!");
+            return new List<BookingRm>();
 
         var bookings = new List<BookingRm>();
 

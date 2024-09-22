@@ -1,0 +1,13 @@
+C:\Users\user\source\repos\Flights\FinalProject.Shared\bin\Debug\net8.0\FinalProject.Shared.deps.json
+C:\Users\user\source\repos\Flights\FinalProject.Shared\bin\Debug\net8.0\FinalProject.Shared.dll
+C:\Users\user\source\repos\Flights\FinalProject.Shared\bin\Debug\net8.0\FinalProject.Shared.pdb
+C:\Users\user\source\repos\Flights\FinalProject.Shared\obj\Debug\net8.0\FinalProject.Shared.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\Flights\FinalProject.Shared\obj\Debug\net8.0\FinalProject.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\source\repos\Flights\FinalProject.Shared\obj\Debug\net8.0\FinalProject.Shared.AssemblyInfoInputs.cache
+C:\Users\user\source\repos\Flights\FinalProject.Shared\obj\Debug\net8.0\FinalProject.Shared.AssemblyInfo.cs
+C:\Users\user\source\repos\Flights\FinalProject.Shared\obj\Debug\net8.0\FinalProject.Shared.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\Flights\FinalProject.Shared\obj\Debug\net8.0\FinalProject.Shared.sourcelink.json
+C:\Users\user\source\repos\Flights\FinalProject.Shared\obj\Debug\net8.0\FinalProject.Shared.dll
+C:\Users\user\source\repos\Flights\FinalProject.Shared\obj\Debug\net8.0\refint\FinalProject.Shared.dll
+C:\Users\user\source\repos\Flights\FinalProject.Shared\obj\Debug\net8.0\FinalProject.Shared.pdb
+C:\Users\user\source\repos\Flights\FinalProject.Shared\obj\Debug\net8.0\ref\FinalProject.Shared.dll
