@@ -7,46 +7,63 @@ namespace FinalProject.Controllers;
 [Route("api/[controller]")]
 public class MapController : ControllerBase
 {
-    private readonly ILogger<MapController> _logger;
     private readonly IMapService _mapService;
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IUserContext _userContext;
 
-    public MapController(ILogger<MapController> logger, IMapService mapService)
+    public MapController(IMapService mapService, IHttpContextAccessor httpContextAccessor, IUserContext userContext)
     {
-        _logger = logger;
         _mapService = mapService;
+        _httpContextAccessor = httpContextAccessor;
+        _userContext = userContext;
     }
 
     [HttpGet("{departureCity}&{arrivalCity}")]
     public async Task<ActionResult<CitiesRm>> GetCities(string departureCity, string arrivalCity)
     {
-        try
+        string userId = string.Empty;
+        string userEmail = string.Empty;
+        if (string.IsNullOrEmpty(_userContext.UserId))
         {
-            var cities = new List<CitiesRm>();
-            if (string.IsNullOrEmpty(departureCity) || departureCity == "undefined" ||
-                string.IsNullOrEmpty(arrivalCity)   || arrivalCity == "undefined")
-            {
-                cities = (await _mapService.GetCities()).ToList();
+            userId = Guid.NewGuid().ToString();
+            _userContext.UserId = userId;
+        }
+        else
+        {
+            userId = _userContext.UserId;
+            userEmail = _userContext.Email;
+        }
 
-                return Ok(cities);
-            }
+        var cities = new List<CitiesRm>();
+        if (string.IsNullOrEmpty(departureCity) || departureCity == "undefined" ||
+            string.IsNullOrEmpty(arrivalCity) || arrivalCity == "undefined")
+        {
+            cities = (await _mapService.GetCities()).ToList();
 
-            var optimalTripRoute = (await _mapService.GetOptimalTripRoute(departureCity, arrivalCity)).ToList();
-
-            if (optimalTripRoute == null || optimalTripRoute.Count == 0)
-                return Ok(cities);
-
-            foreach (var trip in optimalTripRoute)
-            {
-                cities.Add(new CitiesRm(trip!.DepartureCity, trip!.ArrivalCity, trip!.Price)); 
-            }
-
+            _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+            _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
+            _httpContextAccessor.HttpContext?.Items.Add("Action", $"Map Searching");
             return Ok(cities);
+        }
 
-        }
-        catch (Exception ex)
+        var optimalTripRoute = (await _mapService.GetOptimalTripRoute(departureCity, arrivalCity)).ToList();
+
+        if (optimalTripRoute == null || optimalTripRoute.Count == 0)
         {
-            _logger.LogError(ex, "Error occurred while listing cities");
-            return StatusCode(500, "Internal server error");
+            _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+            _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
+            _httpContextAccessor.HttpContext?.Items.Add("Action", $"Map Searching");
+            return Ok(cities);
         }
+
+        foreach (var trip in optimalTripRoute)
+        {
+            cities.Add(new CitiesRm(trip!.DepartureCity, trip!.ArrivalCity, trip!.Price));
+        }
+
+        _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+        _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
+        _httpContextAccessor.HttpContext?.Items.Add("Action", $"Map Searching");
+        return Ok(cities);
     }
 }

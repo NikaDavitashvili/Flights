@@ -69,7 +69,6 @@ export class PassengerService extends BaseService {
     );
   }
 
-  static readonly LoginPassengerPath = '/Passenger/{email}&{password}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -83,6 +82,20 @@ export class PassengerService extends BaseService {
       map(response => {
         return response;
       })
+    );
+  }
+
+  logoutPassenger(): void {
+    const url = `${this.rootUrl}/Passenger/Logout`;
+    console.log("passenger.service.ts");
+    console.log(url);
+    this.http.post(url, null).subscribe(
+      response => {
+        console.log("Logout successful", response);
+      },
+      error => {
+        console.error("Logout failed", error);
+      }
     );
   }
 }
