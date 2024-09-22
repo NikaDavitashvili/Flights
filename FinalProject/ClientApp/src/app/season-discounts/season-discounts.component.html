@@ -1,0 +1,71 @@
+<div class="seasonal-banner">
+  <div class="banner-content">
+    <h1>Seasonal Discounts</h1>
+    <br />
+    <h3>Hurry up! Only a short time left before flying to your favorite locations! </h3>
+    <button class="btn spring-btn" (click)="search('Spring')">Spring</button>
+    <button class="btn summer-btn" (click)="search('Summer')">Summer</button>
+    <button class="btn autumn-btn" (click)="search('Autumn')">Autumn</button>
+    <button class="btn winter-btn" (click)="search('Winter')">Winter</button>
+  </div>
+</div>
+<div *ngFor="let flight of searchResult">
+  <div class="card text-dark mt-5 text-center">
+    <div class="card-body" style="padding: 20px; background-color:#e5ecf26e">
+      <h6 class="card-title">{{ flight.airline }}</h6>
+      <div class="card-title" style="color:#ff3939">{{ flight.remainingNumberOfSeats }} remaining seats</div>
+      <div class="d-grid text-center g-2">
+        <div class="row">
+          <div class="col">
+            <div class="col m-3">
+              <i class="text-primary fas fa-plane-departure" style="font-size:20px;"></i>
+            </div>
+            <div class="col">
+              <i class="fa-solid fa-location-dot">{{ flight.departure?.place }}</i>
+            </div>
+            <div class="col m-2">
+              <i class="fa-regular"></i>{{ flight.departure?.time | date }}
+            </div>
+            <div class="col">
+              <i class="fa-regular fa-clock"></i>{{ flight.departure?.time | date:'shortTime' }}
+            </div>
+          </div>
+          <div class="col">
+            <div style="display:flex;">
+              <i class="fa-solid fa-circle" style="margin-top:50px; font-size:9px;"></i>
+              <hr style="display:block; width: 100%; margin-top:55px;" />
+              <i class="fas fa-plane" style="margin-top:48px;"></i>
+            </div>
+            <div>
+              <div *ngIf="getDiscountedPrice(flight.price) !== null">
+                <div style="text-decoration: line-through; font-weight: 100; font-size: 14px;">$ {{ flight.price }}</div>
+                <div style="font-weight: bolder; font-size: 18px;">$ {{ getDiscountedPrice(flight.price) }}</div>
+              </div>
+              <div *ngIf="getDiscountedPrice(flight.price) === null">
+                <div>$ {{ flight.price }}</div>
+              </div>
+            </div>
+            <br />
+            <a [routerLink]="['/book-flight', flight.id]" class="btn btn-secondary btn-lg mt-2">
+              <i class="fas fa-ticket"></i> Purchase
+            </a>
+          </div>
+          <div class="col">
+            <div class="col m-3">
+              <i class="text-primary fas fa-plane-arrival" style="font-size:20px;"></i>
+            </div>
+            <div class="col">
+              <i class="fa-solid fa-location-dot">{{ flight.arrival?.place }}</i>
+            </div>
+            <div class="col m-2">
+              <i class="fa-regular"></i>{{ flight.arrival?.time | date }}
+            </div>
+            <div class="col">
+              <i class="fa-regular fa-clock"></i>{{ flight.arrival?.time | date:'shortTime' }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

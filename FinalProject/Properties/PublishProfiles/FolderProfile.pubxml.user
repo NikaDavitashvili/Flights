@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\publish\</_PublishTargetUrl>
+    <History>True|2024-09-21T11:20:19.9553088Z;True|2024-09-21T15:14:47.7253915+04:00;True|2024-09-21T15:09:55.2303144+04:00;True|2024-09-21T14:55:54.6516220+04:00;True|2024-09-21T14:45:45.4456176+04:00;True|2024-09-21T14:28:25.3099066+04:00;True|2024-09-21T14:23:08.1470508+04:00;True|2024-09-21T14:18:52.8083244+04:00;True|2024-09-21T14:13:59.0105013+04:00;True|2024-09-21T14:09:39.8680761+04:00;True|2024-09-21T14:05:20.5611353+04:00;True|2024-09-21T13:53:24.9567360+04:00;True|2024-09-21T13:47:39.3061003+04:00;True|2024-09-21T13:35:41.5291000+04:00;True|2024-09-20T16:36:49.3865595+04:00;True|2024-09-20T13:34:34.2321478+04:00;False|2024-09-20T13:19:13.8821902+04:00;False|2024-09-20T13:18:29.9252361+04:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

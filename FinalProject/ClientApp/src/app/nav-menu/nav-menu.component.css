@@ -33,3 +33,5 @@ html {
     box-shadow: 0 1px #666;
     transform: translateY(2px);
   }
+
+@import "~@fortawesome/fontawesome-free/css/all.css";
