@@ -26,7 +26,10 @@ export class RegisterPassengerComponent implements OnInit {
     lastName: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(35)])],
     email: ['', Validators.email],
     password: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(25)])],
-    gender: ['', Validators.required]
+    gender: ['', Validators.required],
+    packetid: [1],
+    purchasePercent: [0],
+    cancelPercent: [0],
   });
 
   ngOnInit(): void {
@@ -45,8 +48,8 @@ export class RegisterPassengerComponent implements OnInit {
   }
 
   private login = () => {
-    const { email, password, userName } = this.form.value;
-    const user = { email, password, username: userName };
+    const { email, password, userName, packetId, purchasePercent, cancelPercent } = this.form.value;
+    const user = { email, password, username: userName, packetid: packetId, purchasepercent: purchasePercent, cancelpercent: cancelPercent };
     this.authService.loginUser(user)
     this.router.navigate([this.requestedUrl ?? '/search-flights'])
   }

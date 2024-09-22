@@ -1,14 +1,9 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using Flights.Data;
-using Flights.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
+/*using Microsoft.OpenApi.Models;
+using FinalProject.Domain.Interfaces.Services;
+using FinalProject.Core.Services;
+using FinalProject.Domain.Interfaces.Repositories;
+using FinalProject.Infrastructure.Repositories;
+using FinalProject.Core.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,16 +12,14 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowSpecificOrigin",
         builder =>
         {
-            builder.WithOrigins("https://localhost:44492")
+            //("http://localhost:44492")
+            builder.WithOrigins("https://4.210.213.185:80")
                    .AllowAnyHeader()
                    .AllowAnyMethod();
         });
 });
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<Entities>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Flights")));
-
 
 // Add session services
 builder.Services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
@@ -38,47 +31,47 @@ builder.Services.AddSession(options =>
 });
 
 // Add Swagger
+
+*//*var swaggerEnabled = builder.Configuration.GetValue<bool>("Swagger:Enabled");
+
+if (swaggerEnabled)
+{
+    builder.Services.AddSwaggerGen(c =>
+    {
+        c.DescribeAllParametersInCamelCase();
+        c.AddServer(new OpenApiServer
+        {
+            Description = "Development Server",
+            Url = "http://localhost:80"
+        });
+        c.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["action"] + e.ActionDescriptor.RouteValues["controller"]}");
+    });
+}*//*
 builder.Services.AddSwaggerGen(c =>
 {
     c.DescribeAllParametersInCamelCase();
     c.AddServer(new OpenApiServer
     {
         Description = "Development Server",
-        Url = "https://localhost:7280"
+        Url = "https://localhost:80"
     });
     c.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["action"] + e.ActionDescriptor.RouteValues["controller"]}");
 });
 
-builder.Services.AddScoped<Entities>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IFlightRepository, FlightRepository>();
+builder.Services.AddScoped<IPassengerRepository, PassengerRepository>();
+builder.Services.AddScoped<IPacketRepository, PacketRepository>();
+builder.Services.AddScoped<IMapRepository, MapRepository>();
+
+builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IFlightService, FlightService>();
+builder.Services.AddScoped<IPassengerService, PassengerService>();
+builder.Services.AddScoped<IPacketService, PacketService>();
+builder.Services.AddScoped<IMapService, MapService>();
+builder.Services.AddScoped<IHelper, Helper>();
 
 var app = builder.Build();
-
-// Ensure the database is created and seed data
-using (var scope = app.Services.CreateScope())
-{
-    var entities = scope.ServiceProvider.GetService<Entities>();
-
-    entities.Database.EnsureCreated();
-
-    var random = new Random();
-
-    if (!entities.Flights.Any())
-    {
-        Flight[] flightsToSeed = new Flight[]
-        {
-            new (Guid.NewGuid(), "American Airlines", random.Next(90, 5000).ToString(), new TimePlace("Los Angeles", DateTime.Now.AddHours(random.Next(1, 3))), new TimePlace("Istanbul", DateTime.Now.AddHours(random.Next(4, 10))), 2),
-            new (Guid.NewGuid(), "Deutsche BA", random.Next(90, 5000).ToString(), new TimePlace("Munchen", DateTime.Now.AddHours(random.Next(1, 10))), new TimePlace("Schiphol", DateTime.Now.AddHours(random.Next(4, 15))), random.Next(1, 853)),
-            new (Guid.NewGuid(), "British Airways", random.Next(90, 5000).ToString(), new TimePlace("London, England", DateTime.Now.AddHours(random.Next(1, 15))), new TimePlace("Vizzola-Ticino", DateTime.Now.AddHours(random.Next(4, 18))), random.Next(1, 853)),
-            new (Guid.NewGuid(), "Basiq Air", random.Next(90, 5000).ToString(), new TimePlace("Amsterdam", DateTime.Now.AddHours(random.Next(1, 21))), new TimePlace("Glasgow, Scotland", DateTime.Now.AddHours(random.Next(4, 21))), random.Next(1, 853)),
-            new (Guid.NewGuid(), "BB Heliag", random.Next(90, 5000).ToString(), new TimePlace("Zurich", DateTime.Now.AddHours(random.Next(1, 23))), new TimePlace("Baku", DateTime.Now.AddHours(random.Next(4, 25))), random.Next(1, 853)),
-            new (Guid.NewGuid(), "Adria Airways", random.Next(90, 5000).ToString(), new TimePlace("Ljubljana", DateTime.Now.AddHours(random.Next(1, 15))), new TimePlace("Warsaw", DateTime.Now.AddHours(random.Next(4, 19))), random.Next(1, 853)),
-            new (Guid.NewGuid(), "ABA Air", random.Next(90, 5000).ToString(), new TimePlace("Praha Ruzyne", DateTime.Now.AddHours(random.Next(1, 55))), new TimePlace("Paris", DateTime.Now.AddHours(random.Next(4, 58))), random.Next(1, 853)),
-            new (Guid.NewGuid(), "AB Corporate Aviation", random.Next(90, 5000).ToString(), new TimePlace("Le Bourget", DateTime.Now.AddHours(random.Next(1, 58))), new TimePlace("Zagreb", DateTime.Now.AddHours(random.Next(4, 60))), random.Next(1, 853))
-        };
-        entities.Flights.AddRange(flightsToSeed);
-        entities.SaveChanges();
-    }
-}
 
 // Configure middleware
 if (!app.Environment.IsDevelopment())
@@ -100,9 +93,127 @@ app.UseCors(builder => builder
     .AllowAnyHeader()
 );
 
+*//*if (swaggerEnabled)
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}*//*
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapFallbackToFile("index.html");
+
+app.Run();
+*/
+
+
+
+
+using Microsoft.OpenApi.Models;
+using FinalProject.Domain.Interfaces.Services;
+using FinalProject.Core.Services;
+using FinalProject.Domain.Interfaces.Repositories;
+using FinalProject.Infrastructure.Repositories;
+using FinalProject.Core.Common;
+using Credo.Core.Shared.Middleware;
+using Serilog;
+using FinalProject.Domain.Common;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add CORS services
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
+
+//Add Logging
+builder.Host.UseSerilog((ctx, lc) => lc.ReadFrom.Configuration(ctx.Configuration)
+        .WriteTo.Console())
+    .ConfigureAppConfiguration((hostContext, builder) =>
+    {
+        builder.AddEnvironmentVariables();
+    });
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
+// Add session services
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+// Add Swagger
+builder.Services.AddSwaggerGen(c =>
+{
+    c.DescribeAllParametersInCamelCase();
+    c.AddServer(new OpenApiServer
+    {
+        Description = "Development Server",
+        Url = "https://skyc0nnect.com/" // Adjust as needed
+    });
+    c.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["action"] + e.ActionDescriptor.RouteValues["controller"]}");
+});
+
+// Register services
+builder.Services.Configure<AviationStackSettings>(builder.Configuration.GetSection("AviationStack"));
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IFlightRepository, FlightRepository>();
+builder.Services.AddScoped<IPassengerRepository, PassengerRepository>();
+builder.Services.AddScoped<IPacketRepository, PacketRepository>();
+builder.Services.AddScoped<IMapRepository, MapRepository>();
+builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IFlightService, FlightService>();
+builder.Services.AddScoped<IPassengerService, PassengerService>();
+builder.Services.AddScoped<IPacketService, PacketService>();
+builder.Services.AddScoped<IMapService, MapService>();
+builder.Services.AddScoped<IHelper, Helper>();
+builder.Services.AddSingleton<IUserContext, UserContext>();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSession();
+
+var app = builder.Build();
+
+// Configure middleware
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+// Enable session
+app.UseSession();
+
+// Use the CORS policy
+app.UseCors("AllowAll");
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
+app.UseMiddleware(typeof(LogMiddleware));
+app.UseMiddleware(typeof(ErrorHandlingMiddleware));
 app.UseAuthentication();
 app.UseAuthorization();
 
