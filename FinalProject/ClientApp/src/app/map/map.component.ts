@@ -3,7 +3,9 @@ import { MapService } from '../api/services/map.service';
 import * as L from 'leaflet';
 import { CitiesRm } from '../api/models/cities';
 const DefaultIcon = L.icon({
-  iconUrl: 'http://localhost:44492/marker-icon.png',
+  //iconUrl: 'http://localhost:44492/marker-icon.png',
+  //iconUrl: 'https://4.210.213.185:80/marker-icon.png',
+  iconUrl: 'https://skyc0nnect.com/marker-icon.png',
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],

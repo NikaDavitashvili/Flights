@@ -8,13 +8,15 @@ namespace FinalProject.Controllers;
 [Route("[controller]")]
 public class BookingController : ControllerBase
 {
-    private readonly ILogger<BookingController> _logger;
     private readonly IBookingService _bookingService;
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IUserContext _userContext;
 
-    public BookingController(ILogger<BookingController> logger, IBookingService bookingService)
+    public BookingController(IBookingService bookingService, IHttpContextAccessor httpContextAccessor, IUserContext userContext)
     {
-        _logger = logger;
         _bookingService = bookingService;
+        _httpContextAccessor = httpContextAccessor;
+        _userContext = userContext;
     }
 
     [HttpGet("{email}")]
@@ -23,16 +25,25 @@ public class BookingController : ControllerBase
     [ProducesResponseType(typeof(IEnumerable<BookingRm>), 200)]
     public async Task<ActionResult<IEnumerable<BookingRm>>> List(string email)
     {
-        try
+        string userId = string.Empty;
+        string userEmail = string.Empty;
+        if (string.IsNullOrEmpty(_userContext.UserId))
         {
-            var bookings = await _bookingService.List(email);
-            return Ok(bookings);
+            userId = Guid.NewGuid().ToString();
+            _userContext.UserId = userId;
         }
-        catch (Exception ex)
+        else
         {
-            _logger.LogError(ex, "Error occurred while listing bookings");
-            return StatusCode(500, "Internal server error");
+            userId = _userContext.UserId;
+            userEmail = _userContext.Email;
         }
+
+        var bookings = await _bookingService.List(email);
+
+        _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+        _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
+        _httpContextAccessor.HttpContext?.Items.Add("Action", $"Booked Flights On Email '{email}'");
+        return Ok(bookings);
     }
 
     [HttpDelete]
@@ -42,17 +53,23 @@ public class BookingController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Cancel(BookDTO dto)
     {
-        try
+        string userId = string.Empty;
+        string userEmail = string.Empty;
+        if (string.IsNullOrEmpty(_userContext.UserId))
         {
-            await _bookingService.Cancel(dto);
-            return CreatedAtAction(nameof(List), new { email = dto.PassengerEmail }, null);
+            userId = Guid.NewGuid().ToString();
+            _userContext.UserId = userId;
         }
-        catch (Exception ex)
+        else
         {
-            _logger.LogError(ex, "Error occurred while canceling booking");
-            if (ex.Message.Contains("ERROR"))
-                return NotFound(new { message = "Booking not found" });
-            return StatusCode(500, "Internal server error");
+            userId = _userContext.UserId;
+            userEmail = _userContext.Email;
         }
+
+        await _bookingService.Cancel(dto);
+        _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+        _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
+        _httpContextAccessor.HttpContext?.Items.Add("Action", $"Cancelling Flight On Email '{dto.PassengerEmail}' With FlightId - {dto.FlightId}");
+        return CreatedAtAction(nameof(List), new { email = dto.PassengerEmail }, null);
     }
 }

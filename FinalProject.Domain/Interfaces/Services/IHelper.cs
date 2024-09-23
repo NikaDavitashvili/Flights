@@ -2,4 +2,5 @@
 public interface IHelper
 {
     string PasswordHash(string password);
+    
 }

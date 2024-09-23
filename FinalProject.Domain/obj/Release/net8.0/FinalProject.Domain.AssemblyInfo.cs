@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FinalProject.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ddb96e7737f0db7aa064b8c14e1153e292d8544")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bebfae8eeec4322fe191811702b9dd50409451d2")]
+>>>>>>> main
 [assembly: System.Reflection.AssemblyProductAttribute("FinalProject.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FinalProject.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

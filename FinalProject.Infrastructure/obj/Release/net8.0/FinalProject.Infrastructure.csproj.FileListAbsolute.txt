@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Infrastructure\bin\Release\net8.0\FinalProject.Infrastructure.deps.json
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Infrastructure\bin\Release\net8.0\FinalProject.Infrastructure.dll
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Infrastructure\bin\Release\net8.0\FinalProject.Infrastructure.pdb
@@ -16,6 +17,8 @@ C:\Users\User\Documents\GitHub\Flights\FinalProject.Infrastructure\obj\Release\n
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Infrastructure\obj\Release\net8.0\FinalProject.Infrastructure.pdb
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Infrastructure\obj\Release\net8.0\ref\FinalProject.Infrastructure.dll
 =======
+=======
+>>>>>>> main
 C:\Users\user\source\repos\Flights\FinalProject.Infrastructure\bin\Release\net8.0\FinalProject.Infrastructure.deps.json
 C:\Users\user\source\repos\Flights\FinalProject.Infrastructure\bin\Release\net8.0\FinalProject.Infrastructure.dll
 C:\Users\user\source\repos\Flights\FinalProject.Infrastructure\bin\Release\net8.0\FinalProject.Infrastructure.pdb
@@ -32,4 +35,7 @@ C:\Users\user\source\repos\Flights\FinalProject.Infrastructure\obj\Release\net8.
 C:\Users\user\source\repos\Flights\FinalProject.Infrastructure\obj\Release\net8.0\refint\FinalProject.Infrastructure.dll
 C:\Users\user\source\repos\Flights\FinalProject.Infrastructure\obj\Release\net8.0\FinalProject.Infrastructure.pdb
 C:\Users\user\source\repos\Flights\FinalProject.Infrastructure\obj\Release\net8.0\ref\FinalProject.Infrastructure.dll
+<<<<<<< HEAD
 >>>>>>> bec81c28d7eac66c5ce98a32c6286512376e5ce2
+=======
+>>>>>>> main
