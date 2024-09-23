@@ -1,6 +1,19 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
+    "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\FinalProject.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Core\\FinalProject.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Core\\FinalProject.Core.csproj",
+        "projectName": "FinalProject.Core",
+        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Core\\FinalProject.Core.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Core\\obj\\",
+=======
     "C:\\Users\\user\\source\\repos\\Flights\\FinalProject\\FinalProject.csproj": {}
   },
   "projects": {
@@ -12,12 +25,17 @@
         "projectPath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Core\\FinalProject.Core.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Core\\obj\\",
+>>>>>>> main
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> main
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -33,11 +51,16 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+<<<<<<< HEAD
+              "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
+                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj"
+=======
               "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
                 "projectPath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj"
               },
               "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj": {
                 "projectPath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj"
+>>>>>>> main
               }
             }
           }
@@ -57,6 +80,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+<<<<<<< HEAD
+=======
             "Microsoft.Extensions.Options": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -65,6 +90,7 @@
               "target": "Package",
               "version": "[13.0.3, )"
             },
+>>>>>>> main
             "leaflet": {
               "target": "Package",
               "version": "[0.7.3, )"
@@ -86,7 +112,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+>>>>>>> main
         }
       },
       "runtimes": {
@@ -95,6 +125,16 @@
         }
       }
     },
+<<<<<<< HEAD
+    "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj",
+        "projectName": "FinalProject.Domain",
+        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\obj\\",
+=======
     "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -103,12 +143,17 @@
         "projectPath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Domain\\obj\\",
+>>>>>>> main
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> main
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -162,7 +207,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+>>>>>>> main
         }
       },
       "runtimes": {
@@ -171,6 +220,16 @@
         }
       }
     },
+<<<<<<< HEAD
+    "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj",
+        "projectName": "FinalProject.Infrastructure",
+        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Infrastructure\\obj\\",
+=======
     "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -179,12 +238,17 @@
         "projectPath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Infrastructure\\obj\\",
+>>>>>>> main
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> main
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -200,8 +264,13 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+<<<<<<< HEAD
+              "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
+                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj"
+=======
               "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
                 "projectPath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj"
+>>>>>>> main
               }
             }
           }
@@ -246,7 +315,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+>>>>>>> main
         }
       },
       "runtimes": {
@@ -255,6 +328,16 @@
         }
       }
     },
+<<<<<<< HEAD
+    "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\FinalProject.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\FinalProject.csproj",
+        "projectName": "FinalProject",
+        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\FinalProject.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\obj\\publish\\win-x64\\",
+=======
     "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -263,11 +346,15 @@
         "projectPath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Shared\\obj\\",
+>>>>>>> main
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -365,6 +452,7 @@
         ],
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> main
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -380,6 +468,16 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+<<<<<<< HEAD
+              "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Core\\FinalProject.Core.csproj": {
+                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Core\\FinalProject.Core.csproj"
+              },
+              "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
+                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj"
+              },
+              "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj"
+=======
               "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Core\\FinalProject.Core.csproj": {
                 "projectPath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Core\\FinalProject.Core.csproj"
               },
@@ -391,6 +489,7 @@
               },
               "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj": {
                 "projectPath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj"
+>>>>>>> main
               }
             }
           }
@@ -422,6 +521,8 @@
               "target": "Package",
               "version": "[13.0.3, )"
             },
+<<<<<<< HEAD
+=======
             "Serilog": {
               "target": "Package",
               "version": "[4.0.1, )"
@@ -446,6 +547,7 @@
               "target": "Package",
               "version": "[8.0.0, )"
             },
+>>>>>>> main
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
@@ -469,6 +571,17 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+<<<<<<< HEAD
+              "version": "[8.0.5, 8.0.5]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.win-x64",
+              "version": "[8.0.5, 8.0.5]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+              "version": "[8.0.5, 8.0.5]"
+=======
               "version": "[8.0.3, 8.0.3]"
             },
             {
@@ -478,6 +591,7 @@
             {
               "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
               "version": "[8.0.3, 8.0.3]"
+>>>>>>> main
             }
           ],
           "frameworkReferences": {
@@ -488,7 +602,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+>>>>>>> main
         }
       },
       "runtimes": {
