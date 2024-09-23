@@ -41,11 +41,12 @@ export class AuthService {
     sessionStorage.setItem('CurrentUser', JSON.stringify(user));
   }
 
-  logoutUser(): void {
+  logout(): void {
     this._currentUser = undefined;
     this.setAuthorized(false);
     sessionStorage.removeItem('CurrentUser');
     sessionStorage.removeItem('Authorized');
+    console.log("auth.service.ts");
   }
 }
 
@@ -53,6 +54,7 @@ interface User {
   email: string;
   password: string;
   username: string;
+  packetid: number;
+  purchasepercent: number;
+  cancelpercent: number;
 }
-
-// Ensure that the User interface is correctly defined.

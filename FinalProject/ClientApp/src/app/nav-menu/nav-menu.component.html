@@ -1,7 +1,11 @@
 <header>
   <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">Flights</a>
+      <a class="navbar-brand" [routerLink]="['/']">
+        <i class="fas fa-plane text-primary"></i>
+        <!--<img src="/ClientApp/dist/assets/images/skyconnect-logo.png">-->
+        SkyConnect
+      </a>
       <button class="navbar-toggler"
               type="button"
               data-toggle="collapse"
@@ -15,15 +19,23 @@
            [ngClass]="{ show: isExpanded }">
         <ul class="navbar-nav flex-grow">
           <li class="nav-item" *ngIf="authService.isAuthorized()">
-            <button class="btn btn-gray nav-link text-dark" [routerLink]="['/my-booking']">Hello, <b>{{ authService.currentUser?.username }}</b></button>
+            <button class="btn btn-gray nav-link text-dark" [routerLink]="['/my-booking']">
+              Hello, <b>{{ authService.currentUser?.username }}</b>
+            </button>
           </li>
-          <li class="nav-item" *ngIf="authService.isAuthorized()" style="margin-left: 15rem;">
-            <button class="btn btn-gray nav-link text-dark" [routerLink]="['/']" (click)="authService.logoutUser()">Log Out</button>
+          <li class="nav-item" *ngIf="authService.isAuthorized()">
+            <button class="btn btn-gray nav-link text-dark" [routerLink]="['/packet']">Packets</button>
           </li>
-          <li class="nav-item" *ngIf="!authService.isAuthorized()" style="margin-left: 15rem;">
+          <li class="nav-item" *ngIf="authService.isAuthorized()">
+            <button class="btn btn-gray nav-link text-dark" [routerLink]="['/map']">Map</button>
+          </li>
+          <li class="nav-item" *ngIf="authService.isAuthorized()" style="margin-left: 20rem;">
+            <button class="btn btn-gray nav-link text-dark" [routerLink]="['/logout-passenger']" (click)="authService.logout()">Log Out</button>
+          </li>
+          <li class="nav-item" *ngIf="!authService.isAuthorized()" style="margin-left: 20rem;">
             <button class="btn btn-gray nav-link text-dark" [routerLink]="['/login-passenger']">Log in</button>
           </li>
-          <li class="nav-item" *ngIf="!authService.isAuthorized()" >
+          <li class="nav-item" *ngIf="!authService.isAuthorized()">
             <button class="btn btn-gray nav-link text-dark" [routerLink]="['/register-passenger']">Register</button>
           </li>
         </ul>

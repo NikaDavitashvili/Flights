@@ -11,6 +11,15 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./book-flight.component.css']
 })
 export class BookFlightComponent implements OnInit {
+  currentFlight: FlightRm | null = null;
+  currentUser: User | null = null;
+  purchasePercent: number = 0;
+  paymentAmount: number = 0;
+  showCardInsertionPopup = false;
+  cardNumber = '';
+  expiryDate = '';
+  cvv = '';
+  seasonName: string | null = null; 
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -22,11 +31,15 @@ export class BookFlightComponent implements OnInit {
   flight: FlightRm = {};
 
   form = this.fb.group({
-    number: [1, Validators.compose([Validators.required, Validators.min(1), Validators.max(254)])]
+    number: [1, Validators.compose([Validators.required, Validators.min(1), Validators.max(10)])]
   });
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(p => this.findFlight(p.get("flightId")));
+    const userJson = sessionStorage.getItem('CurrentUser');
+    if (userJson) {
+      this.currentUser = JSON.parse(userJson);
+    }
   }
 
   private findFlight = (flightId: string | null) => {
@@ -52,12 +65,39 @@ export class BookFlightComponent implements OnInit {
     console.log(err);
   }
 
-  book() {
+  purchase(flight: FlightRm): void {
     if (this.form.invalid) {
       return;
     }
 
-    console.log(`Booking ${this.form.get('number')?.value} passengers for the flight: ${this.flight.id}`);
+    const numberOfTickets = this.form.get('number')?.value;
+    if (numberOfTickets <= 0) {
+      alert('Please enter a valid number of tickets to cancel.');
+      return;
+    }
+    const priceAsInt = parseInt(flight.price!.toString(), 10);
+    this.currentFlight = flight;
+
+    const userJson = sessionStorage.getItem('CurrentUser');
+    if (userJson) {
+      const user: User = JSON.parse(userJson);
+      this.purchasePercent = 1 - user.purchasepercent / 100;
+    }
+
+    this.paymentAmount = priceAsInt * numberOfTickets * this.purchasePercent;
+
+    // Open the card insertion popup here
+    this.showCardInsertionPopup = true;
+
+    // Disable scroll
+    document.body.classList.add('no-scroll');
+  }
+
+  buyTickets() {
+    if (!this.cardNumber || !this.expiryDate || !this.cvv) {
+      alert('Please enter all card details.');
+      return;
+    }
 
     const booking: BookDto = {
       flightId: this.flight.id,
@@ -67,9 +107,51 @@ export class BookFlightComponent implements OnInit {
 
     this.flightService.bookFlight({ body: booking })
       .subscribe(_ => this.router.navigate(['/my-booking']), this.handleError);
+
+    this.closePopup();
+  }
+
+  closePopup() {
+    this.showCardInsertionPopup = false;
+
+    // Enable scroll
+    document.body.classList.remove('no-scroll');
   }
 
   get number() {
-    return this.form.controls.number;
+    return this.form.get('number');
   }
+
+  get cardNumberInvalid() {
+    // Basic validation for card number
+    return this.cardNumber.length < 16 || isNaN(Number(this.cardNumber));
+  }
+
+  getDiscountedPrice(price: any): number | null {
+    this.seasonName = sessionStorage.getItem('SeasonName');
+
+    var seasonDiscountedPrice = 0;
+    if (this.currentUser && this.currentUser.packetid !== 1) {
+      var discountedPrice = (price * (1 - this.currentUser.purchasepercent / 100));
+
+      if (this.seasonName === 'Summer')
+        seasonDiscountedPrice = discountedPrice * 0.85;
+      else seasonDiscountedPrice = discountedPrice * 0.90;
+    }
+    else {
+      if (this.seasonName === 'Summer')
+        seasonDiscountedPrice = price * 0.85;
+      else seasonDiscountedPrice = price * 0.90;
+    }
+    return Math.round(seasonDiscountedPrice);
+  }
+}
+
+interface User {
+  email: string;
+  password: string;
+  username: string;
+  packetid: number;
+  purchasepercent: number;
+  cancelpercent: number;
 }

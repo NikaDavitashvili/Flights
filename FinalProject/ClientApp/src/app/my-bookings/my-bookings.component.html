@@ -1,72 +1,110 @@
-<h5 class="text-md-center m-5">My Bookings</h5>
+<h5 class="text-md-center m-5">My Tickets</h5>
 
-<div *ngFor="let booking of bookings" class="card bg-light text-dark  mt-5">
+<div *ngFor="let booking of bookings" class="card bg-light text-dark mt-5">
   <div class="card-body text-center" style="padding: 20px; background-color:#e5ecf26e">
-    <h6 class="card-title ">{{booking.airline}}</h6>
-    <div class="card-title" style="color: #ff3939">{{booking.numberOfBookedSeats}} booked seat(s)</div>
+    <h6 class="card-title">{{ booking.airline }}</h6>
+    <div class="card-title" style="color: #ff3939">{{ booking.numberOfBookedSeats }} booked seat(s)</div>
     <div class="d-grid text-center g-2">
       <div class="row">
+        <!-- Departure Details -->
         <div class="col">
           <div class="col m-3">
             <i class="text-primary fas fa-plane-departure" style="font-size: 20px;"></i>
           </div>
-
           <div class="col">
-            <i class="fa-solid fa-location-dot">
-              {{booking.departure?.place}}
-            </i>
+            <i class="fa-solid fa-location-dot">{{ booking.departure?.place }}</i>
           </div>
-
           <div class="col m-2">
-            <i class="fa-regular"></i>
-            {{booking.departure?.time | date}}
+            <i class="fa-regular">{{ booking.departure?.time | date }}</i>
           </div>
-
           <div class="col">
-            <i class="fa-regular fa-clock">
-              {{booking.departure?.time | date:'shortTime'}}
-            </i>
+            <i class="fa-regular fa-clock">{{ booking.departure?.time | date:'shortTime' }}</i>
           </div>
         </div>
 
+        <!-- Price and Divider -->
         <div class="col">
           <div style="display: flex;">
-            <i class="fa-solid  fa-circle" style="margin-top:51px; font-size: 9px;"></i>
+            <i class="fa-solid fa-circle" style="margin-top:51px; font-size: 9px;"></i>
             <hr style="display:block;width: 100%;margin-top: 55px;">
             <i class="fas fa-plane" style="margin-top: 48px;"></i>
           </div>
-
-          <i class="fa fa-usd" aria-hidden="true">
-            {{booking.price}}
-          </i>
-          <br>
-
+          <div *ngIf="getDiscountedPrice(booking.price) !== null">
+            <span style="text-decoration: line-through; font-weight: 100; font-size: 14px;">$ {{ booking.price }}</span><br>
+            <span style="font-weight: bolder; font-size: 18px;">$ {{ getDiscountedPrice(booking.price) }}</span>
+          </div>
+          <div *ngIf="getDiscountedPrice(booking.price) === null">
+            <span>$ {{ booking.price }}</span>
+          </div>
         </div>
+
+        <!-- Arrival Details -->
         <div class="col">
           <div class="col m-3">
             <i class="text-primary fas fa-plane-arrival" style="font-size: 20px;"></i>
           </div>
           <div class="col">
-            <i class="fa-solid fa-location-dot">
-              {{booking.arrival?.place}}
-
-            </i>
+            <i class="fa-solid fa-location-dot">{{ booking.arrival?.place }}</i>
           </div>
           <div class="col m-2 text-primary">
-            <i class="fa-regular "></i>
-            {{booking.arrival?.time | date}}
-
+            <i class="fa-regular">{{ booking.arrival?.time | date }}</i>
           </div>
           <div class="col">
-            <i class="fa-regular fa-clock">
-              {{booking.arrival?.time | date:'shortTime'}}
-            </i>
+            <i class="fa-regular fa-clock">{{ booking.arrival?.time | date:'shortTime' }}</i>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="card-body d-flex justify-content-center">
-    <a (click)="cancel(booking)" class="btn btn-warning btn-secondary center"><i class="fas fa-remove"></i> Cancel</a>
+
+  <div class="card-footer d-flex justify-content-center">
+    <form [formGroup]="form">
+      <label class="form-label mt-5" for="numberOfSeats">Number of Seats</label>
+      <div class="center input-group">
+        <input formControlName="number" type="number" class="form-control" id="numberOfSeats" name="numberOfSeats"
+               placeholder="Number of Seats" />
+        <button type="button" class="btn btn-primary" (click)="openReturnPopup(booking)">
+          <i class="fas fa-ticket"></i>
+          Return Tickets
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="form.get('number')?.invalid && (form.get('number')?.dirty || form.get('number')?.touched)"
+       class="invalid-feedback d-block">
+    <div *ngIf="form.get('number')?.errors?.['min']">
+      You cannot Return for less than 1 passenger!
+    </div>
+    <div *ngIf="form.get('number')?.errors?.['max']">
+      Our planes do not have more than 10 seats.
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showReturnPopup" class="popup-overlay">
+  <div class="card-insertion-popup">
+    <h5>Return Tickets</h5>
+    <p>You will be refunded: {{ returnAmount | currency }}</p>
+    <h5>Enter Card Details</h5>
+    <div class="form-group">
+      <label for="cardNumber">Card Number</label>
+      <input type="text" id="cardNumber" class="form-control" placeholder="Enter card number" required>
+      <div class="invalid-feedback">
+        Please enter a valid card number.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="expiryDate">Expiry Date</label>
+      <input type="text" id="expiryDate" class="form-control" placeholder="MM/YY" required>
+    </div>
+    <div class="form-group">
+      <label for="cvv">CVV</label>
+      <input type="text" id="cvv" class="form-control" placeholder="CVV" required>
+    </div>
+    <div class="form-group text-center">
+      <button class="btn btn-primary" (click)="cancel()">Return Tickets</button>
+      <button class="btn btn-secondary" (click)="closeReturnPopup()">Cancel</button>
+    </div>
   </div>
 </div>

@@ -1,68 +1,75 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Flights.Data;
-using Flights.ReadModels;
-using Flights.Dtos;
-using Flights.Domain.Errors;
+﻿using Microsoft.AspNetCore.Mvc;
+using FinalProject.Domain.Models.ReadModels;
+using FinalProject.Domain.Models.DTOs;
+using FinalProject.Domain.Interfaces.Services;
 
-namespace FinalProject.Controllers
+namespace FinalProject.Controllers;
+[ApiController]
+[Route("[controller]")]
+public class BookingController : ControllerBase
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class BookingController : ControllerBase
+    private readonly IBookingService _bookingService;
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IUserContext _userContext;
+
+    public BookingController(IBookingService bookingService, IHttpContextAccessor httpContextAccessor, IUserContext userContext)
     {
-        private readonly Entities _entities;
+        _bookingService = bookingService;
+        _httpContextAccessor = httpContextAccessor;
+        _userContext = userContext;
+    }
 
-        public BookingController(Entities entities)
+    [HttpGet("{email}")]
+    [ProducesResponseType(500)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(typeof(IEnumerable<BookingRm>), 200)]
+    public async Task<ActionResult<IEnumerable<BookingRm>>> List(string email)
+    {
+        string userId = string.Empty;
+        string userEmail = string.Empty;
+        if (string.IsNullOrEmpty(_userContext.UserId))
         {
-            _entities = entities;
+            userId = Guid.NewGuid().ToString();
+            _userContext.UserId = userId;
+        }
+        else
+        {
+            userId = _userContext.UserId;
+            userEmail = _userContext.Email;
         }
 
-        [HttpGet("{email}")]
-        [ProducesResponseType(500)]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(typeof(IEnumerable<BookingRm>), 200)]
-        public ActionResult<IEnumerable<BookingRm>> List(string email)
-        {
-            var bookings = _entities.Flights.ToArray()
-                .SelectMany(f => f.Bookings
-                    .Where(b => b.PassengerEmail == email)
-                    .Select(b => new BookingRm(
-                        f.Id,
-                        f.Airline,
-                        f.Price.ToString(),
-                        new TimePlaceRm(f.Arrival.Place, f.Arrival.Time),
-                        new TimePlaceRm(f.Departure.Place, f.Departure.Time),
-                        b.NumberOfSeats,
-                        email
-                        )));
+        var bookings = await _bookingService.List(email);
 
-            return Ok(bookings);
+        _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+        _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
+        _httpContextAccessor.HttpContext?.Items.Add("Action", $"Booked Flights On Email '{email}'");
+        return Ok(bookings);
+    }
+
+    [HttpDelete]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(500)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Cancel(BookDTO dto)
+    {
+        string userId = string.Empty;
+        string userEmail = string.Empty;
+        if (string.IsNullOrEmpty(_userContext.UserId))
+        {
+            userId = Guid.NewGuid().ToString();
+            _userContext.UserId = userId;
+        }
+        else
+        {
+            userId = _userContext.UserId;
+            userEmail = _userContext.Email;
         }
 
-
-        [HttpDelete]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(500)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult Cancel(BookDto dto)
-        {
-            var flight = _entities.Flights.Find(dto.FlightId);
-
-            var error = flight?.CancelBooking(dto.PassengerEmail, dto.NumberOfSeats);
-
-            if (error == null)
-            {
-                _entities.SaveChanges();
-                return NoContent();
-            }
-
-            if (error is NotFoundError)
-                return NotFound();
-
-            throw new Exception($"The error of type: {error.GetType().Name} occurred while canceling the booking made by {dto.PassengerEmail}");
-        }
-
+        await _bookingService.Cancel(dto);
+        _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+        _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
+        _httpContextAccessor.HttpContext?.Items.Add("Action", $"Cancelling Flight On Email '{dto.PassengerEmail}' With FlightId - {dto.FlightId}");
+        return CreatedAtAction(nameof(List), new { email = dto.PassengerEmail }, null);
     }
 }

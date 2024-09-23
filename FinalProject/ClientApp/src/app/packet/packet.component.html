@@ -1,0 +1,83 @@
+<h5 class="text-md-center m-5">Available Packets & Special Offers</h5>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let packet of PacketResponseDto.packets">
+      <div class="card h-100 shadow">
+        <div class="card-header" [ngClass]="{
+          'bg-silver': packet.name === 'Silver',
+          'bg-golden': packet.name === 'Golden',
+          'bg-platinum': packet.name === 'Platinum'
+        }">
+          <h4 class="card-title">{{ packet.name }}</h4>
+        </div>
+        <div class="card-body bg-dark-grey">
+          <h5 class="card-title">Prices:</h5>
+          <ul class="list-unstyled mb-4">
+            <li>1 Month: ${{ packet.price1 }}</li>
+            <li>3 Months: ${{ packet.price3 }}</li>
+            <li>6 Months: ${{ packet.price6 }}</li>
+            <li>12 Months: ${{ packet.price12 }}</li>
+          </ul>
+          <h5 class="card-title">Percentage Details:</h5>
+          <ul class="list-unstyled mb-4">
+            <li>Purchase Percent: {{ packet.purchasePercent }}%</li>
+            <li>Cancel Percent: {{ packet.cancelPercent }}%</li>
+          </ul>
+          <form (ngSubmit)="openCardPopup(packet.name, packet.selectedMonths)">
+            <div class="form-group" *ngIf="packet.id !== PacketResponseDto.packetId">
+              <label>Select Months:</label>
+              <select class="form-control" [(ngModel)]="packet.selectedMonths" name="selectedMonths">
+                <option value="1">1 Month</option>
+                <option value="3">3 Months</option>
+                <option value="6">6 Months</option>
+                <option value="12">12 Months</option>
+              </select>
+            </div>
+            <div *ngIf="packet.id !== PacketResponseDto.packetId; else boughtPacket">
+              <button type="submit" class="btn btn-primary">Buy Now</button>
+            </div>
+            <ng-template #boughtPacket>
+              <button type="button" class="btn btn-primary" disabled>Purchased</button>
+            </ng-template>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Card Insertion Popup -->
+<div *ngIf="showCardInsertionPopup" class="popup-overlay">
+  <div class="card-insertion-popup">
+    <h5>Enter Card Details</h5>
+    <div class="form-group">
+      <label class="paymentPopupTitleName1" for="cardNumber">Card Number</label>
+      <input type="text" id="cardNumber" class="form-control" placeholder="Enter card number" [(ngModel)]="cardNumber" required>
+      <div class="invalid-feedback" *ngIf="cardNumberInvalid">
+        Please enter a valid card number.
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="paymentPopupTitleName2" for="expiryDate">Expiry Date</label>
+      <input type="text" id="expiryDate" class="form-control" placeholder="MM/YY" [(ngModel)]="expiryDate" required>
+    </div>
+    <div class="form-group">
+      <label class="paymentPopupTitleName3" for="cvv">CVV</label>
+      <input type="text" id="cvv" class="form-control" placeholder="CVV" [(ngModel)]="cvv" required>
+    </div>
+    <div class="form-group text-center">
+      <button class="btn btn-primary" (click)="submitCardDetails()">Submit</button>
+      <button class="btn btn-secondary" (click)="closePopup()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Success Alert -->
+<div *ngIf="showSuccessAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+  Packet Payment has been successful!
+  <button type="button" class="close" (click)="closeSuccessAlert()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
