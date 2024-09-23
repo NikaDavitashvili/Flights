@@ -2,26 +2,28 @@
 using FinalProject.Domain.Interfaces.Services;
 using FinalProject.Domain.Models.DTOs;
 using FinalProject.Domain.Models.ReadModels;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 
 namespace FinalProject.Core.Services;
 public class FlightService : IFlightService
 {
+    private readonly IServiceScopeFactory _scopeFactory;
     private readonly IFlightRepository _flightRepository;
-    private readonly AviationStackSettings _aviationStackSettings;
 
-    public FlightService(IFlightRepository flightRepository, IOptions<AviationStackSettings> aviationStackSettings)
+    public FlightService(IServiceScopeFactory scopeFactory, IFlightRepository flightRepository)
     {
+        _scopeFactory = scopeFactory;
         _flightRepository = flightRepository;
-        _aviationStackSettings = aviationStackSettings.Value;
     }
 
     public async Task<IEnumerable<FlightRm>> Search(FlightSearchParametersDTO @params)
     {
         try
         {
-            return await _flightRepository.Search(@params);
+            //await new FlightsScheduler(_scopeFactory).RunJobItem();
+
+            return await _flightRepository.Search(@params) ?? new List<FlightRm>();
         }
         catch (Exception ex)
         {
@@ -29,58 +31,72 @@ public class FlightService : IFlightService
         }
     }
 
-    public async Task<IEnumerable<FlightRm>> SearchTEST(FlightSearchParametersDTO @params)
+    /* public async Task<IEnumerable<FlightRm>> SearchTEST(FlightSearchParametersDTO @params)
     {
         var flightResults = new List<FlightRm>();
-        string accessKey = _aviationStackSettings.AccessKey; // Your new access key
-        //string[] airlines = { "Wizz Air", "Pegasus", "LOT", "Qatar Airways", "Turkish Airlines", "American Airlines", "Lufthansa" };
-        string[] airlines = { "Wizz Air" };
-
-        foreach (var airline in airlines)
+        try
         {
-            int page = 0;
-            bool hasMoreData = true;
+            string accessKey = _aviationStackSettings.AccessKey;
+            string[] airlines = { "Wizz Air", "Pegasus", "LOT", "Qatar Airways", "Turkish Airlines", "American Airlines", "Lufthansa" };
 
-            //while (hasMoreData)
+            foreach (var airline in airlines)
             {
-                // Build the API request URL with pagination
-                string url = $"https://api.aviationstack.com/v1/flights?access_key={accessKey}&airline={airline}&flight_status=active&page={page}&limit=1";
+                int page = 0;
+                bool hasMoreData = true;
 
-                using (var client = new HttpClient())
+                //while (hasMoreData)
                 {
-                    var response = await client.GetStringAsync(url);
-                    var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(response); // Assuming you create a class ApiResponse that matches the structure
+                    string url = $"https://api.aviationstack.com/v1/flights?access_key={accessKey}&airline={airline}&flight_status=active&page={page}&limit=1";
 
-                    // Check if the response contains data
-                    if (apiResponse != null && apiResponse.Data != null)
+                    using (var client = new HttpClient())
                     {
-                        foreach (var flight in apiResponse.Data)
+                        var response = await client.GetStringAsync(url);
+                        var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(response);
+
+                        if (apiResponse != null && apiResponse.Data != null)
                         {
-                            var flightRm = new FlightRm(
-                                Guid.NewGuid(), // Generate a new GUID or adapt according to your requirements
-                                flight.Airline.Name,
-                                "100",
-                                //flight.Price.ToString(), // Assuming price is available, adapt as needed
-                                new TimePlaceRm(flight.Departure.Airport, flight.Departure.Estimated),
-                                new TimePlaceRm(flight.Arrival.Airport, flight.Arrival.Estimated),
-                                flight.RemainingNumberOfSeats // Assuming this field exists, adapt as needed
-                            );
-                            flightResults.Add(flightRm);
-                        }
+                            foreach (var flight in apiResponse.Data)
+                            {
+                                var flightRm = new FlightRm(
+                                    Guid.NewGuid(),
+                                    flight.Airline.Name,
+                                    "100",
+                                    new TimePlaceRm(flight.Departure.Airport, flight.Departure.Estimated),
+                                    new TimePlaceRm(flight.Arrival.Airport, flight.Arrival.Estimated),
+                                    flight.RemainingNumberOfSeats
+                                );
+                                flightResults.Add(flightRm);
+                            }
 
-                        hasMoreData = apiResponse.Pagination.Count > 0; // Continue if more data exists
-                        page++;
-                    }
-                    else
-                    {
-                        hasMoreData = false; // Stop if no data is returned
+                            hasMoreData = apiResponse.Pagination.Count > 0;
+                            page++;
+                        }
+                        else
+                        {
+                            hasMoreData = false;
+                        }
                     }
                 }
             }
+
+            // Save the results to a JSON file
+            var jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "flightResults.json");
+            var cacheData = new FlightCache
+            {
+                CachedTime = DateTime.Now,
+                FlightResults = flightResults
+            };
+            var jsonData = JsonConvert.SerializeObject(cacheData);
+            await File.WriteAllTextAsync(jsonFilePath, jsonData);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Error occurred while searching for flights: {ex.Message}");
         }
 
         return flightResults;
-    }
+    } */
+
     public async Task<IEnumerable<FlightRm>> SearchBySeason(string seasonName)
     {
         try

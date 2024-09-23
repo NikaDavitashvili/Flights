@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FinalProject.Domain.Interfaces.Services;
 using FinalProject.Domain.Models.DTOs;
 using FinalProject.Domain.Models.ReadModels;
-using FinalProject.Domain.Interfaces.Services;
-using Microsoft.AspNetCore.Http;
-using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProject.Controllers;
 [ApiController]
@@ -29,6 +27,7 @@ public class FlightController : ControllerBase
     {
         string userId = string.Empty;
         string userEmail = string.Empty;
+
         if (string.IsNullOrEmpty(_userContext.UserId))
         {
             userId = Guid.NewGuid().ToString();
@@ -45,6 +44,7 @@ public class FlightController : ControllerBase
             var discountedFlightsBySeasons = await _flightService.SearchBySeason(@params.SeasonName);
             _httpContextAccessor.HttpContext?.Items.Add("Action", $"Searching Flights By Season '{@params.SeasonName}'");
             _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+            _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
             return discountedFlightsBySeasons;
         }
 
@@ -52,8 +52,66 @@ public class FlightController : ControllerBase
         _httpContextAccessor.HttpContext?.Items.Add("Action", "Searching Flights");
         _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
         _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
+
         return flights;
     }
+
+    /* [HttpGet]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(500)]
+    [ProducesResponseType(typeof(IEnumerable<FlightRm>), 200)]
+    public async Task<IEnumerable<FlightRm>> Search([FromQuery] FlightSearchParametersDTO @params)
+    {
+        string userId = string.Empty;
+        string userEmail = string.Empty;
+
+        if (string.IsNullOrEmpty(_userContext.UserId))
+        {
+            userId = Guid.NewGuid().ToString();
+            _userContext.UserId = userId;
+        }
+        else
+        {
+            userId = _userContext.UserId;
+            userEmail = _userContext.Email;
+        }
+
+        // Check if data exists in the JSON file
+        var jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "flightResults.json");
+        if (System.IO.File.Exists(jsonFilePath))
+        {
+            var jsonData = await System.IO.File.ReadAllTextAsync(jsonFilePath);
+            var cachedData = JsonConvert.DeserializeObject<FlightCache>(jsonData);
+
+            if (cachedData != null && cachedData.FlightResults.Any())
+            {
+                if ((DateTime.Now - cachedData.CachedTime).TotalHours < 24 )
+                {
+                    _httpContextAccessor.HttpContext?.Items.Add("Action", "Retrieving Cached Flights");
+                    _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+                    _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
+                    return cachedData.FlightResults;
+                }
+            }
+        }
+        
+        if (!string.IsNullOrEmpty(@params.SeasonName))
+        {
+            var discountedFlightsBySeasons = await _flightService.SearchBySeason(@params.SeasonName);
+            _httpContextAccessor.HttpContext?.Items.Add("Action", $"Searching Flights By Season '{@params.SeasonName}'");
+            _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+            _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
+            return discountedFlightsBySeasons;
+        }
+
+        // If no valid cache, call SearchTEST and fetch new data
+        var flights = await _flightService.SearchTEST(@params);
+        _httpContextAccessor.HttpContext?.Items.Add("Action", "Searching Flights");
+        _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+        _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
+
+        return flights;
+    } */
 
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [HttpGet("{id}")]
