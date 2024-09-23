@@ -26,5 +26,19 @@ obj/
 # Ignore file list absolute files
 *.FileListAbsolute.txt
 
-**/obj/**/FinalProject.AssemblyInfoInputs.cache
-**/obj/**/FinalProject.AssemblyInfo.cs
+# Ignore build outputs
+**/bin/Debug/net8.0/*.dll
+**/bin/Debug/net8.0/*.exe
+**/bin/Debug/net8.0/*.pdb
+
+# Ignore obj folder files
+**/obj/Debug/net8.0/apphost.exe
+**/obj/Debug/net8.0/*.dll
+**/obj/Debug/net8.0/*.pdb
+**/obj/Debug/net8.0/*.sourcelink.json
+**/obj/Debug/net8.0/ref/*.dll
+**/obj/Debug/net8.0/refint/*.dll
+
+# Ignore specific files
+**/obj/Debug/net8.0/FinalProject.AssemblyInfo.cs
+**/obj/Debug/net8.0/FinalProject.AssemblyInfoInputs.cache
