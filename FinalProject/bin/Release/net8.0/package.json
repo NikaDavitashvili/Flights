@@ -2,7 +2,10 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "jquery": "^3.7.1",
+<<<<<<< HEAD
+=======
     "leaflet": "^1.9.4",
+>>>>>>> main
     "popper.js": "^1.16.1"
   },
   "devDependencies": {
