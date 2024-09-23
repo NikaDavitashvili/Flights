@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nikadavitashvili\\source\\repos\\SignalR\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {}
+    "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nikadavitashvili\\source\\repos\\SignalR\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
+    "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nikadavitashvili\\source\\repos\\SignalR\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj",
         "projectName": "FinalProject.Domain",
-        "projectPath": "C:\\Users\\nikadavitashvili\\source\\repos\\SignalR\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj",
-        "packagesPath": "C:\\Users\\nikadavitashvili\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nikadavitashvili\\source\\repos\\SignalR\\Flights\\FinalProject.Domain\\obj\\",
+        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\nikadavitashvili\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -67,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
