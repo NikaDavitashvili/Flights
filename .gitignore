@@ -50,3 +50,11 @@ coverage/
 # Other files
 *.tgz
 .idea/
+/FinalProject.Core/obj/Debug/net8.0/FinalProject.Core.AssemblyInfo.cs
+/FinalProject.Core/obj/Debug/net8.0/FinalProject.Core.AssemblyInfoInputs.cache
+/FinalProject.Core/obj/Debug/net8.0/FinalProject.Core.csproj.AssemblyReference.cache
+/FinalProject.Domain/obj/Debug/net8.0/FinalProject.Domain.AssemblyInfo.cs
+/FinalProject.Domain/obj/Debug/net8.0/FinalProject.Domain.AssemblyInfoInputs.cache
+/FinalProject.Infrastructure/obj/Debug/net8.0/FinalProject.Infrastructure.AssemblyInfo.cs
+/FinalProject.Infrastructure/obj/Debug/net8.0/FinalProject.Infrastructure.AssemblyInfoInputs.cache
+/FinalProject.Infrastructure/obj/Debug/net8.0/FinalProject.Infrastructure.csproj.AssemblyReference.cache
