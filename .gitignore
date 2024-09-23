@@ -1,6 +1,5 @@
-# Node.js dependencies
-node_modules/
 
+<<<<<<< HEAD
 # Visual Studio Code settings
 .vscode/
 
@@ -58,3 +57,16 @@ coverage/
 /FinalProject.Infrastructure/obj/Debug/net8.0/FinalProject.Infrastructure.AssemblyInfo.cs
 /FinalProject.Infrastructure/obj/Debug/net8.0/FinalProject.Infrastructure.AssemblyInfoInputs.cache
 /FinalProject.Infrastructure/obj/Debug/net8.0/FinalProject.Infrastructure.csproj.AssemblyReference.cache
+=======
+>>>>>>> 4d49496b7ba73a843cd554b9832ba9b7a8d5cc72
+/FinalProject/.config/dotnet-tools.json
+/FinalProject/bin/Debug/net8.0/FinalProject.Core.dll
+/FinalProject/bin/Debug/net8.0/FinalProject.Core.pdb
+/FinalProject/bin/Debug/net8.0/FinalProject.Infrastructure.dll
+/FinalProject/bin/Debug/net8.0/FinalProject.Domain.dll
+/FinalProject/bin/Debug/net8.0/FinalProject.Domain.pdb
+/FinalProject/bin/Debug/net8.0/FinalProject.exe
+/FinalProject/bin/Debug/net8.0/FinalProject.pdb
+/FinalProject/bin/Debug/net8.0/FinalProject.dll
+/FinalProject/bin/Debug/net8.0/FinalProject.Infrastructure.pdb
+/FinalProject/bin/Debug/net8.0/spa.proxy.json

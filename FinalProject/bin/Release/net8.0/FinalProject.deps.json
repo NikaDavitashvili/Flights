@@ -11,6 +11,11 @@
           "FinalProject.Core": "1.0.0",
           "FinalProject.Domain": "1.0.0",
           "FinalProject.Infrastructure": "1.0.0",
+<<<<<<< HEAD
+          "FontAwesome": "4.7.0",
+          "Microsoft.AspNetCore.SpaProxy": "8.0.6",
+          "Newtonsoft.Json": "13.0.3",
+=======
           "FinalProject.Shared": "1.0.0",
           "FontAwesome": "4.7.0",
           "Microsoft.AspNetCore.SpaProxy": "8.0.6",
@@ -21,6 +26,7 @@
           "Serilog.Sinks.Console": "6.0.0",
           "Serilog.Sinks.File": "6.0.0",
           "Serilog.Sinks.Seq": "8.0.0",
+>>>>>>> main
           "Swashbuckle.AspNetCore": "6.4.0",
           "leaflet": "0.7.3"
         },
@@ -28,6 +34,10 @@
           "FinalProject.dll": {}
         }
       },
+<<<<<<< HEAD
+      "FontAwesome/4.7.0": {},
+      "leaflet/0.7.3": {},
+=======
       "FluentValidation/11.10.0": {
         "runtime": {
           "lib/net8.0/FluentValidation.dll": {
@@ -49,6 +59,7 @@
           "Microsoft.Extensions.Primitives": "8.0.0"
         }
       },
+>>>>>>> main
       "Microsoft.AspNetCore.SpaProxy/8.0.6": {
         "runtime": {
           "lib/net8.0/Microsoft.AspNetCore.SpaProxy.dll": {
@@ -58,6 +69,8 @@
         }
       },
       "Microsoft.Extensions.ApiDescription.Server/6.0.5": {},
+<<<<<<< HEAD
+=======
       "Microsoft.Extensions.Configuration.Abstractions/8.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "8.0.0"
@@ -158,6 +171,7 @@
           }
         }
       },
+>>>>>>> main
       "Microsoft.NETCore.Platforms/3.1.0": {},
       "Microsoft.OpenApi/1.2.3": {
         "runtime": {
@@ -215,6 +229,8 @@
           }
         }
       },
+<<<<<<< HEAD
+=======
       "Serilog/4.0.1": {
         "runtime": {
           "lib/net8.0/Serilog.dll": {
@@ -297,6 +313,7 @@
           }
         }
       },
+>>>>>>> main
       "Swashbuckle.AspNetCore/6.4.0": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
@@ -362,7 +379,10 @@
           }
         }
       },
+<<<<<<< HEAD
+=======
       "System.Diagnostics.DiagnosticSource/8.0.0": {},
+>>>>>>> main
       "System.Security.AccessControl/4.7.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
@@ -370,6 +390,11 @@
         }
       },
       "System.Security.Principal.Windows/4.7.0": {},
+<<<<<<< HEAD
+      "FinalProject.Core/1.0.0": {
+        "dependencies": {
+          "FinalProject.Domain": "1.0.0",
+=======
       "System.Text.Encodings.Web/8.0.0": {},
       "System.Text.Json/8.0.4": {
         "dependencies": {
@@ -388,6 +413,7 @@
           "FinalProject.Shared": "1.0.0",
           "Microsoft.Extensions.Options": "8.0.0",
           "Newtonsoft.Json": "13.0.3",
+>>>>>>> main
           "leaflet": "0.7.3"
         },
         "runtime": {
@@ -411,6 +437,8 @@
         "runtime": {
           "FinalProject.Infrastructure.dll": {}
         }
+<<<<<<< HEAD
+=======
       },
       "FinalProject.Shared/1.0.0": {
         "dependencies": {
@@ -424,6 +452,7 @@
         "runtime": {
           "FinalProject.Shared.dll": {}
         }
+>>>>>>> main
       }
     }
   },
@@ -433,6 +462,8 @@
       "serviceable": false,
       "sha512": ""
     },
+<<<<<<< HEAD
+=======
     "FluentValidation/11.10.0": {
       "type": "package",
       "serviceable": true,
@@ -440,6 +471,7 @@
       "path": "fluentvalidation/11.10.0",
       "hashPath": "fluentvalidation.11.10.0.nupkg.sha512"
     },
+>>>>>>> main
     "FontAwesome/4.7.0": {
       "type": "package",
       "serviceable": true,
@@ -454,6 +486,8 @@
       "path": "leaflet/0.7.3",
       "hashPath": "leaflet.0.7.3.nupkg.sha512"
     },
+<<<<<<< HEAD
+=======
     "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
       "type": "package",
       "serviceable": true,
@@ -468,6 +502,7 @@
       "path": "microsoft.aspnetcore.http.features/2.2.0",
       "hashPath": "microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512"
     },
+>>>>>>> main
     "Microsoft.AspNetCore.SpaProxy/8.0.6": {
       "type": "package",
       "serviceable": true,
@@ -482,6 +517,8 @@
       "path": "microsoft.extensions.apidescription.server/6.0.5",
       "hashPath": "microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512"
     },
+<<<<<<< HEAD
+=======
     "Microsoft.Extensions.Configuration.Abstractions/8.0.0": {
       "type": "package",
       "serviceable": true,
@@ -580,6 +617,7 @@
       "path": "microsoft.net.http.headers/8.0.8",
       "hashPath": "microsoft.net.http.headers.8.0.8.nupkg.sha512"
     },
+>>>>>>> main
     "Microsoft.NETCore.Platforms/3.1.0": {
       "type": "package",
       "serviceable": true,
@@ -636,6 +674,8 @@
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
     },
+<<<<<<< HEAD
+=======
     "Serilog/4.0.1": {
       "type": "package",
       "serviceable": true,
@@ -685,6 +725,7 @@
       "path": "serilog.sinks.seq/8.0.0",
       "hashPath": "serilog.sinks.seq.8.0.0.nupkg.sha512"
     },
+>>>>>>> main
     "Swashbuckle.AspNetCore/6.4.0": {
       "type": "package",
       "serviceable": true,
@@ -720,6 +761,8 @@
       "path": "system.data.sqlclient/4.8.6",
       "hashPath": "system.data.sqlclient.4.8.6.nupkg.sha512"
     },
+<<<<<<< HEAD
+=======
     "System.Diagnostics.DiagnosticSource/8.0.0": {
       "type": "package",
       "serviceable": true,
@@ -727,6 +770,7 @@
       "path": "system.diagnostics.diagnosticsource/8.0.0",
       "hashPath": "system.diagnostics.diagnosticsource.8.0.0.nupkg.sha512"
     },
+>>>>>>> main
     "System.Security.AccessControl/4.7.0": {
       "type": "package",
       "serviceable": true,
@@ -741,6 +785,8 @@
       "path": "system.security.principal.windows/4.7.0",
       "hashPath": "system.security.principal.windows.4.7.0.nupkg.sha512"
     },
+<<<<<<< HEAD
+=======
     "System.Text.Encodings.Web/8.0.0": {
       "type": "package",
       "serviceable": true,
@@ -755,6 +801,7 @@
       "path": "system.text.json/8.0.4",
       "hashPath": "system.text.json.8.0.4.nupkg.sha512"
     },
+>>>>>>> main
     "FinalProject.Core/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -769,11 +816,14 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+<<<<<<< HEAD
+=======
     },
     "FinalProject.Shared/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
+>>>>>>> main
     }
   }
 }
