@@ -48,3 +48,5 @@ C:\Users\user\source\repos\Flights\FinalProject.Core\obj\Debug\net8.0\FinalProje
 C:\Users\user\source\repos\Flights\FinalProject.Core\obj\Debug\net8.0\ref\FinalProject.Core.dll
 C:\Users\user\source\repos\Flights\FinalProject.Core\bin\Debug\net8.0\FinalProject.Shared.dll
 C:\Users\user\source\repos\Flights\FinalProject.Core\bin\Debug\net8.0\FinalProject.Shared.pdb
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\bin\Debug\net8.0\FinalProject.Shared.dll
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\bin\Debug\net8.0\FinalProject.Shared.pdb
