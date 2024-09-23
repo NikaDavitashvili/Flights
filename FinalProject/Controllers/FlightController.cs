@@ -2,19 +2,23 @@
 using FinalProject.Domain.Models.DTOs;
 using FinalProject.Domain.Models.ReadModels;
 using FinalProject.Domain.Interfaces.Services;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace FinalProject.Controllers;
 [ApiController]
 [Route("[controller]")]
 public class FlightController : ControllerBase
 {
-    private readonly ILogger<FlightController> _logger;
     private readonly IFlightService _flightService;
+    private readonly IUserContext _userContext;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public FlightController(ILogger<FlightController> logger, IFlightService flightService)
+    public FlightController(IFlightService flightService, IHttpContextAccessor httpContextAccessor, IUserContext userContext)
     {
-        _logger = logger;
         _flightService = flightService;
+        _httpContextAccessor = httpContextAccessor;
+        _userContext = userContext;
     }
 
     [HttpGet]
@@ -23,24 +27,32 @@ public class FlightController : ControllerBase
     [ProducesResponseType(typeof(IEnumerable<FlightRm>), 200)]
     public async Task<IEnumerable<FlightRm>> Search([FromQuery] FlightSearchParametersDTO @params)
     {
-        try
+        string userId = string.Empty;
+        string userEmail = string.Empty;
+        if (string.IsNullOrEmpty(_userContext.UserId))
         {
-            if(!string.IsNullOrEmpty(@params.SeasonName))
-            {
-                var discountedFlightsBySeasons = await _flightService.SearchBySeason(@params.SeasonName);
-
-                return discountedFlightsBySeasons;
-            }
-
-            var flights = await _flightService.Search(@params);
-            return flights;
+            userId = Guid.NewGuid().ToString();
+            _userContext.UserId = userId;
         }
-        catch (Exception ex)
+        else
         {
-            _logger.LogError(ex, "Error occurred while searching for flights");
-            return new List<FlightRm>();
-            //return StatusCode(500, "Internal server error");
+            userId = _userContext.UserId;
+            userEmail = _userContext.Email;
         }
+
+        if (!string.IsNullOrEmpty(@params.SeasonName))
+        {
+            var discountedFlightsBySeasons = await _flightService.SearchBySeason(@params.SeasonName);
+            _httpContextAccessor.HttpContext?.Items.Add("Action", $"Searching Flights By Season '{@params.SeasonName}'");
+            _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+            return discountedFlightsBySeasons;
+        }
+
+        var flights = await _flightService.Search(@params);
+        _httpContextAccessor.HttpContext?.Items.Add("Action", "Searching Flights");
+        _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+        _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
+        return flights;
     }
 
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -50,20 +62,27 @@ public class FlightController : ControllerBase
     [ProducesResponseType(typeof(FlightRm), 200)]
     public async Task<ActionResult<FlightRm>> Find(Guid id)
     {
-        try
+        string userId = string.Empty;
+        string userEmail = string.Empty;
+        if (string.IsNullOrEmpty(_userContext.UserId))
         {
-            var flight = await _flightService.Find(id);
-            if (flight == null)
-            {
-                return NotFound();
-            }
-            return Ok(flight);
+            userId = Guid.NewGuid().ToString();
+            _userContext.UserId = userId;
         }
-        catch (Exception ex)
+        else
         {
-            _logger.LogError(ex, "Error occurred while finding the flight");
-            return StatusCode(500, "Internal server error");
+            userId = _userContext.UserId;
+            userEmail = _userContext.Email;
         }
+
+        var flight = await _flightService.Find(id);
+        if (flight == null)
+            return NotFound();
+
+        _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+        _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
+        _httpContextAccessor.HttpContext?.Items.Add("Action", $"Find Flight Id {id}");
+        return Ok(flight);
     }
 
     [HttpPost]
@@ -73,22 +92,24 @@ public class FlightController : ControllerBase
     [ProducesResponseType(200)]
     public async Task<IActionResult> Book(BookDTO dto)
     {
-        _logger.LogInformation($"Booking a new flight {dto.FlightId}");
+        string userId = string.Empty;
+        string userEmail = string.Empty;
+        if (string.IsNullOrEmpty(_userContext.UserId))
+        {
+            userId = Guid.NewGuid().ToString();
+            _userContext.UserId = userId;
+        }
+        else
+        {
+            userId = _userContext.UserId;
+            userEmail = _userContext.Email;
+        }
 
-        try
-        {
-            string result = await _flightService.Book(dto);
-            HttpContext.Session.SetString("TicketAmountErrorMessage", result);
-            return CreatedAtAction(nameof(Find), new { id = dto.FlightId }, null);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error occurred while booking the flight");
-            if (ex.Message.Contains("ERROR: Flight not found"))
-                return NotFound();
-            if (ex.Message.Contains("ERROR: Not enough seats"))
-                return Conflict(new { message = "Not enough seats." });
-            return StatusCode(500, "Internal server error");
-        }
+        string result = await _flightService.Book(dto);
+        _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
+        _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+        _httpContextAccessor.HttpContext?.Items.Add("Action", $"Booking a New Flight With Id - {dto.FlightId}");
+        HttpContext.Session.SetString("TicketAmountErrorMessage", result);
+        return CreatedAtAction(nameof(Find), new { id = dto.FlightId }, null);
     }
 }
