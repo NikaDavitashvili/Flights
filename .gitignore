@@ -25,3 +25,6 @@ obj/
 
 # Ignore file list absolute files
 *.FileListAbsolute.txt
+
+**/obj/**/FinalProject.AssemblyInfoInputs.cache
+**/obj/**/FinalProject.AssemblyInfo.cs
