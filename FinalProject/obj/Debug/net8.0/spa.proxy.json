@@ -1,9 +1,9 @@
 {
 "SpaProxyServer": {
-"ServerUrl": "https://localhost:44492",
+"ServerUrl": "http://localhost:44492",
 "RedirectUrl": "",
 "LaunchCommand": "npm start",
-"WorkingDirectory": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\ClientApp\\",
+"WorkingDirectory": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject\\ClientApp\\",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }

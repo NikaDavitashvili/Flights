@@ -1,127 +1,115 @@
-﻿using Flights.ReadModels;
-using Flights.Domain.Entities;
-using Microsoft.AspNetCore.Mvc;
-using Flights.Dtos;
-using Flights.Domain.Errors;
-using Flights.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using FinalProject.Domain.Models.DTOs;
+using FinalProject.Domain.Models.ReadModels;
+using FinalProject.Domain.Interfaces.Services;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
-namespace FinalProject.Controllers
+namespace FinalProject.Controllers;
+[ApiController]
+[Route("[controller]")]
+public class FlightController : ControllerBase
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class FlightController : ControllerBase
+    private readonly IFlightService _flightService;
+    private readonly IUserContext _userContext;
+    private readonly IHttpContextAccessor _httpContextAccessor;
+
+    public FlightController(IFlightService flightService, IHttpContextAccessor httpContextAccessor, IUserContext userContext)
     {
-        private readonly ILogger<FlightController> _logger;
+        _flightService = flightService;
+        _httpContextAccessor = httpContextAccessor;
+        _userContext = userContext;
+    }
 
-        private readonly Entities _entities;
-
-        //test commit
-        public FlightController(ILogger<FlightController> logger,
-            Entities entities)
+    [HttpGet]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(500)]
+    [ProducesResponseType(typeof(IEnumerable<FlightRm>), 200)]
+    public async Task<IEnumerable<FlightRm>> Search([FromQuery] FlightSearchParametersDTO @params)
+    {
+        string userId = string.Empty;
+        string userEmail = string.Empty;
+        if (string.IsNullOrEmpty(_userContext.UserId))
         {
-            _logger = logger;
-            _entities = entities;
+            userId = Guid.NewGuid().ToString();
+            _userContext.UserId = userId;
+        }
+        else
+        {
+            userId = _userContext.UserId;
+            userEmail = _userContext.Email;
         }
 
-        [HttpGet]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(500)]
-        [ProducesResponseType(typeof(IEnumerable<FlightRm>), 200)]
-        public IEnumerable<FlightRm> Search([FromQuery] FlightSearchParameters @params)
+        if (!string.IsNullOrEmpty(@params.SeasonName))
         {
-
-            _logger.LogInformation("Searching for a flight for: {Destination}", @params.Destination);
-
-            IQueryable<Flight> flights = _entities.Flights;
-
-            if (!string.IsNullOrWhiteSpace(@params.Destination))
-                flights = flights.Where(f => f.Arrival.Place.Contains(@params.Destination));
-
-            if (!string.IsNullOrWhiteSpace(@params.From))
-                flights = flights.Where(f => f.Departure.Place.Contains(@params.From));
-
-            if (@params.FromDate != null)
-                flights = flights.Where(f => f.Departure.Time >= @params.FromDate.Value.Date);
-
-            if (@params.ToDate != null)
-                flights = flights.Where(f => f.Departure.Time >= @params.ToDate.Value.Date.AddDays(1).AddTicks(-1));
-
-            if (@params.NumberOfPassengers != 0 && @params.NumberOfPassengers != null)
-                flights = flights.Where(f => f.RemainingNumberOfSeats >= @params.NumberOfPassengers);
-            else
-                flights = flights.Where(f => f.RemainingNumberOfSeats >= 1);
-
-
-            var flightRmList = flights
-                .Select(flight => new FlightRm(
-                flight.Id,
-                flight.Airline,
-                flight.Price,
-                new TimePlaceRm(flight.Departure.Place.ToString(), flight.Departure.Time),
-                new TimePlaceRm(flight.Arrival.Place.ToString(), flight.Arrival.Time),
-                flight.RemainingNumberOfSeats
-                ));
-
-            return flightRmList;
+            var discountedFlightsBySeasons = await _flightService.SearchBySeason(@params.SeasonName);
+            _httpContextAccessor.HttpContext?.Items.Add("Action", $"Searching Flights By Season '{@params.SeasonName}'");
+            _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+            return discountedFlightsBySeasons;
         }
 
+        var flights = await _flightService.Search(@params);
+        _httpContextAccessor.HttpContext?.Items.Add("Action", "Searching Flights");
+        _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+        _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
+        return flights;
+    }
 
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpGet("{id}")]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(500)]
-        [ProducesResponseType(typeof(FlightRm), 200)]
-        public ActionResult<FlightRm> Find(Guid id)
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [HttpGet("{id}")]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(500)]
+    [ProducesResponseType(typeof(FlightRm), 200)]
+    public async Task<ActionResult<FlightRm>> Find(Guid id)
+    {
+        string userId = string.Empty;
+        string userEmail = string.Empty;
+        if (string.IsNullOrEmpty(_userContext.UserId))
         {
-            var flight = _entities.Flights.SingleOrDefault(f => f.Id == id);
-
-            if (flight == null)
-                return NotFound();
-
-            var readModel = new FlightRm(
-                flight.Id,
-                flight.Airline,
-                flight.Price,
-                new TimePlaceRm(flight.Departure.Place.ToString(), flight.Departure.Time),
-                new TimePlaceRm(flight.Arrival.Place.ToString(), flight.Arrival.Time),
-                flight.RemainingNumberOfSeats
-                );
-
-            return Ok(readModel);
+            userId = Guid.NewGuid().ToString();
+            _userContext.UserId = userId;
+        }
+        else
+        {
+            userId = _userContext.UserId;
+            userEmail = _userContext.Email;
         }
 
-        [HttpPost]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(500)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(200)]
-        public IActionResult Book(BookDto dto)
+        var flight = await _flightService.Find(id);
+        if (flight == null)
+            return NotFound();
+
+        _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+        _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
+        _httpContextAccessor.HttpContext?.Items.Add("Action", $"Find Flight Id {id}");
+        return Ok(flight);
+    }
+
+    [HttpPost]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(500)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(200)]
+    public async Task<IActionResult> Book(BookDTO dto)
+    {
+        string userId = string.Empty;
+        string userEmail = string.Empty;
+        if (string.IsNullOrEmpty(_userContext.UserId))
         {
-            System.Diagnostics.Debug.WriteLine($"Booking a new flight {dto.FlightId}");
-
-            var flight = _entities.Flights.SingleOrDefault(f => f.Id == dto.FlightId);
-
-            if (flight == null)
-                return NotFound();
-
-            var error = flight.MakeBooking(dto.PassengerEmail, dto.NumberOfSeats);
-
-            if (error is OverbookError)
-                return Conflict(new { message = "Not enough seats." });
-
-
-            try
-            {
-                _entities.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException e)
-            {
-                return Conflict(new { message = "An error occurred while booking. Please try again." });
-            }
-
-            return CreatedAtAction(nameof(Find), new { id = dto.FlightId });
+            userId = Guid.NewGuid().ToString();
+            _userContext.UserId = userId;
+        }
+        else
+        {
+            userId = _userContext.UserId;
+            userEmail = _userContext.Email;
         }
 
+        string result = await _flightService.Book(dto);
+        _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
+        _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+        _httpContextAccessor.HttpContext?.Items.Add("Action", $"Booking a New Flight With Id - {dto.FlightId}");
+        HttpContext.Session.SetString("TicketAmountErrorMessage", result);
+        return CreatedAtAction(nameof(Find), new { id = dto.FlightId }, null);
     }
 }

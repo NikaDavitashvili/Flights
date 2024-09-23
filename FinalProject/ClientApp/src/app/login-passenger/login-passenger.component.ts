@@ -30,6 +30,8 @@ export class LoginPassengerComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    sessionStorage.removeItem("SeasonName");
+
     this.activatedRoute.params.subscribe(p => this.requestedUrl = p['requestedUrl']);
   }
 
@@ -56,7 +58,7 @@ export class LoginPassengerComponent implements OnInit {
 
   private loginUser(responseUser: any): void {
     const { email, password } = this.form.value;
-    const user = { email, password, username: responseUser.userName };
+    const user = { email, password, username: responseUser.userName, packetid: responseUser.packetId, purchasepercent: responseUser.purchasePercent, cancelpercent: responseUser.cancelPercent };
     this.authService.loginUser(user);
     this.router.navigate([this.requestedUrl ?? '/search-flights']);
   }

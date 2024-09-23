@@ -29,11 +29,13 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
+              "node_modules/leaflet/dist/leaflet.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/leaflet/dist/leaflet.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
@@ -42,8 +44,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb", // Increase the warning limit
+                  "maximumError": "5mb" // Increase the error limit
                 },
                 {
                   "type": "anyComponentStyle",
