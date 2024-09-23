@@ -9,15 +9,21 @@
       "FinalProject.Core/1.0.0": {
         "dependencies": {
           "FinalProject.Domain": "1.0.0",
+<<<<<<< HEAD
+=======
           "FinalProject.Shared": "1.0.0",
           "Microsoft.Extensions.Options": "8.0.0",
           "Newtonsoft.Json": "13.0.3",
+>>>>>>> main
           "leaflet": "0.7.3"
         },
         "runtime": {
           "FinalProject.Core.dll": {}
         }
       },
+<<<<<<< HEAD
+      "leaflet/0.7.3": {},
+=======
       "FluentValidation/11.10.0": {
         "runtime": {
           "lib/net8.0/FluentValidation.dll": {
@@ -117,6 +123,7 @@
         }
       },
       "System.Text.Encodings.Web/4.5.0": {},
+>>>>>>> main
       "FinalProject.Domain/1.0.0": {
         "dependencies": {
           "leaflet": "0.7.3"
@@ -124,6 +131,8 @@
         "runtime": {
           "FinalProject.Domain.dll": {}
         }
+<<<<<<< HEAD
+=======
       },
       "FinalProject.Shared/1.0.0": {
         "dependencies": {
@@ -137,6 +146,7 @@
         "runtime": {
           "FinalProject.Shared.dll": {}
         }
+>>>>>>> main
       }
     }
   },
@@ -146,6 +156,8 @@
       "serviceable": false,
       "sha512": ""
     },
+<<<<<<< HEAD
+=======
     "FluentValidation/11.10.0": {
       "type": "package",
       "serviceable": true,
@@ -153,6 +165,7 @@
       "path": "fluentvalidation/11.10.0",
       "hashPath": "fluentvalidation.11.10.0.nupkg.sha512"
     },
+>>>>>>> main
     "leaflet/0.7.3": {
       "type": "package",
       "serviceable": true,
@@ -160,6 +173,8 @@
       "path": "leaflet/0.7.3",
       "hashPath": "leaflet.0.7.3.nupkg.sha512"
     },
+<<<<<<< HEAD
+=======
     "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
       "type": "package",
       "serviceable": true,
@@ -230,15 +245,19 @@
       "path": "system.text.encodings.web/4.5.0",
       "hashPath": "system.text.encodings.web.4.5.0.nupkg.sha512"
     },
+>>>>>>> main
     "FinalProject.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
+<<<<<<< HEAD
+=======
     },
     "FinalProject.Shared/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
+>>>>>>> main
     }
   }
 }
