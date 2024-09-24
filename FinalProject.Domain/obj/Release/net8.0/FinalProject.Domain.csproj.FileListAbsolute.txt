@@ -1,3 +1,20 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\bin\Release\net8.0\FinalProject.Domain.deps.json
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\bin\Release\net8.0\FinalProject.Domain.dll
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\bin\Release\net8.0\FinalProject.Domain.pdb
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\obj\Release\net8.0\FinalProject.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\obj\Release\net8.0\FinalProject.Domain.AssemblyInfoInputs.cache
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\obj\Release\net8.0\FinalProject.Domain.AssemblyInfo.cs
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\obj\Release\net8.0\FinalProject.Domain.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\obj\Release\net8.0\FinalProject.Domain.sourcelink.json
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\obj\Release\net8.0\FinalProject.Domain.dll
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\obj\Release\net8.0\refint\FinalProject.Domain.dll
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\obj\Release\net8.0\FinalProject.Domain.pdb
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\obj\Release\net8.0\ref\FinalProject.Domain.dll
+=======
+=======
+>>>>>>> main
 C:\Users\user\source\repos\Flights\FinalProject.Domain\bin\Release\net8.0\FinalProject.Domain.deps.json
 C:\Users\user\source\repos\Flights\FinalProject.Domain\bin\Release\net8.0\FinalProject.Domain.dll
 C:\Users\user\source\repos\Flights\FinalProject.Domain\bin\Release\net8.0\FinalProject.Domain.pdb
@@ -10,3 +27,7 @@ C:\Users\user\source\repos\Flights\FinalProject.Domain\obj\Release\net8.0\FinalP
 C:\Users\user\source\repos\Flights\FinalProject.Domain\obj\Release\net8.0\refint\FinalProject.Domain.dll
 C:\Users\user\source\repos\Flights\FinalProject.Domain\obj\Release\net8.0\FinalProject.Domain.pdb
 C:\Users\user\source\repos\Flights\FinalProject.Domain\obj\Release\net8.0\ref\FinalProject.Domain.dll
+<<<<<<< HEAD
+>>>>>>> bec81c28d7eac66c5ce98a32c6286512376e5ce2
+=======
+>>>>>>> main

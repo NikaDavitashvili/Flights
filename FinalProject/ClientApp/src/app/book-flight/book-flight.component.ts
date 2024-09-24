@@ -35,18 +35,21 @@ export class BookFlightComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(p => this.findFlight(p.get("flightId")));
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation && navigation.extras.state) {
+      this.flight = navigation.extras.state.flight; // Access the flight object
+    } else {
+      // Handle case where no flight was passed, e.g., navigate back or show an error
+      alert("No flight data found!");
+      this.router.navigate(['/search-flights']);
+    }
+
+    console.log(this.flight);
+    console.log("BOOKFLIGHT");
     const userJson = sessionStorage.getItem('CurrentUser');
     if (userJson) {
       this.currentUser = JSON.parse(userJson);
     }
-  }
-
-  private findFlight = (flightId: string | null) => {
-    this.flightId = flightId ?? 'not passed';
-
-    this.flightService.findFlight({ id: this.flightId })
-      .subscribe(flight => this.flight = flight, this.handleError);
   }
 
   private handleError = (err: any) => {
@@ -66,9 +69,9 @@ export class BookFlightComponent implements OnInit {
   }
 
   purchase(flight: FlightRm): void {
-    if (this.form.invalid) {
+    /*if (this.form.invalid) {
       return;
-    }
+    }*/
 
     const numberOfTickets = this.form.get('number')?.value;
     if (numberOfTickets <= 0) {

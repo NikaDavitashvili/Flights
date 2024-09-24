@@ -9,47 +9,67 @@ namespace FinalProject.Controllers;
 [Route("api/[controller]")]
 public class PacketController : ControllerBase
 {
-    private readonly ILogger<PacketController> _logger;
     private readonly IPacketService _packetService;
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IUserContext _userContext;
 
-    public PacketController(ILogger<PacketController> logger, IPacketService packetService)
+    public PacketController(IPacketService packetService, IHttpContextAccessor httpContextAccessor, IUserContext userContext)
     {
-        _logger = logger;
         _packetService = packetService;
+        _httpContextAccessor = httpContextAccessor;
+        _userContext = userContext;
     }
 
     [HttpGet("{email}")]
     public async Task<ActionResult<PacketResponseDto>> GetPackets(string email)
     {
-        try
+        string userId = string.Empty;
+        string userEmail = string.Empty;
+        if (string.IsNullOrEmpty(_userContext.UserId))
         {
-            var responseDto = new PacketResponseDto
-            {
-                Packets = await _packetService.GetPackets(),
-                PacketId = await _packetService.GetCurrentPacketId(email)
-            };
+            userId = Guid.NewGuid().ToString();
+            _userContext.UserId = userId;
+            _userContext.Email = email;
+        }
+        else
+        {
+            userId = _userContext.UserId;
+            userEmail = _userContext.Email;
+        }
 
-            return Ok(responseDto);
-        }
-        catch (Exception ex)
+        var responseDto = new PacketResponseDto
         {
-            _logger.LogError(ex, "Error occurred while listing packets");
-            return StatusCode(500, "Internal server error");
-        }
+            Packets = await _packetService.GetPackets(),
+            PacketId = await _packetService.GetCurrentPacketId(email)
+        };
+
+        _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+        _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
+        _httpContextAccessor.HttpContext?.Items.Add("Action", $"Get All Packets");
+        return Ok(responseDto);
     }
 
     [HttpPost]
     public async Task<ActionResult<PacketRm>> BuyPacket(PacketDTO Packet)
     {
-        try
+        string userId = string.Empty;
+        string userEmail = string.Empty;
+        if (string.IsNullOrEmpty(_userContext.UserId))
         {
-            var packet = await _packetService.BuyPacket(Packet);
-            return packet;
+            userId = Guid.NewGuid().ToString();
+            _userContext.UserId = userId;
+            _userContext.Email = Packet.PassengerEmail;
         }
-        catch (Exception ex)
+        else
         {
-            _logger.LogError(ex, "Error occurred while buying packet");
-            return StatusCode(500, "Internal server error");
+            userId = _userContext.UserId;
+            userEmail = _userContext.Email;
         }
+
+        var packet = await _packetService.BuyPacket(Packet);
+        _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
+        _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
+        _httpContextAccessor.HttpContext?.Items.Add("Action", $"Buy Packet '{packet.Name}'");
+        return packet;
     }
 }
