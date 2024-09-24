@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FlightService } from './../api/services/flight.service';
+import { BookingService } from './../api/services/booking.service';
 import { FlightRm } from '../api/models';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-flights',
@@ -15,7 +17,9 @@ export class SearchFlightsComponent implements OnInit {
   searchForm: FormGroup;
   seasonName: string | null = null;
 
-  constructor(private flightService: FlightService, private fb: FormBuilder) {
+  constructor(private flightService: FlightService, private bookService: BookingService,
+    private fb: FormBuilder,
+    private router: Router) {  // Inject the Router
     this.searchForm = this.fb.group({
       from: [''],
       destination: [''],
@@ -45,6 +49,13 @@ export class SearchFlightsComponent implements OnInit {
     this.seasonName = null;
   }
 
+  bookFlight(flight: FlightRm): void {
+    console.log("SearchFlights");
+    console.log(flight);
+    this.bookService.setFlight(flight);  // Store flight data in service
+    this.router.navigate(['/book-flight']);
+  }
+
   private handleError(err: any): void {
     console.log("Response Error. Status: ", err.status);
     console.log("Response Error. Status Text: ", err.statusText);
@@ -52,7 +63,6 @@ export class SearchFlightsComponent implements OnInit {
   }
 
   getDiscountedPrice(price: any): number | null {
-
     if (this.currentUser && this.currentUser.packetid !== 1) {
       var discountedPrice = (price * (1 - this.currentUser.purchasepercent / 100));
       return Math.round(discountedPrice);

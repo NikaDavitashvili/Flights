@@ -11,11 +11,13 @@ import { map, filter } from 'rxjs/operators';
 
 import { BookDto } from '../models/book-dto';
 import { BookingRm } from '../models/booking-rm';
+import { FlightRm } from '../models/flight-rm';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookingService extends BaseService {
+  private flightData: FlightRm | null = null;
   constructor(
     config: ApiConfiguration,
     http: HttpClient
@@ -67,6 +69,13 @@ export class BookingService extends BaseService {
     return this.listBooking$Plain$Response(params).pipe(
       map((r: StrictHttpResponse<Array<BookingRm>>) => r.body as Array<BookingRm>)
     );
+  }
+  setFlight(flight: FlightRm): void {
+    this.flightData = flight;
+  }
+
+  getFlight(): FlightRm | null {
+    return this.flightData;
   }
 
   /**

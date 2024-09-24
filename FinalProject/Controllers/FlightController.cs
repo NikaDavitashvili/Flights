@@ -2,6 +2,7 @@
 using FinalProject.Domain.Models.DTOs;
 using FinalProject.Domain.Models.ReadModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Xml;
 
 namespace FinalProject.Controllers;
 [ApiController]
@@ -118,7 +119,7 @@ public class FlightController : ControllerBase
     [ProducesResponseType(400)]
     [ProducesResponseType(500)]
     [ProducesResponseType(typeof(FlightRm), 200)]
-    public async Task<ActionResult<FlightRm>> Find(Guid id)
+    public async Task<ActionResult<FlightRm>> Find(string email)
     {
         string userId = string.Empty;
         string userEmail = string.Empty;
@@ -133,13 +134,13 @@ public class FlightController : ControllerBase
             userEmail = _userContext.Email;
         }
 
-        var flight = await _flightService.Find(id);
+        var flight = await _flightService.Find(email);
         if (flight == null)
             return NotFound();
 
         _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
         _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
-        _httpContextAccessor.HttpContext?.Items.Add("Action", $"Find Flight Id {id}");
+        _httpContextAccessor.HttpContext?.Items.Add("Action", $"Find Flight With Email - {email}");
         return Ok(flight);
     }
 
@@ -148,7 +149,7 @@ public class FlightController : ControllerBase
     [ProducesResponseType(500)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(200)]
-    public async Task<IActionResult> Book(BookDTO dto)
+    public async Task<IActionResult> Book(FlightRm dto)
     {
         string userId = string.Empty;
         string userEmail = string.Empty;
@@ -163,11 +164,13 @@ public class FlightController : ControllerBase
             userEmail = _userContext.Email;
         }
 
-        string result = await _flightService.Book(dto);
+        var bookDto = new BookDTO(Guid.NewGuid(), userEmail, (byte)dto.SeatsToBuy);
+        string result = await _flightService.Book(bookDto, dto);
         _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
         _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
-        _httpContextAccessor.HttpContext?.Items.Add("Action", $"Booking a New Flight With Id - {dto.FlightId}");
+        _httpContextAccessor.HttpContext?.Items.Add("Action", $"Booking a New Flight With From '{dto.Departure.Place}' To '{dto.Arrival.Place}'");
         HttpContext.Session.SetString("TicketAmountErrorMessage", result);
-        return CreatedAtAction(nameof(Find), new { id = dto.FlightId }, null);
+        return Ok(dto);
+        //return CreatedAtAction(nameof(Find), new { email = userEmail }, null);
     }
 }

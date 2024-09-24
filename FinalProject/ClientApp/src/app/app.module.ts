@@ -45,7 +45,7 @@ import { PacketComponent } from './packet/packet.component';
       { path: 'map', component: MapComponent },
       { path: 'season-discounts', component: SeasonDiscountsComponent },
       { path: 'search-flights', component: SearchFlightsComponent },
-      { path: 'book-flight', component: BookFlightComponent, canActivate: [AuthGuard] },
+      { path: 'book-flight', component: BookFlightComponent },
       { path: 'login-passenger', component: LoginPassengerComponent },
       { path: 'logout-passenger', component: LogoutPassengerComponent },
       { path: 'register-passenger', component: RegisterPassengerComponent },
