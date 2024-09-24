@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Axy4msAF/LY=",
+  "dgSpecHash": "/AfMHKfjzsjhd1q64kO/NU61Kh0Ud00IjBqwhD6Kog1sphk/rHSgukLKi7E+SmyZY7PiEA7GcZEMSEzRFrtbPw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nikadavitashvili\\source\\repos\\SignalR\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj",
+  "projectFilePath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\nikadavitashvili\\.nuget\\packages\\leaflet\\0.7.3\\leaflet.0.7.3.nupkg.sha512"
+    "C:\\Users\\user\\.nuget\\packages\\leaflet\\0.7.3\\leaflet.0.7.3.nupkg.sha512"
   ],
   "logs": []
 }
