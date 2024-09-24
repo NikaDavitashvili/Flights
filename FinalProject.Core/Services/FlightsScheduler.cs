@@ -68,7 +68,8 @@ public class FlightsScheduler : BackgroundService
                                     "100",
                                     new TimePlaceRm(flight.Departure.Airport, flight.Departure.Estimated),
                                     new TimePlaceRm(flight.Arrival.Airport, flight.Arrival.Estimated),
-                                    flight.RemainingNumberOfSeats
+                                    flight.RemainingNumberOfSeats,
+                                    0
                                 );
                                 flightResults.Add(flightRm);
                             }
@@ -125,7 +126,8 @@ public class FlightsScheduler : BackgroundService
                                 (randomPrice.Next(100, 300)).ToString(),
                                 new TimePlaceRm(flight.Departure.Airport, flight.Departure.Estimated),
                                 new TimePlaceRm(flight.Arrival.Airport, flight.Arrival.Estimated),
-                                flight.RemainingNumberOfSeats
+                                flight.RemainingNumberOfSeats,
+                                0
                             );
                             flightResults.Add(flightRm);
                         }

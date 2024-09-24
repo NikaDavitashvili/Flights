@@ -143,11 +143,11 @@ public class FlightService : IFlightService
         }
     }
 
-    public async Task<FlightRm> Find(Guid id)
+    public async Task<List<FlightRm>> Find(string email)
     {
         try
         {
-            return await _flightRepository.Find(id);
+            return await _flightRepository.Find(email);
         }
         catch (Exception ex)
         {
@@ -155,11 +155,11 @@ public class FlightService : IFlightService
         }
     }
 
-    public async Task<string> Book(BookDTO dto)
+    public async Task<string> Book(BookDTO dto, FlightRm flight)
     {
         try
         {
-            string result = await _flightRepository.Book(dto);
+            string result = await _flightRepository.Book(dto, flight);
 
             return result;
         }

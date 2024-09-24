@@ -87,8 +87,6 @@ export class PassengerService extends BaseService {
 
   logoutPassenger(): void {
     const url = `${this.rootUrl}/Passenger/Logout`;
-    console.log("passenger.service.ts");
-    console.log(url);
     this.http.post(url, null).subscribe(
       response => {
         console.log("Logout successful", response);

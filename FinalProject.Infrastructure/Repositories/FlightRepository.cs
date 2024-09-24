@@ -58,9 +58,9 @@ public class FlightRepository : IFlightRepository
         return result;
     }
 
-    public async Task<FlightRm> Find(Guid id)
+    public async Task<List<FlightRm>> Find(string email)
     {
-        var dic = new Dictionary<string, object> { { "Id", id } };
+        var dic = new Dictionary<string, object> { { "PassengerEmail", email } };
 
         var query = @"
             SELECT Id, Airline, Price, Departure_Place, Departure_Time, Arrival_Place, Arrival_Time, RemainingNumberOfSeats
@@ -88,68 +88,63 @@ public class FlightRepository : IFlightRepository
                 row["Arrival_Place"].ToString(),
                 DateTime.Parse(row["Arrival_Time"].ToString())
             ),
-            int.Parse(row["RemainingNumberOfSeats"].ToString())
+            int.Parse(row["RemainingNumberOfSeats"].ToString()),
+            0
         );
 
-        return flight;
+        return new List<FlightRm>();
     }
 
-    public async Task<string> Book(BookDTO dto)
+    public async Task<string> Book(BookDTO dto, FlightRm flight)
     {
+        flight = flight with { SeatsToBuy = 0 };
+        var s = JsonConvert.SerializeObject(flight);
+
         var dic = new Dictionary<string, object>
         {
-            { "FlightId", dto.FlightId },
+            //{ "FlightId", $"{dto.PassengerEmail}-{flight.Price}-{JsonConvert.SerializeObject(flight.Departure)}-{JsonConvert.SerializeObject(flight.Arrival)}-{flight.Airline}"},
+            { "FlightId", JsonConvert.SerializeObject(flight) },
             { "PassengerEmail", dto.PassengerEmail },
             { "NumberOfSeats", dto.NumberOfSeats }
         };
 
         var query = @"
         DECLARE @BookingId INT;
-        DECLARE @CurrentRemainingSeats INT;
+        DECLARE @ExistingSeats INT;
         
-        SELECT @CurrentRemainingSeats = RemainingNumberOfSeats
-        FROM Flights
-        WHERE Id = @FlightId;
-        
-        IF @CurrentRemainingSeats < @NumberOfSeats
-        BEGIN
-            THROW 50003, 'Not enough seats available for this booking.', 1;
-        END
-        
-        SELECT @BookingId = Id
-        FROM Booking
-        WHERE FlightId = @FlightId AND PassengerEmail = @PassengerEmail;
-        
-        IF @BookingId IS NOT NULL
-        BEGIN
-            DECLARE @TotalSeats INT;
-            SELECT @TotalSeats = NumberOfSeats + @NumberOfSeats
-            FROM Booking
-            WHERE Id = @BookingId;
-        
-            IF @TotalSeats > 10
-            BEGIN
-                THROW 500, 'Cannot add more than 10 seats for this booking.', 1;
-            END
-        
-            UPDATE Booking
-            SET NumberOfSeats = @TotalSeats
-            WHERE Id = @BookingId;
-        END
-        ELSE
         BEGIN
             IF @NumberOfSeats > 10
             BEGIN
                 THROW 50002, 'Cannot add more than 10 seats in a single booking.', 1;
             END
         
-            INSERT INTO Booking (FlightId, PassengerEmail, NumberOfSeats)
-            VALUES (@FlightId, @PassengerEmail, @NumberOfSeats);
-        END
+            -- Check if the booking already exists
+            SELECT @BookingId = Id, @ExistingSeats = NumberOfSeats
+            FROM Booking
+            WHERE FlightId = @FlightId AND PassengerEmail = @PassengerEmail;
         
-        UPDATE Flights
-        SET RemainingNumberOfSeats = RemainingNumberOfSeats - @NumberOfSeats
-        WHERE Id = @FlightId;";
+            IF @BookingId IS NOT NULL
+            BEGIN
+                DECLARE @TotalSeats INT;
+                SET @TotalSeats = @ExistingSeats + @NumberOfSeats;
+        
+                IF @TotalSeats > 10
+                BEGIN
+                    THROW 50003, 'Cannot add more than 10 seats for this booking.', 1;
+                END
+        
+                -- Update the existing booking
+                UPDATE Booking
+                SET NumberOfSeats = @TotalSeats
+                WHERE Id = @BookingId;  -- Use the BookingId to update the specific booking
+            END
+            ELSE
+            BEGIN
+                -- Insert new booking if it doesn't exist
+                INSERT INTO Booking (FlightId, PassengerEmail, NumberOfSeats)
+                VALUES (@FlightId, @PassengerEmail, @NumberOfSeats);
+            END
+        END";
 
         DataTable dt = DB.Select(query, dic, out string errorMessage);
 
