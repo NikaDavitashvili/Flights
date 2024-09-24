@@ -1,12 +1,46 @@
 ﻿using FinalProject.Domain.Interfaces.Repositories;
 using FinalProject.Domain.Models.ReadModels;
-using FinalProject.Infrastructure.Common;
-using System.Data;
+using Newtonsoft.Json;
 
 namespace FinalProject.Infrastructure.Repositories;
 public class MapRepository : IMapRepository
 {
     public async Task<IEnumerable<CitiesRm>> GetCities()
+    {
+        var flights = new List<FlightRm>();
+        var result = new List<CitiesRm>();
+        var jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "flightResults.json");
+        if (File.Exists(jsonFilePath))
+        {
+            var jsonData = await File.ReadAllTextAsync(jsonFilePath);
+            flights = JsonConvert.DeserializeObject<List<FlightRm>>(jsonData);
+        }
+
+        flights!.ForEach(flight => result.Add(new CitiesRm(flight.Departure.Place, flight.Arrival.Place, Convert.ToInt32(flight.Price))));
+
+        result = new List<CitiesRm> { result.First() };
+
+        return result;
+    }
+
+    public async Task<IEnumerable<OptimalFlightNodeRm>> GetOptimalTripRoute(string departureCity, string arrivalCity)
+    {
+        var flights = new List<FlightRm>();
+        var result = new List<OptimalFlightNodeRm>();
+
+        var jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "flightResults.json");
+        if (File.Exists(jsonFilePath))
+        {
+            var jsonData = await File.ReadAllTextAsync(jsonFilePath);
+            flights = JsonConvert.DeserializeObject<List<FlightRm>>(jsonData);
+        }
+
+        flights!.ForEach(flight => result.Add(new OptimalFlightNodeRm(Convert.ToInt32(flight.Price), flight.Departure.Place, flight.Departure.Time, flight.Arrival.Place, flight.Arrival.Time)));
+
+        return result;
+    }
+
+    /* public async Task<IEnumerable<CitiesRm>> GetCities()
     {
         var dic = new Dictionary<string, object>() { };
 
@@ -71,5 +105,5 @@ public class MapRepository : IMapRepository
         }
 
         return flights;
-    }
+    } */
 }

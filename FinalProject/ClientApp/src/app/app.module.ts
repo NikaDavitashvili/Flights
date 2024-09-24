@@ -16,6 +16,7 @@ import { RegisterPassengerComponent } from './register-passenger/register-passen
 import { MyBookingsComponent } from './my-bookings/my-bookings.component';
 import { AuthService } from './auth/auth.service';
 import { LoginPassengerComponent } from './login-passenger/login-passenger.component';
+import { LogoutPassengerComponent } from './logout-passenger/logout-passenger.component';
 import { PacketComponent } from './packet/packet.component';
 
 
@@ -29,6 +30,7 @@ import { PacketComponent } from './packet/packet.component';
     BookFlightComponent,
     RegisterPassengerComponent,
     LoginPassengerComponent,
+    LogoutPassengerComponent,
     MyBookingsComponent,
     PacketComponent
   ],
@@ -43,8 +45,9 @@ import { PacketComponent } from './packet/packet.component';
       { path: 'map', component: MapComponent },
       { path: 'season-discounts', component: SeasonDiscountsComponent },
       { path: 'search-flights', component: SearchFlightsComponent },
-      { path: 'book-flight/:flightId', component: BookFlightComponent, canActivate: [AuthGuard] },
+      { path: 'book-flight', component: BookFlightComponent, canActivate: [AuthGuard] },
       { path: 'login-passenger', component: LoginPassengerComponent },
+      { path: 'logout-passenger', component: LogoutPassengerComponent },
       { path: 'register-passenger', component: RegisterPassengerComponent },
       { path: 'my-booking', component: MyBookingsComponent, canActivate: [AuthGuard] },
       { path: 'packet', component: PacketComponent, canActivate: [AuthGuard] }

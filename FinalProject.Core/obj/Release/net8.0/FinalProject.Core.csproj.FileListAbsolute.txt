@@ -1,3 +1,24 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\bin\Release\net8.0\FinalProject.Core.deps.json
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\bin\Release\net8.0\FinalProject.Core.dll
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\bin\Release\net8.0\FinalProject.Core.pdb
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\bin\Release\net8.0\FinalProject.Domain.dll
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\bin\Release\net8.0\FinalProject.Domain.pdb
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\obj\Release\net8.0\FinalProject.Core.csproj.AssemblyReference.cache
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\obj\Release\net8.0\FinalProject.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\obj\Release\net8.0\FinalProject.Core.AssemblyInfoInputs.cache
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\obj\Release\net8.0\FinalProject.Core.AssemblyInfo.cs
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\obj\Release\net8.0\FinalProject.Core.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\obj\Release\net8.0\FinalProject.Core.sourcelink.json
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\obj\Release\net8.0\FinalPro.9D5ABB86.Up2Date
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\obj\Release\net8.0\FinalProject.Core.dll
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\obj\Release\net8.0\refint\FinalProject.Core.dll
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\obj\Release\net8.0\FinalProject.Core.pdb
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\obj\Release\net8.0\ref\FinalProject.Core.dll
+=======
+=======
+>>>>>>> main
 C:\Users\user\source\repos\Flights\FinalProject.Core\bin\Release\net8.0\FinalProject.Core.deps.json
 C:\Users\user\source\repos\Flights\FinalProject.Core\bin\Release\net8.0\FinalProject.Core.dll
 C:\Users\user\source\repos\Flights\FinalProject.Core\bin\Release\net8.0\FinalProject.Core.pdb
@@ -14,3 +35,9 @@ C:\Users\user\source\repos\Flights\FinalProject.Core\obj\Release\net8.0\FinalPro
 C:\Users\user\source\repos\Flights\FinalProject.Core\obj\Release\net8.0\refint\FinalProject.Core.dll
 C:\Users\user\source\repos\Flights\FinalProject.Core\obj\Release\net8.0\FinalProject.Core.pdb
 C:\Users\user\source\repos\Flights\FinalProject.Core\obj\Release\net8.0\ref\FinalProject.Core.dll
+<<<<<<< HEAD
+>>>>>>> bec81c28d7eac66c5ce98a32c6286512376e5ce2
+=======
+C:\Users\user\source\repos\Flights\FinalProject.Core\bin\Release\net8.0\FinalProject.Shared.dll
+C:\Users\user\source\repos\Flights\FinalProject.Core\bin\Release\net8.0\FinalProject.Shared.pdb
+>>>>>>> main
