@@ -1,5 +1,4 @@
 <<<<<<< HEAD
-<<<<<<< HEAD
 C:\Users\User\Documents\GitHub\Flights\FinalProject\bin\Release\net8.0\spa.proxy.json
 C:\Users\User\Documents\GitHub\Flights\FinalProject\bin\Release\net8.0\appsettings.Development.json
 C:\Users\User\Documents\GitHub\Flights\FinalProject\bin\Release\net8.0\appsettings.json
@@ -53,7 +52,6 @@ C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\refint\Fi
 C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\FinalProject.pdb
 C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\FinalProject.genruntimeconfig.cache
 C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\ref\FinalProject.dll
-=======
 =======
 >>>>>>> main
 C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\spa.proxy.json
@@ -109,9 +107,7 @@ C:\Users\user\source\repos\Flights\FinalProject\obj\Release\net8.0\refint\FinalP
 C:\Users\user\source\repos\Flights\FinalProject\obj\Release\net8.0\FinalProject.pdb
 C:\Users\user\source\repos\Flights\FinalProject\obj\Release\net8.0\FinalProject.genruntimeconfig.cache
 C:\Users\user\source\repos\Flights\FinalProject\obj\Release\net8.0\ref\FinalProject.dll
-<<<<<<< HEAD
 >>>>>>> bec81c28d7eac66c5ce98a32c6286512376e5ce2
-=======
 C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\FluentValidation.dll
 C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\Microsoft.Extensions.DependencyModel.dll
@@ -128,4 +124,3 @@ C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\Serilog.Sinks
 C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\System.Text.Json.dll
 C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\FinalProject.Shared.dll
 C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\FinalProject.Shared.pdb
->>>>>>> main
