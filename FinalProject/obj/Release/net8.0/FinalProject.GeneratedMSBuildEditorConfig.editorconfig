@@ -9,12 +9,33 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FinalProject
 build_property.RootNamespace = FinalProject
+<<<<<<< HEAD
+<<<<<<< HEAD
+build_property.ProjectDir = C:\Users\User\Documents\GitHub\Flights\FinalProject\
+=======
 build_property.ProjectDir = C:\Users\user\source\repos\Flights\FinalProject\
+>>>>>>> bec81c28d7eac66c5ce98a32c6286512376e5ce2
+=======
+build_property.ProjectDir = C:\Users\user\source\repos\Flights\FinalProject\
+>>>>>>> main
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+<<<<<<< HEAD
+<<<<<<< HEAD
+build_property.MSBuildProjectDirectory = C:\Users\User\Documents\GitHub\Flights\FinalProject
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/User/Documents/GitHub/Flights/FinalProject/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Documents/GitHub/Flights/FinalProject/Pages/_ViewImports.cshtml]
+=======
+=======
+>>>>>>> main
 build_property.MSBuildProjectDirectory = C:\Users\user\source\repos\Flights\FinalProject
 build_property._RazorSourceGeneratorDebug = 
 
@@ -23,5 +44,9 @@ build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/user/source/repos/Flights/FinalProject/Pages/_ViewImports.cshtml]
+<<<<<<< HEAD
+>>>>>>> bec81c28d7eac66c5ce98a32c6286512376e5ce2
+=======
+>>>>>>> main
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
