@@ -5,5 +5,6 @@ public record FlightRm(
     string Price,
     TimePlaceRm Departure,
     TimePlaceRm Arrival,
-    int RemainingNumberOfSeats
+    int RemainingNumberOfSeats,
+    int SeatsToBuy
     );

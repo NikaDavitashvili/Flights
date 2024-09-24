@@ -8,4 +8,5 @@ export interface FlightRm {
   id?: string;
   price?: null | string;
   remainingNumberOfSeats?: number;
+  seatsToBuy?: number;
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5yqK35k6H++Q7MSiPsPuzcMC/g3GimJqu4gTpY7SCQGURhjzIp+4UAqz/stOmc/Tcgxf0C7tBwKnKZIUyNoeSw==",
+  "dgSpecHash": "4iCM2xucLulUo37bqEaP9QBKdxb2YoN1I8UKvux6jZ8VXBGoGP4c0AZmBcyOZTFkeLZtXHVEpHFZacykl7hwGQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject\\FinalProject.csproj",
   "expectedPackageFiles": [
@@ -51,5 +51,12 @@
     "C:\\Users\\user\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.text.json\\8.0.4\\system.text.json.8.0.4.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\user\\source\\repos\\Flights\\FinalProject\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

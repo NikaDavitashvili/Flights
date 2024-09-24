@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlightService } from './../api/services/flight.service';
+import { BookingService } from './../api/services/booking.service';
 import { BookDto, FlightRm } from '../api/models';
 import { AuthService } from '../auth/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -24,6 +25,7 @@ export class BookFlightComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private flightService: FlightService,
+    private bookService: BookingService,
     private authService: AuthService,
     private fb: FormBuilder) { }
 
@@ -35,18 +37,23 @@ export class BookFlightComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(p => this.findFlight(p.get("flightId")));
+    const flightData = this.bookService.getFlight();
+
+    // Use type assertion to avoid the error
+    this.flight = flightData as FlightRm;
+
+    // Safely check if flightData is not null
+    if (flightData) {
+      console.log('Flight:', this.flight);  // Logs the flight object
+    } else {
+      console.log('No flight data available');
+    }
+
+    console.log("BOOKFLIGHT");
     const userJson = sessionStorage.getItem('CurrentUser');
     if (userJson) {
       this.currentUser = JSON.parse(userJson);
     }
-  }
-
-  private findFlight = (flightId: string | null) => {
-    this.flightId = flightId ?? 'not passed';
-
-    this.flightService.findFlight({ id: this.flightId })
-      .subscribe(flight => this.flight = flight, this.handleError);
   }
 
   private handleError = (err: any) => {
@@ -66,9 +73,9 @@ export class BookFlightComponent implements OnInit {
   }
 
   purchase(flight: FlightRm): void {
-    if (this.form.invalid) {
+    /*if (this.form.invalid) {
       return;
-    }
+    }*/
 
     const numberOfTickets = this.form.get('number')?.value;
     if (numberOfTickets <= 0) {
@@ -99,15 +106,17 @@ export class BookFlightComponent implements OnInit {
       return;
     }
 
-    const booking: BookDto = {
-      flightId: this.flight.id,
-      passengerEmail: this.authService.currentUser?.email || '',
-      numberOfSeats: this.form.get('number')?.value
-    };
+    //const booking: BookDto = {
+    //  flightId: this.flight.id,
+    //  passengerEmail: this.authService.currentUser?.email || '',
+    //  numberOfSeats: this.form.get('number')?.value
+    //};
+    const numberOfSeats = this.form.get('number')?.value;
+    console.log(numberOfSeats);
+    this.flight.seatsToBuy = numberOfSeats;
 
-    this.flightService.bookFlight({ body: booking })
+    this.flightService.bookFlight({ body: this.flight })
       .subscribe(_ => this.router.navigate(['/my-booking']), this.handleError);
-
     this.closePopup();
   }
 

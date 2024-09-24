@@ -386,6 +386,7 @@
         "dependencies": {
           "FinalProject.Domain": "1.0.0",
           "FinalProject.Shared": "1.0.0",
+          "Microsoft.Extensions.Hosting.Abstractions": "8.0.0",
           "Microsoft.Extensions.Options": "8.0.0",
           "Newtonsoft.Json": "13.0.3",
           "leaflet": "0.7.3"
@@ -405,6 +406,7 @@
       "FinalProject.Infrastructure/1.0.0": {
         "dependencies": {
           "FinalProject.Domain": "1.0.0",
+          "Newtonsoft.Json": "13.0.3",
           "System.Data.SqlClient": "4.8.6",
           "leaflet": "0.7.3"
         },
