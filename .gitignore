@@ -1,5 +1,3 @@
-
-<<<<<<< HEAD
 # Visual Studio Code settings
 .vscode/
 
@@ -21,6 +19,7 @@ dist/
 build/
 
 # Dependency directories
+node_modules/
 jspm_packages/
 
 # Optional npm cache directory
@@ -49,24 +48,10 @@ coverage/
 # Other files
 *.tgz
 .idea/
-/FinalProject.Core/obj/Debug/net8.0/FinalProject.Core.AssemblyInfo.cs
-/FinalProject.Core/obj/Debug/net8.0/FinalProject.Core.AssemblyInfoInputs.cache
-/FinalProject.Core/obj/Debug/net8.0/FinalProject.Core.csproj.AssemblyReference.cache
-/FinalProject.Domain/obj/Debug/net8.0/FinalProject.Domain.AssemblyInfo.cs
-/FinalProject.Domain/obj/Debug/net8.0/FinalProject.Domain.AssemblyInfoInputs.cache
-/FinalProject.Infrastructure/obj/Debug/net8.0/FinalProject.Infrastructure.AssemblyInfo.cs
-/FinalProject.Infrastructure/obj/Debug/net8.0/FinalProject.Infrastructure.AssemblyInfoInputs.cache
-/FinalProject.Infrastructure/obj/Debug/net8.0/FinalProject.Infrastructure.csproj.AssemblyReference.cache
-=======
->>>>>>> 4d49496b7ba73a843cd554b9832ba9b7a8d5cc72
-/FinalProject/.config/dotnet-tools.json
-/FinalProject/bin/Debug/net8.0/FinalProject.Core.dll
-/FinalProject/bin/Debug/net8.0/FinalProject.Core.pdb
-/FinalProject/bin/Debug/net8.0/FinalProject.Infrastructure.dll
-/FinalProject/bin/Debug/net8.0/FinalProject.Domain.dll
-/FinalProject/bin/Debug/net8.0/FinalProject.Domain.pdb
-/FinalProject/bin/Debug/net8.0/FinalProject.exe
-/FinalProject/bin/Debug/net8.0/FinalProject.pdb
-/FinalProject/bin/Debug/net8.0/FinalProject.dll
-/FinalProject/bin/Debug/net8.0/FinalProject.Infrastructure.pdb
-/FinalProject/bin/Debug/net8.0/spa.proxy.json
+
+# Build directories for all projects
+bin/
+obj/
+
+# Proxy settings (optional, if your project generates it)
+spa.proxy.json
