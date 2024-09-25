@@ -4,8 +4,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-    <_PublishTargetUrl>C:\Users\user\source\repos\Flights\FinalProject\bin\Release\net8.0\publish\</_PublishTargetUrl>
-    <History>False|2024-09-24T12:50:03.6905582Z;True|2024-09-22T22:59:24.0459483+04:00;True|2024-09-22T22:50:10.3354542+04:00;</History>
+    <_PublishTargetUrl>C:\Users\User\Documents\GitHub\Flights\FinalProject\bin\Release\net8.0\publish\</_PublishTargetUrl>
+    <History>True|2024-09-25T07:45:40.8532042Z||;True|2024-09-25T11:36:08.2423789+04:00||;False|2024-09-24T16:50:03.6905582+04:00||;True|2024-09-22T22:59:24.0459483+04:00||;True|2024-09-22T22:50:10.3354542+04:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

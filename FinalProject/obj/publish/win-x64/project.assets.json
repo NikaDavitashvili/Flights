@@ -2,8 +2,6 @@
   "version": 3,
   "targets": {
     "net8.0": {
-<<<<<<< HEAD
-=======
       "FluentValidation/11.10.0": {
         "type": "package",
         "compile": {
@@ -17,15 +15,12 @@
           }
         }
       },
->>>>>>> main
       "FontAwesome/4.7.0": {
         "type": "package"
       },
       "leaflet/0.7.3": {
         "type": "package"
       },
-<<<<<<< HEAD
-=======
       "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -59,7 +54,6 @@
           }
         }
       },
->>>>>>> main
       "Microsoft.AspNetCore.SpaProxy/8.0.6": {
         "type": "package",
         "compile": {
@@ -86,8 +80,6 @@
           "buildMultiTargeting/Microsoft.Extensions.ApiDescription.Server.targets": {}
         }
       },
-<<<<<<< HEAD
-=======
       "Microsoft.Extensions.Configuration.Abstractions/8.0.0": {
         "type": "package",
         "dependencies": {
@@ -349,7 +341,6 @@
           }
         }
       },
->>>>>>> main
       "Microsoft.NETCore.Platforms/3.1.0": {
         "type": "package",
         "compile": {
@@ -447,8 +438,6 @@
           }
         }
       },
-<<<<<<< HEAD
-=======
       "Serilog/4.0.1": {
         "type": "package",
         "compile": {
@@ -566,7 +555,6 @@
           }
         }
       },
->>>>>>> main
       "Swashbuckle.AspNetCore/6.4.0": {
         "type": "package",
         "dependencies": {
@@ -658,8 +646,6 @@
           }
         }
       },
-<<<<<<< HEAD
-=======
       "System.Diagnostics.DiagnosticSource/8.0.0": {
         "type": "package",
         "compile": {
@@ -676,7 +662,6 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
->>>>>>> main
       "System.Security.AccessControl/4.7.0": {
         "type": "package",
         "dependencies": {
@@ -723,8 +708,6 @@
           }
         }
       },
-<<<<<<< HEAD
-=======
       "System.Text.Encodings.Web/8.0.0": {
         "type": "package",
         "compile": {
@@ -766,18 +749,15 @@
           "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
       },
->>>>>>> main
       "FinalProject.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "FinalProject.Domain": "1.0.0",
-<<<<<<< HEAD
-=======
           "FinalProject.Shared": "1.0.0",
+          "Microsoft.Extensions.Hosting.Abstractions": "8.0.0",
           "Microsoft.Extensions.Options": "8.0.0",
           "Newtonsoft.Json": "13.0.3",
->>>>>>> main
           "leaflet": "0.7.3"
         },
         "compile": {
@@ -805,6 +785,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "FinalProject.Domain": "1.0.0",
+          "Newtonsoft.Json": "13.0.3",
           "System.Data.SqlClient": "4.8.6",
           "leaflet": "0.7.3"
         },
@@ -814,11 +795,6 @@
         "runtime": {
           "bin/placeholder/FinalProject.Infrastructure.dll": {}
         }
-<<<<<<< HEAD
-      }
-    },
-    "net8.0/win-x64": {
-=======
       },
       "FinalProject.Shared/1.0.0": {
         "type": "project",
@@ -853,15 +829,12 @@
           }
         }
       },
->>>>>>> main
       "FontAwesome/4.7.0": {
         "type": "package"
       },
       "leaflet/0.7.3": {
         "type": "package"
       },
-<<<<<<< HEAD
-=======
       "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -895,7 +868,6 @@
           }
         }
       },
->>>>>>> main
       "Microsoft.AspNetCore.SpaProxy/8.0.6": {
         "type": "package",
         "compile": {
@@ -922,8 +894,6 @@
           "buildMultiTargeting/Microsoft.Extensions.ApiDescription.Server.targets": {}
         }
       },
-<<<<<<< HEAD
-=======
       "Microsoft.Extensions.Configuration.Abstractions/8.0.0": {
         "type": "package",
         "dependencies": {
@@ -1185,7 +1155,6 @@
           }
         }
       },
->>>>>>> main
       "Microsoft.NETCore.Platforms/3.1.0": {
         "type": "package",
         "compile": {
@@ -1258,8 +1227,6 @@
       "runtime.win-x86.runtime.native.System.Data.SqlClient.sni/4.4.0": {
         "type": "package"
       },
-<<<<<<< HEAD
-=======
       "Serilog/4.0.1": {
         "type": "package",
         "compile": {
@@ -1377,7 +1344,6 @@
           }
         }
       },
->>>>>>> main
       "Swashbuckle.AspNetCore/6.4.0": {
         "type": "package",
         "dependencies": {
@@ -1459,8 +1425,6 @@
           }
         }
       },
-<<<<<<< HEAD
-=======
       "System.Diagnostics.DiagnosticSource/8.0.0": {
         "type": "package",
         "compile": {
@@ -1477,7 +1441,6 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
->>>>>>> main
       "System.Security.AccessControl/4.7.0": {
         "type": "package",
         "dependencies": {
@@ -1508,8 +1471,6 @@
           }
         }
       },
-<<<<<<< HEAD
-=======
       "System.Text.Encodings.Web/8.0.0": {
         "type": "package",
         "compile": {
@@ -1545,18 +1506,15 @@
           "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
       },
->>>>>>> main
       "FinalProject.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "FinalProject.Domain": "1.0.0",
-<<<<<<< HEAD
-=======
           "FinalProject.Shared": "1.0.0",
+          "Microsoft.Extensions.Hosting.Abstractions": "8.0.0",
           "Microsoft.Extensions.Options": "8.0.0",
           "Newtonsoft.Json": "13.0.3",
->>>>>>> main
           "leaflet": "0.7.3"
         },
         "compile": {
@@ -1584,6 +1542,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "FinalProject.Domain": "1.0.0",
+          "Newtonsoft.Json": "13.0.3",
           "System.Data.SqlClient": "4.8.6",
           "leaflet": "0.7.3"
         },
@@ -1593,8 +1552,6 @@
         "runtime": {
           "bin/placeholder/FinalProject.Infrastructure.dll": {}
         }
-<<<<<<< HEAD
-=======
       },
       "FinalProject.Shared/1.0.0": {
         "type": "project",
@@ -1613,13 +1570,10 @@
         "runtime": {
           "bin/placeholder/FinalProject.Shared.dll": {}
         }
->>>>>>> main
       }
     }
   },
   "libraries": {
-<<<<<<< HEAD
-=======
     "FluentValidation/11.10.0": {
       "sha512": "qsJGSJDdZ8qiG+lVJ70PZfJHcEdq8UQZ/tZDXoj78/iHKG6lVKtMJsD11zyyv/IPc7rwqGqnFoFLTNzpo3IPYg==",
       "type": "package",
@@ -1645,7 +1599,6 @@
         "lib/netstandard2.1/FluentValidation.xml"
       ]
     },
->>>>>>> main
     "FontAwesome/4.7.0": {
       "sha512": "n4H/brfszElyoZ4kmGh8E75uqvLzLvFr3h2PFVdPH1LwUmWIpeqdaW2pcC4oZAhg7sESyObh0IZpAI8COCNeUg==",
       "type": "package",
@@ -1686,8 +1639,6 @@
         "leaflet.nuspec"
       ]
     },
-<<<<<<< HEAD
-=======
     "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
       "sha512": "Nxs7Z1q3f1STfLYKJSVXCs1iBl+Ya6E8o4Oy1bCxJ/rNI44E/0f6tbsrVqAWfB7jlnJfyaAtIalBVxPKUPQb4Q==",
       "type": "package",
@@ -1714,7 +1665,6 @@
         "microsoft.aspnetcore.http.features.nuspec"
       ]
     },
->>>>>>> main
     "Microsoft.AspNetCore.SpaProxy/8.0.6": {
       "sha512": "LBIMKEYxs06TJi/7ekqbfJ8VuoBqC3EORy+mw7Xp0gDIdDGhuaKkeT8BWIzetBbGVix4Tpn3k9GEdJ8Z7E7YOw==",
       "type": "package",
@@ -1961,8 +1911,6 @@
         "tools/netcoreapp2.1/System.Diagnostics.DiagnosticSource.dll"
       ]
     },
-<<<<<<< HEAD
-=======
     "Microsoft.Extensions.Configuration.Abstractions/8.0.0": {
       "sha512": "3lE/iLSutpgX1CC0NOW70FJoGARRHbyKmG7dc0klnUZ9Dd9hS6N/POPWhKhMLCEuNN5nXEY5agmlFtH562vqhQ==",
       "type": "package",
@@ -2432,7 +2380,6 @@
         "microsoft.net.http.headers.nuspec"
       ]
     },
->>>>>>> main
     "Microsoft.NETCore.Platforms/3.1.0": {
       "sha512": "z7aeg8oHln2CuNulfhiLYxCVMPEwBl3rzicjvIX+4sUuCwvXw5oXQEtbiU2c0z4qYL5L3Kmx0mMA/+t/SbY67w==",
       "type": "package",
@@ -2607,8 +2554,6 @@
         "version.txt"
       ]
     },
-<<<<<<< HEAD
-=======
     "Serilog/4.0.1": {
       "sha512": "pzeDRXdpSLSsgBHpZcmpIDxqMy845Ab4s+dfnBg0sN9h8q/4Wo3vAoe0QCGPze1Q06EVtEPupS+UvLm8iXQmTQ==",
       "type": "package",
@@ -2766,7 +2711,6 @@
         "serilog.sinks.seq.nuspec"
       ]
     },
->>>>>>> main
     "Swashbuckle.AspNetCore/6.4.0": {
       "sha512": "eUBr4TW0up6oKDA5Xwkul289uqSMgY0xGN4pnbOIBqCcN9VKGGaPvHX3vWaG/hvocfGDP+MGzMA0bBBKz2fkmQ==",
       "type": "package",
@@ -2934,8 +2878,6 @@
         "version.txt"
       ]
     },
-<<<<<<< HEAD
-=======
     "System.Diagnostics.DiagnosticSource/8.0.0": {
       "sha512": "c9xLpVz6PL9lp/djOWtk5KPDZq3cSYpmXoJQY524EOtuFl5z9ZtsotpsyrDW40U1DRnQSYvcPKEUV0X//u6gkQ==",
       "type": "package",
@@ -2965,7 +2907,6 @@
         "useSharedDesignerContext.txt"
       ]
     },
->>>>>>> main
     "System.Security.AccessControl/4.7.0": {
       "sha512": "JECvTt5aFF3WT3gHpfofL2MNNP6v84sxtXxpqhLBCcDRzqsPBmHhQ6shv4DwwN2tRlzsUxtb3G9M3763rbXKDg==",
       "type": "package",
@@ -3066,8 +3007,6 @@
         "version.txt"
       ]
     },
-<<<<<<< HEAD
-=======
     "System.Text.Encodings.Web/8.0.0": {
       "sha512": "yev/k9GHAEGx2Rg3/tU6MQh4HGBXJs70y7j1LaM1i/ER9po+6nnQ6RRqTJn1E7Xu0fbIFK80Nh5EoODxrbxwBQ==",
       "type": "package",
@@ -3176,7 +3115,6 @@
         "useSharedDesignerContext.txt"
       ]
     },
->>>>>>> main
     "FinalProject.Core/1.0.0": {
       "type": "project",
       "path": "../FinalProject.Core/FinalProject.Core.csproj",
@@ -3191,14 +3129,11 @@
       "type": "project",
       "path": "../FinalProject.Infrastructure/FinalProject.Infrastructure.csproj",
       "msbuildProject": "../FinalProject.Infrastructure/FinalProject.Infrastructure.csproj"
-<<<<<<< HEAD
-=======
     },
     "FinalProject.Shared/1.0.0": {
       "type": "project",
       "path": "../FinalProject.Shared/FinalProject.Shared.csproj",
       "msbuildProject": "../FinalProject.Shared/FinalProject.Shared.csproj"
->>>>>>> main
     }
   },
   "projectFileDependencyGroups": {
@@ -3206,11 +3141,6 @@
       "FinalProject.Core >= 1.0.0",
       "FinalProject.Domain >= 1.0.0",
       "FinalProject.Infrastructure >= 1.0.0",
-<<<<<<< HEAD
-      "FontAwesome >= 4.7.0",
-      "Microsoft.AspNetCore.SpaProxy >= 8.0.6",
-      "Newtonsoft.Json >= 13.0.3",
-=======
       "FinalProject.Shared >= 1.0.0",
       "FontAwesome >= 4.7.0",
       "Microsoft.AspNetCore.SpaProxy >= 8.0.6",
@@ -3221,45 +3151,28 @@
       "Serilog.Sinks.Console >= 6.0.0",
       "Serilog.Sinks.File >= 6.0.0",
       "Serilog.Sinks.Seq >= 8.0.0",
->>>>>>> main
       "Swashbuckle.AspNetCore >= 6.4.0",
       "leaflet >= 0.7.3"
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\User\\.nuget\\packages\\": {},
-=======
-    "C:\\Users\\user\\.nuget\\packages\\": {},
->>>>>>> main
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\FinalProject.csproj",
       "projectName": "FinalProject",
       "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\FinalProject.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\obj\\publish\\win-x64\\",
-=======
-      "projectUniqueName": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject\\FinalProject.csproj",
-      "projectName": "FinalProject",
-      "projectPath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject\\FinalProject.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject\\obj\\publish\\win-x64\\",
->>>>>>> main
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-<<<<<<< HEAD
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> main
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3275,7 +3188,6 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-<<<<<<< HEAD
             "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Core\\FinalProject.Core.csproj": {
               "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Core\\FinalProject.Core.csproj"
             },
@@ -3284,19 +3196,9 @@
             },
             "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj": {
               "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj"
-=======
-            "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Core\\FinalProject.Core.csproj": {
-              "projectPath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Core\\FinalProject.Core.csproj"
             },
-            "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
-              "projectPath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj"
-            },
-            "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj"
-            },
-            "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj": {
-              "projectPath": "C:\\Users\\user\\source\\repos\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj"
->>>>>>> main
+            "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj": {
+              "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj"
             }
           }
         }
@@ -3328,8 +3230,6 @@
             "target": "Package",
             "version": "[13.0.3, )"
           },
-<<<<<<< HEAD
-=======
           "Serilog": {
             "target": "Package",
             "version": "[4.0.1, )"
@@ -3354,7 +3254,6 @@
             "target": "Package",
             "version": "[8.0.0, )"
           },
->>>>>>> main
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[6.4.0, )"
@@ -3378,7 +3277,6 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-<<<<<<< HEAD
             "version": "[8.0.5, 8.0.5]"
           },
           {
@@ -3388,17 +3286,6 @@
           {
             "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
             "version": "[8.0.5, 8.0.5]"
-=======
-            "version": "[8.0.3, 8.0.3]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Runtime.win-x64",
-            "version": "[8.0.3, 8.0.3]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-            "version": "[8.0.3, 8.0.3]"
->>>>>>> main
           }
         ],
         "frameworkReferences": {
@@ -3409,11 +3296,7 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
->>>>>>> main
       }
     },
     "runtimes": {
