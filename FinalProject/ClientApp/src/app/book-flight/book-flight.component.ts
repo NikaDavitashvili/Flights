@@ -20,6 +20,7 @@ export class BookFlightComponent implements OnInit {
   cardNumber = '';
   expiryDate = '';
   cvv = '';
+  showErrorMessage = false;
   seasonName: string | null = null; 
 
   constructor(private route: ActivatedRoute,
@@ -73,9 +74,9 @@ export class BookFlightComponent implements OnInit {
   }
 
   purchase(flight: FlightRm): void {
-    /*if (this.form.invalid) {
+    if (this.form.invalid) {
       return;
-    }*/
+    }
 
     const numberOfTickets = this.form.get('number')?.value;
     if (numberOfTickets <= 0) {
@@ -100,7 +101,7 @@ export class BookFlightComponent implements OnInit {
     document.body.classList.add('no-scroll');
   }
 
-  buyTickets() {
+  /*buyTickets() {
     if (!this.cardNumber || !this.expiryDate || !this.cvv) {
       alert('Please enter all card details.');
       return;
@@ -117,6 +118,29 @@ export class BookFlightComponent implements OnInit {
 
     this.flightService.bookFlight({ body: this.flight })
       .subscribe(_ => this.router.navigate(['/my-booking']), this.handleError);
+    this.closePopup();
+  }*/
+
+  buyTickets() {
+    if (!this.cardNumber || !this.expiryDate || !this.cvv) {
+      alert('Please enter all card details.');
+      return;
+    }
+
+    const numberOfSeats = this.form.get('number')?.value;
+    console.log(numberOfSeats);
+    this.flight.seatsToBuy = numberOfSeats;
+
+    // Simulate a fake delay of 3 seconds
+    setTimeout(() => {
+      this.showErrorMessage = true;
+
+      // Optionally auto-hide the message after 5 seconds
+      setTimeout(() => {
+        this.showErrorMessage = false;
+        this.closePopup();
+      }, 5000);  // Hide after 5 seconds
+    }, 1000);  // Show error after 3 seconds
     this.closePopup();
   }
 
