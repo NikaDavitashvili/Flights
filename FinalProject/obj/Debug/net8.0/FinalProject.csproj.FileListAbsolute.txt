@@ -196,6 +196,7 @@ C:\Users\user\source\repos\Flights\FinalProject\bin\Debug\net8.0\Serilog.Sinks.C
 C:\Users\user\source\repos\Flights\FinalProject\bin\Debug\net8.0\Serilog.Sinks.File.dll
 C:\Users\user\source\repos\Flights\FinalProject\bin\Debug\net8.0\Serilog.Sinks.Seq.dll
 C:\Users\user\source\repos\Flights\FinalProject\bin\Debug\net8.0\System.Text.Json.dll
+C:\Users\user\source\repos\Flights\FinalProject\bin\Debug\net8.0\flightResults.json
 C:\Users\User\Documents\GitHub\Flights\FinalProject\bin\Debug\net8.0\spa.proxy.json
 C:\Users\User\Documents\GitHub\Flights\FinalProject\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\User\Documents\GitHub\Flights\FinalProject\bin\Debug\net8.0\appsettings.json
@@ -266,4 +267,3 @@ C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Debug\net8.0\refint\Fina
 C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Debug\net8.0\FinalProject.pdb
 C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Debug\net8.0\FinalProject.genruntimeconfig.cache
 C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Debug\net8.0\ref\FinalProject.dll
-C:\Users\user\source\repos\Flights\FinalProject\bin\Debug\net8.0\flightResults.json

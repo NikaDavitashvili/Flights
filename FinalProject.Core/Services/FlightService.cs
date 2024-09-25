@@ -3,7 +3,6 @@ using FinalProject.Domain.Interfaces.Services;
 using FinalProject.Domain.Models.DTOs;
 using FinalProject.Domain.Models.ReadModels;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 
 namespace FinalProject.Core.Services;
 public class FlightService : IFlightService

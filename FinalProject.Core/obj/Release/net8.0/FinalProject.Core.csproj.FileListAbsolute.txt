@@ -36,3 +36,5 @@ C:\Users\user\source\repos\Flights\FinalProject.Core\obj\Release\net8.0\ref\Fina
 >>>>>>> bec81c28d7eac66c5ce98a32c6286512376e5ce2
 C:\Users\user\source\repos\Flights\FinalProject.Core\bin\Release\net8.0\FinalProject.Shared.dll
 C:\Users\user\source\repos\Flights\FinalProject.Core\bin\Release\net8.0\FinalProject.Shared.pdb
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\bin\Release\net8.0\FinalProject.Shared.dll
+C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\bin\Release\net8.0\FinalProject.Shared.pdb
