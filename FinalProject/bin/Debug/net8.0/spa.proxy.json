@@ -3,7 +3,7 @@
 "ServerUrl": "http://localhost:44492",
 "RedirectUrl": "",
 "LaunchCommand": "npm start",
-"WorkingDirectory": "C:\\Users\\user\\Source\\Repos\\NikaDavitashvili\\Flights\\FinalProject\\ClientApp\\",
+"WorkingDirectory": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\ClientApp\\",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }

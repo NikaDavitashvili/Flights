@@ -358,6 +358,7 @@ C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\P
 C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\PubTmp\Out\FinalProject.Infrastructure.pdb
 C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\PubTmp\Out\FinalProject.Shared.pdb
 C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\PubTmp\Out\wwwroot\3rdpartylicenses.txt
+C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\PubTmp\Out\wwwroot\assets\hotjar.js
 C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\PubTmp\Out\wwwroot\assets\images\plane.jpg
 C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\PubTmp\Out\wwwroot\assets\images\PLANE1.png
 C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\PubTmp\Out\wwwroot\fa-brands-400.5d18d427c08f12c3.ttf
@@ -371,9 +372,9 @@ C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\P
 C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\PubTmp\Out\wwwroot\index.html
 C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\PubTmp\Out\wwwroot\layers-2x.9859cd1231006a4a.png
 C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\PubTmp\Out\wwwroot\layers.ef6db8722c2c3f9a.png
-C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\PubTmp\Out\wwwroot\main.4152688f6afe7212.js
+C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\PubTmp\Out\wwwroot\main.13815442935e3dc3.js
 C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\PubTmp\Out\wwwroot\marker-icon.d577052aa271e13f.png
 C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\PubTmp\Out\wwwroot\polyfills.55a0fb85c2c52e39.js
 C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\PubTmp\Out\wwwroot\runtime.660f29be0b1a2a1e.js
-C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\PubTmp\Out\wwwroot\scripts.3eebcb585265ee07.js
+C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\PubTmp\Out\wwwroot\scripts.0dd6f720b8f1f08b.js
 C:\Users\User\Documents\GitHub\Flights\FinalProject\obj\Release\net8.0\win-x64\PubTmp\Out\wwwroot\styles.0c5a01e4a8130e20.css
