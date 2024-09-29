@@ -467,312 +467,6 @@
           "bin/placeholder/FinalProject.Shared.dll": {}
         }
       }
-    },
-    "net8.0/win-x64": {
-      "FluentValidation/11.10.0": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/FluentValidation.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/FluentValidation.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "leaflet/0.7.3": {
-        "type": "package"
-      },
-      "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNetCore.Http.Features": "2.2.0",
-          "System.Text.Encodings.Web": "4.5.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Microsoft.AspNetCore.Http.Features/2.2.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Primitives": "2.2.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Microsoft.Extensions.Configuration.Abstractions/8.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Primitives": "8.0.0"
-        },
-        "compile": {
-          "lib/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/net6.0/_._": {}
-        }
-      },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.1": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/net6.0/_._": {}
-        }
-      },
-      "Microsoft.Extensions.Diagnostics.Abstractions/8.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
-          "Microsoft.Extensions.Options": "8.0.0",
-          "System.Diagnostics.DiagnosticSource": "8.0.0"
-        },
-        "compile": {
-          "lib/net8.0/Microsoft.Extensions.Diagnostics.Abstractions.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/Microsoft.Extensions.Diagnostics.Abstractions.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/net6.0/_._": {}
-        }
-      },
-      "Microsoft.Extensions.FileProviders.Abstractions/8.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Primitives": "8.0.0"
-        },
-        "compile": {
-          "lib/net8.0/Microsoft.Extensions.FileProviders.Abstractions.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/Microsoft.Extensions.FileProviders.Abstractions.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/net6.0/_._": {}
-        }
-      },
-      "Microsoft.Extensions.Hosting.Abstractions/8.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
-          "Microsoft.Extensions.Diagnostics.Abstractions": "8.0.0",
-          "Microsoft.Extensions.FileProviders.Abstractions": "8.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "8.0.0"
-        },
-        "compile": {
-          "lib/net8.0/Microsoft.Extensions.Hosting.Abstractions.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/Microsoft.Extensions.Hosting.Abstractions.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/net6.0/_._": {}
-        }
-      },
-      "Microsoft.Extensions.Logging.Abstractions/8.0.1": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.1"
-        },
-        "compile": {
-          "lib/net8.0/Microsoft.Extensions.Logging.Abstractions.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/Microsoft.Extensions.Logging.Abstractions.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/net6.0/Microsoft.Extensions.Logging.Abstractions.targets": {}
-        }
-      },
-      "Microsoft.Extensions.Options/8.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
-          "Microsoft.Extensions.Primitives": "8.0.0"
-        },
-        "compile": {
-          "lib/net8.0/Microsoft.Extensions.Options.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/Microsoft.Extensions.Options.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/net6.0/Microsoft.Extensions.Options.targets": {}
-        }
-      },
-      "Microsoft.Extensions.Primitives/8.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/Microsoft.Extensions.Primitives.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/Microsoft.Extensions.Primitives.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/net6.0/_._": {}
-        }
-      },
-      "Microsoft.IO.RecyclableMemoryStream/3.0.1": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/Microsoft.IO.RecyclableMemoryStream.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/Microsoft.IO.RecyclableMemoryStream.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Microsoft.Net.Http.Headers/8.0.8": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Primitives": "8.0.0"
-        },
-        "compile": {
-          "lib/net8.0/Microsoft.Net.Http.Headers.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/Microsoft.Net.Http.Headers.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Newtonsoft.Json/13.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/Newtonsoft.Json.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/Newtonsoft.Json.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "System.Diagnostics.DiagnosticSource/8.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/System.Diagnostics.DiagnosticSource.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/System.Diagnostics.DiagnosticSource.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/net6.0/_._": {}
-        }
-      },
-      "System.Text.Encodings.Web/4.5.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/System.Text.Encodings.Web.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Text.Encodings.Web.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "FinalProject.Domain/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "leaflet": "0.7.3"
-        },
-        "compile": {
-          "bin/placeholder/FinalProject.Domain.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/FinalProject.Domain.dll": {}
-        }
-      },
-      "FinalProject.Shared/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "FluentValidation": "11.10.0",
-          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
-          "Microsoft.Extensions.Logging.Abstractions": "8.0.1",
-          "Microsoft.IO.RecyclableMemoryStream": "3.0.1",
-          "Microsoft.Net.Http.Headers": "8.0.8",
-          "Newtonsoft.Json": "13.0.3"
-        },
-        "compile": {
-          "bin/placeholder/FinalProject.Shared.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/FinalProject.Shared.dll": {}
-        }
-      }
     }
   },
   "libraries": {
@@ -1599,31 +1293,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {},
+    "C:\\Users\\user\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Core\\FinalProject.Core.csproj",
       "projectName": "FinalProject.Core",
       "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Core\\FinalProject.Core.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Core\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Core\\FinalProject.Core.csproj",
-      "projectName": "FinalProject.Core",
-      "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Core\\FinalProject.Core.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Core\\obj\\",
->>>>>>> 876850d1f3c90b293e8dc138bbdd8832243e112f
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1639,7 +1325,6 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-<<<<<<< HEAD
             "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
               "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj"
             },
@@ -1648,13 +1333,6 @@
             },
             "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj": {
               "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj"
-=======
-            "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
-              "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj"
-            },
-            "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj": {
-              "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj"
->>>>>>> 876850d1f3c90b293e8dc138bbdd8832243e112f
             }
           }
         }
@@ -1707,12 +1385,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
-      }
-    },
-    "runtimes": {
-      "win-x64": {
-        "#import": []
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

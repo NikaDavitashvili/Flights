@@ -1,16 +1,10 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "sU1AjayWcQZkLw6IQ8rMnHK/QYze7VHCXQ9sB22+rwrx0q3JJojUOvAIjw2O1aymeoIC5Tp3yXynKQBL4YghAA==",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj",
-=======
-  "dgSpecHash": "EVQWUT6CCNM=",
-  "success": true,
-  "projectFilePath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj",
->>>>>>> 876850d1f3c90b293e8dc138bbdd8832243e112f
   "expectedPackageFiles": [
-    "C:\\Users\\User\\.nuget\\packages\\leaflet\\0.7.3\\leaflet.0.7.3.nupkg.sha512"
+    "C:\\Users\\user\\.nuget\\packages\\leaflet\\0.7.3\\leaflet.0.7.3.nupkg.sha512"
   ],
   "logs": []
 }

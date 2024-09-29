@@ -25,18 +25,3 @@ C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\obj\Debug\net8.0\Fina
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\obj\Debug\net8.0\refint\FinalProject.Domain.dll
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\obj\Debug\net8.0\FinalProject.Domain.pdb
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Domain\obj\Debug\net8.0\ref\FinalProject.Domain.dll
-<<<<<<< HEAD
-C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject.Domain\bin\Debug\net8.0\FinalProject.Domain.deps.json
-C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject.Domain\bin\Debug\net8.0\FinalProject.Domain.dll
-C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject.Domain\bin\Debug\net8.0\FinalProject.Domain.pdb
-C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject.Domain\obj\Debug\net8.0\FinalProject.Domain.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject.Domain\obj\Debug\net8.0\FinalProject.Domain.AssemblyInfoInputs.cache
-C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject.Domain\obj\Debug\net8.0\FinalProject.Domain.AssemblyInfo.cs
-C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject.Domain\obj\Debug\net8.0\FinalProject.Domain.csproj.CoreCompileInputs.cache
-C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject.Domain\obj\Debug\net8.0\FinalProject.Domain.sourcelink.json
-C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject.Domain\obj\Debug\net8.0\FinalProject.Domain.dll
-C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject.Domain\obj\Debug\net8.0\refint\FinalProject.Domain.dll
-C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject.Domain\obj\Debug\net8.0\FinalProject.Domain.pdb
-C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject.Domain\obj\Debug\net8.0\ref\FinalProject.Domain.dll
-=======
->>>>>>> 876850d1f3c90b293e8dc138bbdd8832243e112f
