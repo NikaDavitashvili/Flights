@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\FinalProject.csproj": {}
+    "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject\\FinalProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Core\\FinalProject.Core.csproj": {
+    "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Core\\FinalProject.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Core\\FinalProject.Core.csproj",
+        "projectUniqueName": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Core\\FinalProject.Core.csproj",
         "projectName": "FinalProject.Core",
-        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Core\\FinalProject.Core.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Core\\obj\\",
+        "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Core\\FinalProject.Core.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -33,11 +33,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
-                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj"
+              "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
+                "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj"
               },
-              "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj": {
-                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj"
+              "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj"
+              },
+              "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj": {
+                "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj"
               }
             }
           }
@@ -90,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -99,20 +102,20 @@
         }
       }
     },
-    "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
+    "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj",
         "projectName": "FinalProject.Domain",
-        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\obj\\",
+        "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -166,7 +169,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -175,20 +178,20 @@
         }
       }
     },
-    "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj": {
+    "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj",
         "projectName": "FinalProject.Infrastructure",
-        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -204,8 +207,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
-                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj"
+              "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
+                "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj"
               }
             }
           }
@@ -254,7 +257,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -263,20 +266,20 @@
         }
       }
     },
-    "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj": {
+    "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj",
         "projectName": "FinalProject.Shared",
-        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Shared\\obj\\",
+        "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -350,7 +353,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -359,20 +362,20 @@
         }
       }
     },
-    "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\FinalProject.csproj": {
+    "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject\\FinalProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\FinalProject.csproj",
+        "projectUniqueName": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject\\FinalProject.csproj",
         "projectName": "FinalProject",
-        "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\FinalProject.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject\\obj\\publish\\win-x64\\",
+        "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject\\FinalProject.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject\\obj\\publish\\win-x64\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -388,17 +391,17 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Core\\FinalProject.Core.csproj": {
-                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Core\\FinalProject.Core.csproj"
+              "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Core\\FinalProject.Core.csproj": {
+                "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Core\\FinalProject.Core.csproj"
               },
-              "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
-                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj"
+              "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
+                "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj"
               },
-              "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj"
+              "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj"
               },
-              "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj": {
-                "projectPath": "C:\\Users\\User\\Documents\\GitHub\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj"
+              "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj": {
+                "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj"
               }
             }
           }
@@ -477,15 +480,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[8.0.5, 8.0.5]"
+              "version": "[8.0.3, 8.0.3]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[8.0.5, 8.0.5]"
+              "version": "[8.0.3, 8.0.3]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-              "version": "[8.0.5, 8.0.5]"
+              "version": "[8.0.3, 8.0.3]"
             }
           ],
           "frameworkReferences": {
@@ -496,7 +499,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

@@ -18,8 +18,6 @@ public class MapRepository : IMapRepository
 
         flights!.ForEach(flight => result.Add(new CitiesRm(flight.Departure.Place, flight.Arrival.Place, Convert.ToInt32(flight.Price))));
 
-        result = new List<CitiesRm> { result.First() };
-
         return result;
     }
 

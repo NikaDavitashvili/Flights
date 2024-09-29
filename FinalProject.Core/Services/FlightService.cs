@@ -2,7 +2,9 @@
 using FinalProject.Domain.Interfaces.Services;
 using FinalProject.Domain.Models.DTOs;
 using FinalProject.Domain.Models.ReadModels;
+using FinalProject.Infrastructure.Common;
 using Microsoft.Extensions.DependencyInjection;
+using System.Data;
 
 namespace FinalProject.Core.Services;
 public class FlightService : IFlightService
@@ -22,7 +24,57 @@ public class FlightService : IFlightService
         {
             //await new FlightsScheduler(_scopeFactory).RunJobItem();
 
-            return await _flightRepository.Search(@params) ?? new List<FlightRm>();
+            //return await _flightRepository.Search(@params) ?? new List<FlightRm>();
+
+            var dic = new Dictionary<string, object>
+        {
+            { "Destination", @params.Destination ?? string.Empty },
+            { "From", @params.From ?? string.Empty },
+            { "FromDate", @params.FromDate.HasValue ? @params.FromDate.Value.Date : (object)DBNull.Value },
+            { "ToDate", @params.ToDate.HasValue ? @params.ToDate.Value.Date.AddDays(1).AddTicks(-1) : (object)DBNull.Value },
+            { "NumberOfPassengers", @params.NumberOfPassengers ?? 1 }
+        };
+
+            var query = @"
+            SELECT Id, Airline, Price, Departure_Place, Departure_Time, Arrival_Place, Arrival_Time, RemainingNumberOfSeats
+            FROM Flights
+            WHERE 
+                (@Destination = '' OR Arrival_Place LIKE '%' + @Destination + '%') AND
+                (@From = '' OR Departure_Place LIKE '%' + @From + '%') AND
+                (@FromDate IS NULL OR Departure_Time >= @FromDate) AND
+                (@ToDate IS NULL OR Departure_Time <= @ToDate) AND
+                RemainingNumberOfSeats >= @NumberOfPassengers
+            ORDER BY Departure_Time asc";
+
+            DataTable dt = DB.Select(query, dic, out string errorMessage);
+
+            if (errorMessage != null)
+                throw new Exception(errorMessage);
+
+            var flights = new List<FlightRm>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                var flight = new FlightRm(
+                    Guid.Parse(row["Id"].ToString()),
+                    row["Airline"].ToString(),
+                    row["Price"].ToString(),
+                    new TimePlaceRm(
+                        row["Departure_Place"].ToString(),
+                        DateTime.Parse(row["Departure_Time"].ToString())
+                    ),
+                    new TimePlaceRm(
+                        row["Arrival_Place"].ToString(),
+                        DateTime.Parse(row["Arrival_Time"].ToString())
+                    ),
+                    int.Parse(row["RemainingNumberOfSeats"].ToString()),
+                    0
+                );
+
+                flights.Add(flight);
+            }
+
+            return flights;
         }
         catch (Exception ex)
         {
