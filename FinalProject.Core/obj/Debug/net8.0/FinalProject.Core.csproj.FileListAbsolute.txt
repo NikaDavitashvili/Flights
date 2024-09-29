@@ -1,3 +1,24 @@
+<<<<<<< HEAD
+=======
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject.Core\bin\Debug\net8.0\FinalProject.Core.deps.json
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject.Core\bin\Debug\net8.0\FinalProject.Core.dll
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject.Core\bin\Debug\net8.0\FinalProject.Core.pdb
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject.Core\bin\Debug\net8.0\FinalProject.Domain.dll
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject.Core\bin\Debug\net8.0\FinalProject.Shared.dll
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject.Core\bin\Debug\net8.0\FinalProject.Domain.pdb
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject.Core\bin\Debug\net8.0\FinalProject.Shared.pdb
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject.Core\obj\Debug\net8.0\FinalProject.Core.csproj.AssemblyReference.cache
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject.Core\obj\Debug\net8.0\FinalProject.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject.Core\obj\Debug\net8.0\FinalProject.Core.AssemblyInfoInputs.cache
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject.Core\obj\Debug\net8.0\FinalProject.Core.AssemblyInfo.cs
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject.Core\obj\Debug\net8.0\FinalProject.Core.csproj.CoreCompileInputs.cache
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject.Core\obj\Debug\net8.0\FinalProject.Core.sourcelink.json
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject.Core\obj\Debug\net8.0\FinalPro.9D5ABB86.Up2Date
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject.Core\obj\Debug\net8.0\FinalProject.Core.dll
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject.Core\obj\Debug\net8.0\refint\FinalProject.Core.dll
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject.Core\obj\Debug\net8.0\FinalProject.Core.pdb
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject.Core\obj\Debug\net8.0\ref\FinalProject.Core.dll
+>>>>>>> 876850d1f3c90b293e8dc138bbdd8832243e112f
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\bin\Debug\net8.0\FinalProject.Core.deps.json
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\bin\Debug\net8.0\FinalProject.Core.dll
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\bin\Debug\net8.0\FinalProject.Core.pdb
@@ -16,6 +37,7 @@ C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\obj\Debug\net8.0\FinalP
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\obj\Debug\net8.0\refint\FinalProject.Core.dll
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\obj\Debug\net8.0\FinalProject.Core.pdb
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Core\obj\Debug\net8.0\ref\FinalProject.Core.dll
+<<<<<<< HEAD
 C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject.Core\bin\Debug\net8.0\FinalProject.Core.deps.json
 C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject.Core\bin\Debug\net8.0\FinalProject.Core.dll
 C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject.Core\bin\Debug\net8.0\FinalProject.Core.pdb
@@ -36,3 +58,5 @@ C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject.Core\obj\Debug\
 C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject.Core\obj\Debug\net8.0\refint\FinalProject.Core.dll
 C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject.Core\obj\Debug\net8.0\FinalProject.Core.pdb
 C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject.Core\obj\Debug\net8.0\ref\FinalProject.Core.dll
+=======
+>>>>>>> 876850d1f3c90b293e8dc138bbdd8832243e112f
