@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+<<<<<<< HEAD
+    <_PublishTargetUrl>C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject\bin\Release\net8.0\publish\</_PublishTargetUrl>
+    <History>True|2024-09-29T21:00:59.6963177Z;True|2024-09-30T01:00:20.5256574+04:00;False|2024-09-30T00:59:24.1799627+04:00;True|2024-09-25T19:20:06.7959323+04:00;True|2024-09-25T19:15:48.9590434+04:00;True|2024-09-25T16:12:40.4632562+04:00;True|2024-09-25T16:07:35.6873141+04:00;True|2024-09-25T11:45:40.8532042+04:00;True|2024-09-25T11:36:08.2423789+04:00;False|2024-09-24T16:50:03.6905582+04:00;True|2024-09-22T22:59:24.0459483+04:00;True|2024-09-22T22:50:10.3354542+04:00;</History>
+=======
+    <_PublishTargetUrl>C:\Users\User\Documents\GitHub\Flights\FinalProject\bin\Release\net8.0\publish\</_PublishTargetUrl>
+    <History>True|2024-09-27T18:48:09.1999593Z||;True|2024-09-27T22:37:46.2252701+04:00||;True|2024-09-27T22:19:53.5175391+04:00||;False|2024-09-27T22:19:07.5342096+04:00||;True|2024-09-25T11:45:40.8532042+04:00||;True|2024-09-25T11:36:08.2423789+04:00||;False|2024-09-24T16:50:03.6905582+04:00||;True|2024-09-22T22:59:24.0459483+04:00||;True|2024-09-22T22:50:10.3354542+04:00||;</History>
+>>>>>>> 876850d1f3c90b293e8dc138bbdd8832243e112f
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="ClientApp/dist/3rdpartylicenses.txt">
+      <publishTime>09/27/2024 22:19:52</publishTime>
+    </File>
+    <File Include="ClientApp/dist/assets/hotjar.js">
+      <publishTime>09/27/2024 22:11:49</publishTime>
+    </File>
+    <File Include="ClientApp/dist/assets/images/plane.jpg">
+      <publishTime>07/15/2024 15:43:41</publishTime>
+    </File>
+    <File Include="ClientApp/dist/assets/images/PLANE1.png">
+      <publishTime>09/23/2024 20:31:21</publishTime>
+    </File>
+    <File Include="ClientApp/dist/fa-brands-400.5d18d427c08f12c3.ttf">
+      <publishTime>09/27/2024 22:19:52</publishTime>
+    </File>
+    <File Include="ClientApp/dist/fa-brands-400.87587a681474fe69.woff2">
+      <publishTime>09/27/2024 22:19:52</publishTime>
+    </File>
+    <File Include="ClientApp/dist/fa-regular-400.3ccdbd3d093918cb.woff2">
+      <publishTime>09/27/2024 22:19:52</publishTime>
+    </File>
+    <File Include="ClientApp/dist/fa-regular-400.81482cd4d93fbfd4.ttf">
+      <publishTime>09/27/2024 22:19:52</publishTime>
+    </File>
+    <File Include="ClientApp/dist/fa-solid-900.0b0cc8a6df2a4fc7.woff2">
+      <publishTime>09/27/2024 22:19:52</publishTime>
+    </File>
+    <File Include="ClientApp/dist/fa-solid-900.69d3141ae4b2f721.ttf">
+      <publishTime>09/27/2024 22:19:52</publishTime>
+    </File>
+    <File Include="ClientApp/dist/fa-v4compatibility.0e21f5b1dff572c4.woff2">
+      <publishTime>09/27/2024 22:19:52</publishTime>
+    </File>
+    <File Include="ClientApp/dist/fa-v4compatibility.2c070fd29a39f685.ttf">
+      <publishTime>09/27/2024 22:19:52</publishTime>
+    </File>
+    <File Include="ClientApp/dist/index.html">
+      <publishTime>09/27/2024 22:19:52</publishTime>
+    </File>
+    <File Include="ClientApp/dist/layers-2x.9859cd1231006a4a.png">
+      <publishTime>09/27/2024 22:19:52</publishTime>
+    </File>
+    <File Include="ClientApp/dist/layers.ef6db8722c2c3f9a.png">
+      <publishTime>09/27/2024 22:19:52</publishTime>
+    </File>
+    <File Include="ClientApp/dist/main.54e8cd77e9436410.js">
+      <publishTime>09/27/2024 22:19:52</publishTime>
+    </File>
+    <File Include="ClientApp/dist/marker-icon.d577052aa271e13f.png">
+      <publishTime>09/27/2024 22:19:52</publishTime>
+    </File>
+    <File Include="ClientApp/dist/polyfills.55a0fb85c2c52e39.js">
+      <publishTime>09/27/2024 22:19:52</publishTime>
+    </File>
+    <File Include="ClientApp/dist/runtime.660f29be0b1a2a1e.js">
+      <publishTime>09/27/2024 22:19:52</publishTime>
+    </File>
+    <File Include="ClientApp/dist/scripts.0dd6f720b8f1f08b.js">
+      <publishTime>09/27/2024 22:19:52</publishTime>
+    </File>
+    <File Include="ClientApp/dist/styles.0c5a01e4a8130e20.css">
+      <publishTime>09/27/2024 22:19:52</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
