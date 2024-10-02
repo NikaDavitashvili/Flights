@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eJqit6jhrn4dmqAb206BZXEEdqr7K7cmUyL86oeCh3XjLmKA11M3VyNBA4Aq7+1Kf4x+T8tRWrEwkhErGo9tqw==",
+  "dgSpecHash": "B+kAkBZl6JmEI34CywEdIyBr1dj9xz2nPsKzS0k1CaPkxuHReUTIasjWVfDYELeWAe94Gm4yIns6jkuItdcYGA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\Source\\Repos\\NikaDavitashvili\\Flights\\FinalProject\\FinalProject.csproj",
+  "projectFilePath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject\\FinalProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\awssdk.core\\3.7.400.27\\awssdk.core.3.7.400.27.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\awssdk.simpleemail\\3.7.401.17\\awssdk.simpleemail.3.7.401.17.nupkg.sha512",
