@@ -28,6 +28,70 @@ public class PassengerRepository : IPassengerRepository
         return result;
     }
 
+    public async Task<EmailDTO> FindPassengerByEmail(string passengerEmail)
+    {
+        var parameters = new Dictionary<string, object>
+        {
+            { "Email", passengerEmail }
+        };
+
+        var query = @"
+        SELECT TOP (1) [Email]
+        FROM [Flights].[dbo].[Passengers]
+        WHERE Email = @Email";
+
+        string errorMessage;
+        DataTable dt = DB.Select(query, parameters, out errorMessage);
+
+        if (errorMessage != null)
+        {
+            throw new Exception(errorMessage);
+        }
+
+        if (dt == null || dt.Rows.Count == 0)
+        {
+            return null;
+        }
+
+        var row = dt.Rows[0];
+
+        return new EmailDTO(
+            row["Email"].ToString()
+        );
+    }
+
+    public async Task<UsernameDTO> FindPassengerByUsername(string passengerUsername)
+    {
+        var parameters = new Dictionary<string, object>
+        {
+            { "UserName", passengerUsername }
+        };
+
+        var query = @"
+        SELECT TOP (1) [UserName]
+        FROM [Flights].[dbo].[Passengers]
+        WHERE UserName = @UserName";
+
+        string errorMessage;
+        DataTable dt = DB.Select(query, parameters, out errorMessage);
+
+        if (errorMessage != null)
+        {
+            throw new Exception(errorMessage);
+        }
+
+        if (dt == null || dt.Rows.Count == 0)
+        {
+            return null;
+        }
+
+        var row = dt.Rows[0];
+
+        return new UsernameDTO(
+            row["UserName"].ToString()
+        );
+    }
+
     public async Task<PassengerDTO> GetPassengerByEmailAndPassword(string email, string passwordHash)
     {
         var parameters = new Dictionary<string, object>

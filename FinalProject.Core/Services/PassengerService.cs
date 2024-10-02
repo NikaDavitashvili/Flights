@@ -16,6 +16,16 @@ public class PassengerService : IPassengerService
 
     public async Task Register(NewPassengerDTO dto)
     {
+        var existingEmail = await _passengerRepository.FindPassengerByEmail(dto.Email);
+        var existingUsername = await _passengerRepository.FindPassengerByUsername(dto.UserName);
+
+            if (existingEmail != null && existingUsername != null)
+            throw new Exception("This email and username is already registered!");
+        if (existingEmail != null)
+            throw new Exception("This email is already registered!");
+        if (existingUsername != null)
+            throw new Exception("This username is already registered!");
+
         var passwordHash = _helper.PasswordHash(dto.Password);
         var gender = dto.Gender ? "Female" : "Male";
         int packetId = 1;

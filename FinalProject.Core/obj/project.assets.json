@@ -1299,9 +1299,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Core\\FinalProject.Core.csproj",
+      "projectUniqueName": "C:\\Users\\user\\Source\\Repos\\NikaDavitashvili\\Flights\\FinalProject.Core\\FinalProject.Core.csproj",
       "projectName": "FinalProject.Core",
-      "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Core\\FinalProject.Core.csproj",
+      "projectPath": "C:\\Users\\user\\Source\\Repos\\NikaDavitashvili\\Flights\\FinalProject.Core\\FinalProject.Core.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Core\\obj\\",
       "projectStyle": "PackageReference",
@@ -1325,14 +1325,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
-              "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj"
+            "C:\\Users\\user\\Source\\Repos\\NikaDavitashvili\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj": {
+              "projectPath": "C:\\Users\\user\\Source\\Repos\\NikaDavitashvili\\Flights\\FinalProject.Domain\\FinalProject.Domain.csproj"
             },
-            "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj"
+            "C:\\Users\\user\\Source\\Repos\\NikaDavitashvili\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\user\\Source\\Repos\\NikaDavitashvili\\Flights\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj"
             },
-            "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj": {
-              "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj"
+            "C:\\Users\\user\\Source\\Repos\\NikaDavitashvili\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj": {
+              "projectPath": "C:\\Users\\user\\Source\\Repos\\NikaDavitashvili\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj"
             }
           }
         }

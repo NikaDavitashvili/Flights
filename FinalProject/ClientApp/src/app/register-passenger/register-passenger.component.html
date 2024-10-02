@@ -13,6 +13,9 @@
 <form [formGroup]="form">
   <div class="container d-grid gap-3" style="max-width: 700px;">
 
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
 
     <div class="d-grid gap-3">
       <div class="form-floating">
@@ -71,9 +74,14 @@
               <i [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword" class="fa"></i>
             </button>
           </label>
-          <div class="invalid-feedback d-block" *ngIf="form.controls.password.invalid && (form.controls.password.dirty || form.controls.password.touched)">
-            <div *ngIf="form.controls.password.errors">
-              Password is invalid
+          <div class="invalid-feedback d-block" *ngIf="form.controls.password.invalid && (form.controls.password.dirty || form.controls.password.touched)" style="margin: 0; padding: 0;">
+            <div *ngIf="form.controls.password.errors?.required">Password is required</div>
+            <div *ngIf="form.controls.password.errors?.minlength">Password must be at least 5 characters long</div>
+            <div *ngIf="form.controls.password.errors?.maxlength">Password cannot exceed 25 characters</div>
+            <div *ngIf="form.controls.password.errors && form.controls.password.errors.passwordStrength">
+              <div *ngFor="let error of form.controls.password.errors.passwordStrength.split(', ')">
+                {{ error }}
+              </div>
             </div>
           </div>
         </div>

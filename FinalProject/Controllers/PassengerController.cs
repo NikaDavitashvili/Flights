@@ -21,6 +21,7 @@ public class PassengerController : ControllerBase
     [HttpPost]
     [ProducesResponseType(201)]
     [ProducesResponseType(400)]
+    [ProducesResponseType(409)]
     [ProducesResponseType(500)]
     public async Task<IActionResult> Register(NewPassengerDTO dto)
     {
@@ -38,14 +39,28 @@ public class PassengerController : ControllerBase
             userId = _userContext.UserId;
             email = _userContext.Email;
         }
-       
 
-        await _passengerService.Register(dto);
+        try
+        {
+            await _passengerService.Register(dto);
+        }
+        catch (Exception ex)
+        {
+            if (ex.Message == "This email and username is already registered!" ||
+                ex.Message == "This email is already registered!" ||
+                ex.Message == "This username is already registered!")
+            {
+                return Conflict(new { message = ex.Message });
+            }
+            return StatusCode(500, new { message = "Registration failed!" });
+        }
+
         _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
         _httpContextAccessor.HttpContext?.Items.Add("Email", email);
         _httpContextAccessor.HttpContext?.Items.Add("Action", $"Register User - {dto.Email}");
         return Ok();
     }
+
 
     [HttpPost("{email}&{password}")]
     public async Task<ActionResult<UserDTO>> Login(string email, string password)
