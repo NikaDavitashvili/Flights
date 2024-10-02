@@ -68,3 +68,5 @@ C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject\obj\Debug\net8.
 C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject\obj\Debug\net8.0\FinalProject.pdb
 C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject\obj\Debug\net8.0\FinalProject.genruntimeconfig.cache
 C:\Users\user\source\repos\NikaDavitashvili\Flights\FinalProject\obj\Debug\net8.0\ref\FinalProject.dll
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject\bin\Debug\net8.0\AWSSDK.Core.dll
+C:\Users\user\Source\Repos\NikaDavitashvili\Flights\FinalProject\bin\Debug\net8.0\AWSSDK.SimpleEmail.dll

@@ -18,6 +18,9 @@ import { AuthService } from './auth/auth.service';
 import { LoginPassengerComponent } from './login-passenger/login-passenger.component';
 import { LogoutPassengerComponent } from './logout-passenger/logout-passenger.component';
 import { PacketComponent } from './packet/packet.component';
+import { NotificationComponent } from './notification/notification.component';
+
+
 
 
 @NgModule({
@@ -29,6 +32,7 @@ import { PacketComponent } from './packet/packet.component';
     SearchFlightsComponent,
     BookFlightComponent,
     RegisterPassengerComponent,
+    NotificationComponent,
     LoginPassengerComponent,
     LogoutPassengerComponent,
     MyBookingsComponent,

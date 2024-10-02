@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Email Verified";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 2.5em;
+            margin: 0 0 20px;
+        }
+
+        p {
+            color: #555555;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            margin-top: 20px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn:hover {
+                background-color: #45a049;
+            }
+
+        .logo {
+            max-width: 100px;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            font-size: 0.9em;
+            color: #888888;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://yourlogo.com/logo.png" alt="SkyConnect Logo" class="logo">
+        <h1>Email Verified Successfully!</h1>
+        <p>Thank you for verifying your email. You can now log in and start exploring.</p>
+        <a href="/login-passenger" class="btn">Log In Now</a>
+        <footer>&copy; 2024 SkyConnect. All rights reserved.</footer>
+    </div>
+</body>
+</html>

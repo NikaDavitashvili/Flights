@@ -5,5 +5,6 @@ public record UserDTO(
     string UserName,
     int PacketId,
     int PurchasePercent,
-    int CancelPercent
+    int CancelPercent,
+    bool IsVerified
     );

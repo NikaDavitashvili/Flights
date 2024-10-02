@@ -8,4 +8,5 @@ public record PassengerDTO(
     string Gender,
     int PacketID,
     int PurchasePercent,
-    int CancelPercent);
+    int CancelPercent,
+    bool IsVerified);

@@ -6,6 +6,67 @@ using System.Data;
 namespace FinalProject.Infrastructure.Repositories;
 public class PassengerRepository : IPassengerRepository
 {
+    public async Task StoreEmailVerificationToken(string token, string email, DateTime expiryDate)
+    {
+        var parameters = new Dictionary<string, object>
+        {
+            { "Token", token },
+            { "Email", email },
+            { "ExpiryDate", expiryDate }
+        };
+
+        var query = @"
+        INSERT INTO EmailVerificationTokens (Token, Email, ExpiryDate)
+        VALUES (@Token, @Email, @ExpiryDate)";
+
+        DB.Run(query, parameters);
+
+        await Task.CompletedTask;
+    }
+
+    public async Task<string> GetEmailByVerificationToken(string token)
+    {
+        var parameters = new Dictionary<string, object>
+        {
+            { "Token", token }
+        };
+
+        var query = @"
+        SELECT Email
+        FROM EmailVerificationTokens
+        WHERE Token = @Token AND ExpiryDate > GETDATE()";  // Ensure token hasn't expired
+
+        string errorMessage;
+        DataTable dt = DB.Select(query, parameters, out errorMessage);
+
+        if (!string.IsNullOrEmpty(errorMessage))
+        {
+            throw new Exception(errorMessage);
+        }
+
+        if (dt == null || dt.Rows.Count == 0)
+        {
+            return null;
+        }
+
+        return dt.Rows[0]["Email"].ToString();
+    }
+
+    public async Task RemoveEmailVerificationToken(string token)
+    {
+        var parameters = new Dictionary<string, object>
+        {
+            { "Token", token }
+        };
+
+        var query = @"
+        DELETE FROM EmailVerificationTokens
+        WHERE Token = @Token";
+
+        DB.Run(query, parameters);
+
+        await Task.CompletedTask;
+    }
     public async Task<Dictionary<int, string>> AddPassenger(PassengerDTO passenger)
     {
         var parameters = new Dictionary<string, object>
@@ -16,14 +77,17 @@ public class PassengerRepository : IPassengerRepository
             { "FirstName", passenger.FirstName },
             { "LastName", passenger.LastName },
             { "Gender", passenger.Gender },
-            { "PacketID", passenger.PacketID }
+            { "PacketID", passenger.PacketID },
+            { "IsVerified", passenger.IsVerified },
         };
 
         var query = @"
-        INSERT INTO Passengers (Email, PasswordHash, UserName, FirstName, LastName, Gender, PacketID)
-        VALUES (@Email, @PasswordHash, @UserName, @FirstName, @LastName, @Gender, @PacketID)";
+        INSERT INTO Passengers (Email, PasswordHash, UserName, FirstName, LastName, Gender, PacketID, IsVerified)
+        VALUES (@Email, @PasswordHash, @UserName, @FirstName, @LastName, @Gender, @PacketID, @IsVerified)";
 
         Dictionary<int, string> result = DB.Run(query, parameters);
+
+        await Task.CompletedTask;
 
         return result;
     }
@@ -54,6 +118,8 @@ public class PassengerRepository : IPassengerRepository
         }
 
         var row = dt.Rows[0];
+
+        await Task.CompletedTask;
 
         return new EmailDTO(
             row["Email"].ToString()
@@ -87,6 +153,8 @@ public class PassengerRepository : IPassengerRepository
 
         var row = dt.Rows[0];
 
+        await Task.CompletedTask;
+
         return new UsernameDTO(
             row["UserName"].ToString()
         );
@@ -101,7 +169,7 @@ public class PassengerRepository : IPassengerRepository
         };
 
         var query = @"
-            SELECT Email, PasswordHash, UserName, FirstName, LastName, Gender, PacketID, PurchasePercent, CancelPercent
+            SELECT Email, PasswordHash, UserName, FirstName, LastName, Gender, PacketID, PurchasePercent, CancelPercent, IsVerified
             FROM Passengers psg
             INNER JOIN Packets pck on psg.PacketID = pck.Id
             WHERE Email = @Email AND PasswordHash = @PasswordHash";
@@ -110,16 +178,14 @@ public class PassengerRepository : IPassengerRepository
         DataTable dt = DB.Select(query, parameters, out errorMessage);
 
         if (errorMessage != null)
-        {
             throw new Exception(errorMessage);
-        }
 
         if (dt == null || dt.Rows.Count == 0)
-        {
             return null;
-        }
 
         var row = dt.Rows[0];
+
+        await Task.CompletedTask;
 
         return new PassengerDTO(
             row["Email"].ToString(),
@@ -130,7 +196,26 @@ public class PassengerRepository : IPassengerRepository
             row["Gender"].ToString(),
             Convert.ToInt32(row["PacketID"]),
             Convert.ToInt32(row["PurchasePercent"]),
-            Convert.ToInt32(row["CancelPercent"])
+            Convert.ToInt32(row["CancelPercent"]),
+            (bool)row["IsVerified"]
         );
+    }
+
+    public async Task VerifyPassenger(string passengerEmail)
+    {
+        var parameters = new Dictionary<string, object>
+        {
+            { "Email", passengerEmail },
+            { "IsVerified", true }
+        };
+
+        var query = @"
+        UPDATE Passengers
+        SET IsVerified = @IsVerified
+        WHERE Email = @Email";
+
+        DB.Run(query, parameters);
+
+        await Task.CompletedTask;
     }
 }

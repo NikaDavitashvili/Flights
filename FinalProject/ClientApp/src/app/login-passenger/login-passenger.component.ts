@@ -13,6 +13,8 @@ export class LoginPassengerComponent implements OnInit {
 
   errorMessage: string | null = null;
   showPassword: boolean = false;
+  notificationMessage: string = '';
+  notificationType: 'success' | 'error' | 'info' | 'warning' = 'info';
 
   constructor(
     private fb: FormBuilder,
@@ -30,6 +32,17 @@ export class LoginPassengerComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params['message']) {
+        this.notificationMessage = params['message']; // Set message if available
+        this.notificationType = 'success';
+        // Hide the message after 5 seconds
+        setTimeout(() => {
+          this.notificationMessage = ''; // Set to empty string instead of null
+        }, 5000);
+      }
+    });
+
     sessionStorage.removeItem("SeasonName");
 
     this.activatedRoute.params.subscribe(p => this.requestedUrl = p['requestedUrl']);
@@ -48,6 +61,9 @@ export class LoginPassengerComponent implements OnInit {
       error => {
         if (error.status === 404) {
           this.errorMessage = 'Invalid email or password.';
+        } else if (error.status === 401) {
+          // Handle the case where the user is not verified
+          this.errorMessage = error.error.message || 'Please verify your email before logging in.';
         } else {
           this.errorMessage = 'An error occurred. Please try again later.';
         }

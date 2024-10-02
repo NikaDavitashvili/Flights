@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "cHPUzmWZdJvNFrklh89oy50UUmKmp28kYiSZhUq8FJFEBYrBeAuFyJ3FmYKjUEKBUXOAi6LADd3CRu0Vt4Hh8Q==",
+  "dgSpecHash": "eJqit6jhrn4dmqAb206BZXEEdqr7K7cmUyL86oeCh3XjLmKA11M3VyNBA4Aq7+1Kf4x+T8tRWrEwkhErGo9tqw==",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\Source\\Repos\\NikaDavitashvili\\Flights\\FinalProject\\FinalProject.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\awssdk.core\\3.7.400.27\\awssdk.core.3.7.400.27.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\awssdk.simpleemail\\3.7.401.17\\awssdk.simpleemail.3.7.401.17.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\fluentvalidation\\11.10.0\\fluentvalidation.11.10.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\fontawesome\\4.7.0\\fontawesome.4.7.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\leaflet\\0.7.3\\leaflet.0.7.3.nupkg.sha512",

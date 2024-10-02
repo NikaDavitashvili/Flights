@@ -3,7 +3,8 @@ import { PassengerService } from './../api/services/passenger.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { passwordStrengthValidator } from './password-strength.validator'; // Import custom validator
+import { passwordStrengthValidator } from './password-strength.validator';
+import { noSpacesValidator } from './no-space.validator';
 
 @Component({
   selector: 'app-register-passenger',
@@ -23,20 +24,42 @@ export class RegisterPassengerComponent implements OnInit {
   errorMessage: string | null = null;
 
   form = this.fb.group({
-    userName: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
-    firstName: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(35)])],
-    lastName: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(35)])],
-    email: ['', Validators.email],
+    userName: ['', Validators.compose([
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(50),
+      noSpacesValidator() // Apply custom validator to userName
+    ])],
+    firstName: ['', Validators.compose([
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(35),
+      noSpacesValidator() // Apply custom validator to firstName
+    ])],
+    lastName: ['', Validators.compose([
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(35),
+      noSpacesValidator() // Apply custom validator to lastName
+    ])],
+    email: ['', Validators.compose([
+      Validators.required,
+      Validators.email,
+      noSpacesValidator() // Apply custom validator to email
+    ])],
     password: ['', Validators.compose([
       Validators.required,
       Validators.minLength(5),
       Validators.maxLength(25),
-      passwordStrengthValidator  // Apply the custom validator here
+      passwordStrengthValidator,
+      noSpacesValidator() // Apply the noSpacesValidator here
     ])],
-    gender: ['', Validators.required],
-    packetid: [1],
-    purchasePercent: [0],
-    cancelPercent: [0],
+    gender: ['', Validators.compose([
+      Validators.required
+    ])],
+    packetid: [1],  // Assuming no validation required for packetid
+    purchasePercent: [0], // Assuming no validation required for purchasePercent
+    cancelPercent: [0], // Assuming no validation required for cancelPercent
   });
 
   ngOnInit(): void {
@@ -48,7 +71,9 @@ export class RegisterPassengerComponent implements OnInit {
 
     this.passengerService.registerPassenger({ body: this.form.value })
       .subscribe(
-        () => this.login(),
+        () => {
+          this.router.navigate(['/login-passenger'], { queryParams: { message: 'Registration successful! Please check your email to verify your account.' } });
+        },
         error => {
           if (error.status === 409) {
             this.errorMessage = error.error?.message || error.message || "Unknown error";
@@ -58,13 +83,6 @@ export class RegisterPassengerComponent implements OnInit {
           }
         }
       );
-  }
-
-  private login = () => {
-    const { email, password, userName, packetId, purchasePercent, cancelPercent } = this.form.value;
-    const user = { email, password, username: userName, packetid: packetId, purchasepercent: purchasePercent, cancelpercent: cancelPercent };
-    this.authService.loginUser(user)
-    this.router.navigate([this.requestedUrl ?? '/search-flights']);
   }
 
   togglePasswordVisibility(): void {
