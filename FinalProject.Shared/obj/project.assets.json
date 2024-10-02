@@ -443,9 +443,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\Source\\Repos\\NikaDavitashvili\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj",
+      "projectUniqueName": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj",
       "projectName": "FinalProject.Shared",
-      "projectPath": "C:\\Users\\user\\Source\\Repos\\NikaDavitashvili\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj",
+      "projectPath": "C:\\Users\\user\\source\\repos\\NikaDavitashvili\\Flights\\FinalProject.Shared\\FinalProject.Shared.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\user\\Source\\Repos\\NikaDavitashvili\\Flights\\FinalProject.Shared\\obj\\",
       "projectStyle": "PackageReference",
