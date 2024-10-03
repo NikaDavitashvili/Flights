@@ -12,6 +12,7 @@
   transition: opacity 0.5s ease-in-out;
 }
 
+
   .notification.success {
     background-color: #4caf50;
   }

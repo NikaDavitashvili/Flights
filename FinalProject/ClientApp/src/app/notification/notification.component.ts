@@ -5,6 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.css']
 })
+
 export class NotificationComponent implements OnInit {
 
   @Input() message: string = '';

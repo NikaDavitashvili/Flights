@@ -6,3 +6,4 @@ export function noSpacesValidator(): ValidatorFn {
     return hasSpaces ? { noSpaces: true } : null;
   };
 }
+

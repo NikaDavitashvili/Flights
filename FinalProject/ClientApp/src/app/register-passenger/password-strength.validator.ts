@@ -28,3 +28,4 @@ export function passwordStrengthValidator(control: AbstractControl): ValidationE
 
   return null;  // Return null if the password is valid
 }
+
