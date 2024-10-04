@@ -11,14 +11,16 @@ public class PassengerService : IPassengerService
 {
     private readonly IPassengerRepository _passengerRepository;
     private readonly IHelper _helper;
+    private readonly IAmazonSimpleEmailService _sesClient;
 
     // For simplicity, store tokens in memory, but you should store them in the database
     private static Dictionary<string, string> _emailVerificationTokens = new Dictionary<string, string>();
 
-    public PassengerService(IPassengerRepository passengerRepository, IHelper helper)
+    public PassengerService(IPassengerRepository passengerRepository, IHelper helper, IAmazonSimpleEmailService sesClient)
     {
         _passengerRepository = passengerRepository;
         _helper = helper;
+        _sesClient = sesClient;
     }
 
     public async Task Register(NewPassengerDTO dto)
@@ -96,10 +98,6 @@ public class PassengerService : IPassengerService
     // Send verification email (this is a mock, replace with actual email sending logic)
     public async Task SendVerificationEmail(string email, string userName, string verificationUrl)
     {
-        var credentials = new BasicAWSCredentials("AKIAYEKP52OWFM437AOL", "ikgnhixZp8MmcFkrhdn2Kaz9Af+X4sdrRJbzgNO9");
-        var client = new AmazonSimpleEmailServiceClient(credentials, RegionEndpoint.EUNorth1); // Set your region
-
-        // Create the email request
         var sendRequest = new SendEmailRequest
         {
             Source = "skyconnect463@gmail.com",
@@ -109,7 +107,7 @@ public class PassengerService : IPassengerService
             },
             Message = new Message
             {
-                Subject = new Content($"Email Verification for '{userName}'"),
+                Subject = new Content($"Email Verification for {userName}"),
                 Body = new Body
                 {
                     Html = new Content
@@ -128,22 +126,24 @@ public class PassengerService : IPassengerService
 
         try
         {
-            // Send the email
-            var response = await client.SendEmailAsync(sendRequest);
+            // Attempt to send the email
+            var response = await _sesClient.SendEmailAsync(sendRequest);
+            Console.WriteLine($"Email sent! MessageId: {response.MessageId}");
         }
         catch (MessageRejectedException ex)
         {
-            // Handle message rejected exception (invalid email, etc.)
-            throw new MessageRejectedException("Email was rejected. Error message: " + ex.Message);
+            Console.WriteLine($"Email was rejected: {ex.Message}");
+            throw;
         }
         catch (AmazonSimpleEmailServiceException ex)
         {
-            // General SES errors (e.g., access denied, incorrect region, etc.)
-            throw new AmazonSimpleEmailServiceException($"Error sending email. StatusCode: {ex.StatusCode}, Message: {ex.Message}");
+            Console.WriteLine($"AWS SES Error: {ex.Message}, StatusCode: {ex.StatusCode}");
+            throw;
         }
         catch (Exception ex)
         {
-            throw new Exception("An error occurred when sending the email: " + ex.Message);
+            Console.WriteLine($"Unexpected error: {ex.Message}");
+            throw;
         }
     }
 
@@ -175,11 +175,11 @@ public class PassengerService : IPassengerService
     // Helper method to generate a random token (this could be replaced with JWT if needed)
     private string GenerateRandomToken()
     {
-        using (var cryptoProvider = new RNGCryptoServiceProvider())
+        var tokenBytes = new byte[64];
+        using (var rng = RandomNumberGenerator.Create())
         {
-            byte[] tokenBytes = new byte[64];
-            cryptoProvider.GetBytes(tokenBytes);
-            return Convert.ToBase64String(tokenBytes);
+            rng.GetBytes(tokenBytes);
         }
+        return Convert.ToBase64String(tokenBytes);
     }
 }

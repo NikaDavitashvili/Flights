@@ -7,6 +7,8 @@ using FinalProject.Core.Common;
 using Credo.Core.Shared.Middleware;
 using Serilog;
 using FinalProject.Domain.Common;
+using Amazon.SimpleEmail;
+using Amazon;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +31,8 @@ builder.Host.UseSerilog((ctx, lc) => lc.ReadFrom.Configuration(ctx.Configuration
     {
         builder.AddEnvironmentVariables();
     });
+
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -55,6 +59,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // Register services
+builder.Services.AddSingleton<IAmazonSimpleEmailService>(sp =>
+    new AmazonSimpleEmailServiceClient(RegionEndpoint.EUNorth1));
 builder.Services.Configure<AviationStackSettings>(builder.Configuration.GetSection("AviationStack"));
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IFlightRepository, FlightRepository>();
