@@ -8,7 +8,7 @@ public class Configuration
     public static readonly ConnectionString ConnectionStrings = new ConnectionString();
     public static readonly FlightsSchedulerSettings FlightsSchedulerSettings = new FlightsSchedulerSettings();
     public static readonly AviationStackAPISettings AviationStackAPISettings = new AviationStackAPISettings();
-    public static readonly AWSSettings EmailSecretKeySettings = new AWSSettings();
+    //public static readonly AWSSettings EmailSecretKeySettings = new AWSSettings();
 }
 public class ConnectionString
 {
@@ -22,9 +22,9 @@ public class AviationStackAPISettings
 {
     public string AccessKey = Configuration.Data["AviationStackAPISettings"]?["AccessKey"]?.ToString() ?? throw new Exception("Error! Configuration empty AviationStackAPISettings 'AccessKey'!");
 }
-public class AWSSettings
-{
-    public string AccessKey = Configuration.Data["AWSSettings"]?["AccessKeyId"]?.ToString() ?? throw new Exception("Error! Configuration empty AWSSettings 'AccessKeyId'!");
-    public string SecretAccessKey = Configuration.Data["AWSSettings"]?["SecretAccessKey"]?.ToString() ?? throw new Exception("Error! Configuration empty AWSSettings 'SecretAccessKey'!");
-    public string Region = Configuration.Data["AWSSettings"]?["Region"]?.ToString() ?? throw new Exception("Error! Configuration empty AWSSettings 'Region'!");
-}
+//public class AWSSettings
+//{
+//    public string AccessKey = Configuration.Data["AWSSettings"]?["AccessKeyId"]?.ToString() ?? throw new Exception("Error! Configuration empty AWSSettings 'AccessKeyId'!");
+//    public string SecretAccessKey = Configuration.Data["AWSSettings"]?["SecretAccessKey"]?.ToString() ?? throw new Exception("Error! Configuration empty AWSSettings 'SecretAccessKey'!");
+//    public string Region = Configuration.Data["AWSSettings"]?["Region"]?.ToString() ?? throw new Exception("Error! Configuration empty AWSSettings 'Region'!");
+//}

@@ -96,7 +96,7 @@ public class PassengerService : IPassengerService
     // Send verification email (this is a mock, replace with actual email sending logic)
     public async Task SendVerificationEmail(string email, string userName, string verificationUrl)
     {
-        var credentials = new BasicAWSCredentials(Configuration.EmailSecretKeySettings.AccessKey, Configuration.EmailSecretKeySettings.SecretAccessKey);
+        var credentials = new BasicAWSCredentials("AKIAYEKP52OWFM437AOL", "ikgnhixZp8MmcFkrhdn2Kaz9Af+X4sdrRJbzgNO9");
         var client = new AmazonSimpleEmailServiceClient(credentials, RegionEndpoint.EUNorth1); // Set your region
 
         // Create the email request
