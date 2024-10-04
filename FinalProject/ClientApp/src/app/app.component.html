@@ -1,39 +1,78 @@
 <head>
-  <script>(function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:5149731,hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');</script>
+  <script>
+    (function (h, o, t, j, a, r) {
+      h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+      h._hjSettings = { hjid: 5149731, hjsv: 6 };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script'); r.async = 1;
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  </script>
 </head>
 
 <body>
   <app-nav-menu></app-nav-menu>
-  <header class="mb-5 header"></header>
+
+  <div [ngClass]="{'hidden': isMapPage()}" class="slider-container" style="margin-bottom:2em;">
+    <!-- Left arrow -->
+    <span class="prev" (click)="moveSlides(-1)">&#10094;</span>
+
+    <!-- Images -->
+    <div class="slider-images">
+      <img src="/assets/images/PLANE1.png" class="slide active" alt="Plane Image 1">
+      <img src="/assets/images/plane.jpg" class="slide" alt="Plane Image 2">
+    </div>
+
+    <!-- Right arrow -->
+    <span class="next" (click)="moveSlides(1)">&#10095;</span>
+  </div>
+
+
+
   <div class="container">
     <router-outlet></router-outlet>
   </div>
-  <br /><br /><br /><br /><br /><br /><br /><br /><br />
-  <footer class="pt-3 footer  bg-dark text-light text-center mt-5" style="margin-top: 62px;">
 
+  <footer class="pt-3 footer bg-dark text-light text-center mt-5">
     <div class="pt-5">
-      <a href="/"><i class="ms-3 fa-lg fab fa-linkedin-in float-lg"></i></a>
-      <a href="/"><i class="ms-3 fa-lg fab fa-twitter"></i></a>
-      <a href="/"><i class="ms-3 fa-lg fab fa-facebook"></i></a>
-      <a href="/"><i class="ms-3 fa-lg fab fa-google-plus"></i></a>
-      <a href="/"><i class="ms-3 fa-lg fab fa-instagram"></i></a>
-      <a href="/"><i class="ms-3 fa-lg fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/company/105203293/admin/dashboard/" target="_blank" rel="noopener noreferrer">
+        <i class="ms-3 fa-lg fab fa-linkedin-in float-lg"></i>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61566339246967" target="_blank" rel="noopener noreferrer">
+        <i class="ms-3 fa-lg fab fa-facebook"></i>
+      </a>
+      <a href="https://plus.google.com/yourprofile" target="_blank" rel="noopener noreferrer">
+        <i class="ms-3 fa-lg fab fa-google-plus"></i>
+      </a>
+      <a href="https://www.instagram.com/skyconnectontop/" target="_blank" rel="noopener noreferrer">
+        <i class="ms-3 fa-lg fab fa-instagram"></i>
+      </a>
     </div>
 
     <div class="mt-3">
-      <i class="fas ">SkyConnect </i>
+      <i class="fas">SkyConnect</i>
     </div>
 
-    <div class=" text-muted">
-      <i>© 2024 Copyright: SkyConnect </i>
+    <div class="text-muted">
+      <i>© 2024 Copyright: SkyConnect</i>
     </div>
-
   </footer>
+
+  <!-- Slider functionality using JavaScript -->
+  <script>
+    let currentSlide = 0;
+    const slides = document.getElementsByClassName('slide');
+
+    function moveSlides(direction) {
+      // Hide the current slide
+      slides[currentSlide].style.display = 'none';
+
+      // Calculate the next slide index
+      currentSlide = (currentSlide + direction + slides.length) % slides.length;
+
+      // Show the new slide
+      slides[currentSlide].style.display = 'block';
+    }
+  </script>
 </body>

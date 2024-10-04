@@ -1,41 +1,62 @@
-.header {
-  background-image: url('/assets/images/PLANE1.png');
+/* Slider container to position arrows and images */
+.slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
   height: 70vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  animation: fadeInAnimation ease 1s;
-  animation-iteration-count: 1;
+  overflow: hidden;
 }
 
-.footer {
-  height: 200px;
+/* Image styling */
+.slider-images {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-  .footer a {
-    color: white;
+  .slider-images img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.5s ease-in-out; /* Smooth transition */
   }
 
-@keyframes fadeInAnimation {
-  0% {
-    opacity: 0;
-    margin-left: -30px;
-  }
+    .slider-images img.active {
+      opacity: 1; /* Show active slide */
+    }
 
-  100% {
-    margin-left: 0px;
-    opacity: 1;
-  }
+/* Arrows styling */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%); /* Center vertically */
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  transition: 0.6s ease;
+  border-radius: 3px;
+  user-select: none;
+  z-index: 2; /* Ensure arrows appear on top of the images */
 }
 
-@media (max-width: 768px) {
-  .header {
-    height: 50vh;
-  }
+.prev {
+  left: 10px; /* Position left arrow 10px from the left */
 }
 
-@media (max-width: 480px) {
-  .header {
-    height: 40vh;
+.next {
+  right: 10px; /* Position right arrow 10px from the right */
+}
+
+  /* Hover effects on the arrows */
+  .prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
   }
+.hidden {
+  display: none;
 }
