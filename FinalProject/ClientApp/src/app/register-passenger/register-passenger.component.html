@@ -1,19 +1,12 @@
-<head>
-  <script>
-    (function (h, o, t, j, a, r) {
-      h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
-      h._hjSettings = { hjid: 5149731, hjsv: 6 };
-      a = o.getElementsByTagName('head')[0];
-      r = o.createElement('script'); r.async = 1;
-      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-      a.appendChild(r);
-    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-  </script>
-</head>
-
 <form [formGroup]="form">
   <div class="container d-grid gap-3" style="max-width: 700px;">
     <div class="d-grid gap-3">
+
+      <!-- Error Message Display -->
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
       <!-- User Name Field -->
       <div class="form-floating">
         <input formControlName="userName" placeholder="User Name" class="form-control" id="userName" type="text" />
