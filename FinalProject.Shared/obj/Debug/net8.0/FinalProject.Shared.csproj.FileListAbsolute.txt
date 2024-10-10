@@ -24,3 +24,16 @@ C:\Users\User\Documents\GitHub\Flights\FinalProject.Shared\obj\Debug\net8.0\Fina
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Shared\obj\Debug\net8.0\refint\FinalProject.Shared.dll
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Shared\obj\Debug\net8.0\FinalProject.Shared.pdb
 C:\Users\User\Documents\GitHub\Flights\FinalProject.Shared\obj\Debug\net8.0\ref\FinalProject.Shared.dll
+C:\Users\l.mamatsashvili\Documents\GitHub\Flights\FinalProject.Shared\bin\Debug\net8.0\FinalProject.Shared.deps.json
+C:\Users\l.mamatsashvili\Documents\GitHub\Flights\FinalProject.Shared\bin\Debug\net8.0\FinalProject.Shared.dll
+C:\Users\l.mamatsashvili\Documents\GitHub\Flights\FinalProject.Shared\bin\Debug\net8.0\FinalProject.Shared.pdb
+C:\Users\l.mamatsashvili\Documents\GitHub\Flights\FinalProject.Shared\obj\Debug\net8.0\FinalProject.Shared.csproj.AssemblyReference.cache
+C:\Users\l.mamatsashvili\Documents\GitHub\Flights\FinalProject.Shared\obj\Debug\net8.0\FinalProject.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\l.mamatsashvili\Documents\GitHub\Flights\FinalProject.Shared\obj\Debug\net8.0\FinalProject.Shared.AssemblyInfoInputs.cache
+C:\Users\l.mamatsashvili\Documents\GitHub\Flights\FinalProject.Shared\obj\Debug\net8.0\FinalProject.Shared.AssemblyInfo.cs
+C:\Users\l.mamatsashvili\Documents\GitHub\Flights\FinalProject.Shared\obj\Debug\net8.0\FinalProject.Shared.csproj.CoreCompileInputs.cache
+C:\Users\l.mamatsashvili\Documents\GitHub\Flights\FinalProject.Shared\obj\Debug\net8.0\FinalProject.Shared.sourcelink.json
+C:\Users\l.mamatsashvili\Documents\GitHub\Flights\FinalProject.Shared\obj\Debug\net8.0\FinalProject.Shared.dll
+C:\Users\l.mamatsashvili\Documents\GitHub\Flights\FinalProject.Shared\obj\Debug\net8.0\refint\FinalProject.Shared.dll
+C:\Users\l.mamatsashvili\Documents\GitHub\Flights\FinalProject.Shared\obj\Debug\net8.0\FinalProject.Shared.pdb
+C:\Users\l.mamatsashvili\Documents\GitHub\Flights\FinalProject.Shared\obj\Debug\net8.0\ref\FinalProject.Shared.dll
