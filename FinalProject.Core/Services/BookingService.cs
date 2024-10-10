@@ -12,7 +12,7 @@ public class BookingService : IBookingService
     {
         _bookingRepository = bookingRepository;
     }
-
+    //sad
     public async Task<IEnumerable<BookingRm>> List(string email)
     {
         var bookings = await _bookingRepository.List(email);
