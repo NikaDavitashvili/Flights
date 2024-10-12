@@ -19,7 +19,8 @@
       "es2018",
       "dom"
     ],
-    "types": [ "node", "leaflet" ]
+    "types": [ "node", "leaflet", "jest" ],
+    "typeRoots": [ "node_modules/@types" ]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -20,9 +20,6 @@ import { LogoutPassengerComponent } from './logout-passenger/logout-passenger.co
 import { PacketComponent } from './packet/packet.component';
 import { NotificationComponent } from './notification/notification.component';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,

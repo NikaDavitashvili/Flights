@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { NewPassengerDto } from '../models/new-passenger-dto';
-import { PassengerRm } from '../models/passenger-rm';
 
 @Injectable({
   providedIn: 'root',
