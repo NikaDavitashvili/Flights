@@ -144,5 +144,8 @@
       }
     }
   },
-  "defaultProject": "Flights"
+  "defaultProject": "Flights",
+  "cli": {
+    "analytics": "0fd02a2b-c2cc-4039-8ab1-5e7749c08259"
+  }
 }
