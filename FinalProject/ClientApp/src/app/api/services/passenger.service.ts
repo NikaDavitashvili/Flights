@@ -36,6 +36,10 @@ export class PassengerService extends BaseService {
    */
   registerPassenger$Response(params?: { body?: NewPassengerDto }): Observable<StrictHttpResponse<void>>
   {
+  registerPassenger$Response(params?: {
+    body?: NewPassengerDto
+  }): Observable<StrictHttpResponse<void>> {
+
     const rb = new RequestBuilder(this.rootUrl, PassengerService.RegisterPassengerPath, 'post');
 
     if (params) {
@@ -45,9 +49,14 @@ export class PassengerService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'json',  // Change to 'json' instead of 'text' to properly handle error messages
       accept: 'application/json'  // Ensure you're accepting JSON response
+      responseType: 'text',
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => r as StrictHttpResponse<void>)  // Don't modify the body, keep the original response
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
     );
   }
 
@@ -58,8 +67,13 @@ export class PassengerService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   registerPassenger(params?: { body?: NewPassengerDto }): Observable<void> {
+  registerPassenger(params?: {
+    body?: NewPassengerDto
+  }): Observable<void> {
+
     return this.registerPassenger$Response(params).pipe(
       map(() => { }) 
+      map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
@@ -81,6 +95,8 @@ export class PassengerService extends BaseService {
 
   logoutPassenger(): void {
     const url = `${this.rootUrl}/Passenger/Logout`;
+    console.log("passenger.service.ts");
+    console.log(url);
     this.http.post(url, null).subscribe(
       response => {
         console.log("Logout successful", response);

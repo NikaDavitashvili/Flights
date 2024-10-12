@@ -18,11 +18,13 @@
           <div *ngIf="!form.controls.userName.errors?.noSpaces && form.controls.userName.errors">
             User Name is invalid
           </div>
+
         </div>
       </div>
 
       <!-- First Name Field -->
       <div class="form-floating">
+
         <input formControlName="firstName" class="form-control" type="text" id="firstName" placeholder="First Name" />
         <label class="form-label" for="firstName">First Name</label>
 
@@ -37,6 +39,7 @@
 
       <!-- Last Name Field -->
       <div class="form-floating">
+
         <input formControlName="lastName" placeholder="Last Name" class="form-control" id="lastName" type="text" />
         <label class="form-label" for="lastName">Last Name</label>
 
@@ -46,6 +49,7 @@
           <div *ngIf="!form.controls.lastName.errors?.noSpaces && form.controls.lastName.errors">
             Last Name is invalid
           </div>
+
         </div>
       </div>
 
@@ -88,6 +92,7 @@
 
       <!-- Gender Field -->
       <div>
+
         <input formControlName="gender" id="gender" class="form-check-input" [value]=true type="radio" />
         <label class="ms-2 form-check-label" for="gender">Female</label>
       </div>

@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography;
+using FinalProject.Domain.Interfaces.Repositories;
 using FinalProject.Domain.Interfaces.Services;
 using FinalProject.Domain.Models.DTOs;
 using Amazon.SimpleEmail;
@@ -7,6 +8,7 @@ using Amazon.SimpleEmail.Model;
 using Amazon.Runtime;
 using FinalProject.Domain.Common;
 
+namespace FinalProject.Core.Services;
 public class PassengerService : IPassengerService
 {
     private readonly IPassengerRepository _passengerRepository;
@@ -93,7 +95,7 @@ public class PassengerService : IPassengerService
         await _passengerRepository.StoreEmailVerificationToken(token, email, expiryDate);
 
         return token;
-    }
+}
 
     // Send verification email (this is a mock, replace with actual email sending logic)
     public async Task SendVerificationEmail(string email, string userName, string verificationUrl)

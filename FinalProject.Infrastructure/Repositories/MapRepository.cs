@@ -1,5 +1,7 @@
 ﻿using FinalProject.Domain.Interfaces.Repositories;
 using FinalProject.Domain.Models.ReadModels;
+using FinalProject.Infrastructure.Common;
+using System.Data;
 using Newtonsoft.Json;
 
 namespace FinalProject.Infrastructure.Repositories;

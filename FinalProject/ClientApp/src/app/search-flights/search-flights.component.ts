@@ -63,6 +63,7 @@ export class SearchFlightsComponent implements OnInit {
   }
 
   getDiscountedPrice(price: any): number | null {
+
     if (this.currentUser && this.currentUser.packetid !== 1) {
       var discountedPrice = (price * (1 - this.currentUser.purchasepercent / 100));
       return Math.round(discountedPrice);

@@ -12,6 +12,7 @@ public class BookingService : IBookingService
     {
         _bookingRepository = bookingRepository;
     }
+
     public async Task<IEnumerable<BookingRm>> List(string email)
     {
         var bookings = await _bookingRepository.List(email);

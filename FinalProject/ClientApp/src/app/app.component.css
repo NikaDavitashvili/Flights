@@ -27,7 +27,7 @@
 
     .slider-images img.active {
       opacity: 1; /* Show active slide */
-    }
+  }
 
 /* Arrows styling */
 .prev, .next {
@@ -47,7 +47,7 @@
 
 .prev {
   left: 10px; /* Position left arrow 10px from the left */
-}
+  }
 
 .next {
   right: 10px; /* Position right arrow 10px from the right */

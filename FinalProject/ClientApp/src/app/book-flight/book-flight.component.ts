@@ -51,10 +51,18 @@ export class BookFlightComponent implements OnInit {
     }
 
     console.log("BOOKFLIGHT");
+    this.route.paramMap.subscribe(p => this.findFlight(p.get("flightId")));
     const userJson = sessionStorage.getItem('CurrentUser');
     if (userJson) {
       this.currentUser = JSON.parse(userJson);
     }
+  }
+
+  private findFlight = (flightId: string | null) => {
+    this.flightId = flightId ?? 'not passed';
+
+    this.flightService.findFlight({ id: this.flightId })
+      .subscribe(flight => this.flight = flight, this.handleError);
   }
 
   private handleError = (err: any) => {
@@ -130,10 +138,17 @@ export class BookFlightComponent implements OnInit {
     const numberOfSeats = this.form.get('number')?.value;
     console.log(numberOfSeats);
     this.flight.seatsToBuy = numberOfSeats;
+    const booking: BookDto = {
+      flightId: this.flight.id,
+      passengerEmail: this.authService.currentUser?.email || '',
+      numberOfSeats: this.form.get('number')?.value
+    };
 
     // Simulate a fake delay of 3 seconds
     setTimeout(() => {
       this.showErrorMessage = true;
+    this.flightService.bookFlight({ body: booking })
+      .subscribe(_ => this.router.navigate(['/my-booking']), this.handleError);
 
       // Optionally auto-hide the message after 5 seconds
       setTimeout(() => {

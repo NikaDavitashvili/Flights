@@ -85,6 +85,13 @@ export class RegisterPassengerComponent implements OnInit {
       );
   }
 
+  private login = () => {
+    const { email, password, userName, packetId, purchasePercent, cancelPercent } = this.form.value;
+    const user = { email, password, username: userName, packetid: packetId, purchasepercent: purchasePercent, cancelpercent: cancelPercent };
+    this.authService.loginUser(user)
+    this.router.navigate([this.requestedUrl ?? '/search-flights'])
+  }
+
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }

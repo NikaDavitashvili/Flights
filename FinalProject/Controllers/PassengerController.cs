@@ -41,11 +41,11 @@ public class PassengerController : Controller
             userId = _userContext.UserId;
             email = _userContext.Email;
         }
-
+       
         try
         {
             // Call the service to register the user with IsVerified = false
-            await _passengerService.Register(dto);
+        await _passengerService.Register(dto);
             
             string token = await _passengerService.GenerateEmailVerificationToken(dto.Email.Trim());
             string verificationUrl = Url.Action("VerifyEmail", "Passenger", new { token = token }, Request.Scheme);
@@ -134,3 +134,52 @@ public class PassengerController : Controller
         return Ok();
     }
 }
+
+
+
+/*using Microsoft.AspNetCore.Mvc;
+using FinalProject.Domain.Models.DTOs;
+using FinalProject.Domain.Interfaces.Services;
+
+namespace FinalProject.Controllers;
+[ApiController]
+[Route("[controller]")]
+public class PassengerController : ControllerBase
+{
+    private readonly IPassengerService _passengerService;
+    private readonly IHttpContextAccessor _httpContextAccessor;
+
+    public PassengerController(IPassengerService passengerService, IHttpContextAccessor httpContextAccessor)
+    {
+        _passengerService = passengerService;
+        _httpContextAccessor = httpContextAccessor;
+    }
+
+    [HttpPost]
+    [ProducesResponseType(201)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(500)]
+    public async Task<IActionResult> Register(NewPassengerDTO dto)
+    {
+        await _passengerService.Register(dto);
+        return Ok();
+    }
+
+    [HttpPost("login/{email}&{password}")]
+    public async Task<ActionResult<UserDTO>> Login(string email, string password)
+    {
+        var userDto = await _passengerService.Login(email, password);
+        _httpContextAccessor.HttpContext?.Items.Add("Email", email);
+        _httpContextAccessor.HttpContext?.Items.Add("Action", $"Login User - {email}");
+        return Ok(userDto);
+    }
+
+    [HttpPost("logout/{email}&{password}")]
+    public async Task LogOut(string email, string password)
+    {
+        _httpContextAccessor.HttpContext?.Items.Remove("UserId");
+        _httpContextAccessor.HttpContext?.Items.Remove("Email");
+        _httpContextAccessor.HttpContext?.Items.Add("Action", $"Logout User - {email}");
+    }
+}
+*/

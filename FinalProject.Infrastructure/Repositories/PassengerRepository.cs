@@ -178,10 +178,14 @@ public class PassengerRepository : IPassengerRepository
         DataTable dt = DB.Select(query, parameters, out errorMessage);
 
         if (errorMessage != null)
+        {
             throw new Exception(errorMessage);
+        }
 
         if (dt == null || dt.Rows.Count == 0)
+        {
             return null;
+        }
 
         var row = dt.Rows[0];
 

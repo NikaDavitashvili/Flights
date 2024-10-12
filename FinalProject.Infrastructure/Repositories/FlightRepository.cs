@@ -191,6 +191,7 @@ public class FlightRepository : IFlightRepository
             var flight = new FlightRm(
                 Guid.Parse(row["Id"].ToString()),
                 row["Airline"].ToString(),
+                row["Airline"].ToString(),
                 row["Price"].ToString(),
                 new TimePlaceRm(
                     row["Departure_Place"].ToString(),
@@ -207,7 +208,7 @@ public class FlightRepository : IFlightRepository
         }
 
         return flights;
-    } 
+    }
 
     public async Task<IEnumerable<FlightRm>> SearchByCurrentSeason(int m1, int m2, int m3, int currentYear)
     {
@@ -236,6 +237,7 @@ public class FlightRepository : IFlightRepository
         {
             var flight = new FlightRm(
                 Guid.Parse(row["Id"].ToString()),
+                row["Airline"].ToString(),
                 row["Airline"].ToString(),
                 row["Price"].ToString(),
                 new TimePlaceRm(
@@ -282,6 +284,7 @@ public class FlightRepository : IFlightRepository
             var flight = new FlightRm(
                 Guid.Parse(row["Id"].ToString()),
                 row["Airline"].ToString(),
+                row["Airline"].ToString(),
                 row["Price"].ToString(),
                 new TimePlaceRm(
                     row["Departure_Place"].ToString(),
@@ -321,6 +324,7 @@ public class FlightRepository : IFlightRepository
         var flight = new FlightRm(
             Guid.Parse(row["Id"].ToString()),
             row["Airline"].ToString(),
+            row["Airline"].ToString(),
             row["Price"].ToString(),
             new TimePlaceRm(
                 row["Departure_Place"].ToString(),
@@ -334,5 +338,72 @@ public class FlightRepository : IFlightRepository
         );
 
         return flight;
-    } */
+    }
+    public async Task<string> Book(BookDTO dto)
+    {
+        var dic = new Dictionary<string, object>
+        {
+            { "FlightId", dto.FlightId },
+            { "PassengerEmail", dto.PassengerEmail },
+            { "NumberOfSeats", dto.NumberOfSeats }
+        };
+
+        var query = @"
+        DECLARE @BookingId INT;
+        DECLARE @CurrentRemainingSeats INT;
+        
+        SELECT @CurrentRemainingSeats = RemainingNumberOfSeats
+        FROM Flights
+        WHERE Id = @FlightId;
+        
+        IF @CurrentRemainingSeats < @NumberOfSeats
+        BEGIN
+            THROW 50003, 'Not enough seats available for this booking.', 1;
+        END
+        
+        SELECT @BookingId = Id
+        FROM Booking
+        WHERE FlightId = @FlightId AND PassengerEmail = @PassengerEmail;
+        
+        IF @BookingId IS NOT NULL
+        BEGIN
+            DECLARE @TotalSeats INT;
+            SELECT @TotalSeats = NumberOfSeats + @NumberOfSeats
+            FROM Booking
+            WHERE Id = @BookingId;
+        
+            IF @TotalSeats > 10
+            BEGIN
+                THROW 500, 'Cannot add more than 10 seats for this booking.', 1;
+            END
+        
+            UPDATE Booking
+            SET NumberOfSeats = @TotalSeats
+            WHERE Id = @BookingId;
+        END
+        ELSE
+        BEGIN
+            IF @NumberOfSeats > 10
+            BEGIN
+                THROW 50002, 'Cannot add more than 10 seats in a single booking.', 1;
+            END
+        
+            INSERT INTO Booking (FlightId, PassengerEmail, NumberOfSeats)
+            VALUES (@FlightId, @PassengerEmail, @NumberOfSeats);
+        END
+        
+        UPDATE Flights
+        SET RemainingNumberOfSeats = RemainingNumberOfSeats - @NumberOfSeats
+        WHERE Id = @FlightId;";
+
+        DataTable dt = DB.Select(query, dic, out string errorMessage);
+
+        if (errorMessage != null)
+            return "One user can't book more than 10 tickets on one flight!";
+
+        if (dt != null && dt.Rows.Count != 0)
+            return dt.Rows[0].ItemArray[0].ToString();
+
+        return "Ok";
+    }
 }

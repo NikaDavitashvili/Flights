@@ -5,17 +5,21 @@ using FinalProject.Domain.Models.ReadModels;
 using FinalProject.Infrastructure.Common;
 using Microsoft.Extensions.DependencyInjection;
 using System.Data;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace FinalProject.Core.Services;
 public class FlightService : IFlightService
 {
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly IFlightRepository _flightRepository;
+    private readonly AviationStackSettings _aviationStackSettings;
 
     public FlightService(IServiceScopeFactory scopeFactory, IFlightRepository flightRepository)
     {
         _scopeFactory = scopeFactory;
         _flightRepository = flightRepository;
+        _aviationStackSettings = aviationStackSettings.Value;
     }
 
     public async Task<IEnumerable<FlightRm>> Search(FlightSearchParametersDTO @params)
@@ -72,7 +76,7 @@ public class FlightService : IFlightService
                 );
 
                 flights.Add(flight);
-            }
+        }
 
             return flights;
         }
@@ -82,71 +86,117 @@ public class FlightService : IFlightService
         }
     }
 
-    /* public async Task<IEnumerable<FlightRm>> SearchTEST(FlightSearchParametersDTO @params)
+
+    public async Task<IEnumerable<FlightRm>> SearchAviaSales(FlightSearchParametersDTO request)
     {
         var flightResults = new List<FlightRm>();
         try
         {
-            string accessKey = _aviationStackSettings.AccessKey;
-            string[] airlines = { "Wizz Air", "Pegasus", "LOT", "Qatar Airways", "Turkish Airlines", "American Airlines", "Lufthansa" };
-
-            foreach (var airline in airlines)
-            {
-                int page = 0;
+            var flightResults = new List<FlightRm>();
+            string accessKey = "9dfb38d7c8e19c95700bf9442199fef9";
+            int page = 0;
                 bool hasMoreData = true;
 
-                //while (hasMoreData)
+            var fromDate = request.FromDate?.ToString("yyyy-MM-dd");
+            var toDate = request.ToDate?.ToString("yyyy-MM-dd");
+            string from = "";
+            string destination = "";
+
+            if (request.From == "Kutaisi") from = "KUT";
+            if (request.Destination == "Memmingen") destination = "FMM";
+
+            string apiUrl = $"https://api.travelpayouts.com/aviasales/v3/prices_for_dates?origin={from}&destination={destination}&departure_at={fromDate}&return_at={toDate}&unique=false&sorting=price&direct=false&currency=usd&limit=30&page=1&one_way=true&token={accessKey}";
+
+            var client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                var flightsResponse = JsonConvert.DeserializeObject<ApiFlightResponse>(content);
+
+                foreach (var flight in flightsResponse.Data)
                 {
-                    string url = $"https://api.aviationstack.com/v1/flights?access_key={accessKey}&airline={airline}&flight_status=active&page={page}&limit=1";
-
-                    using (var client = new HttpClient())
-                    {
-                        var response = await client.GetStringAsync(url);
-                        var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(response);
-
-                        if (apiResponse != null && apiResponse.Data != null)
-                        {
                             foreach (var flight in apiResponse.Data)
                             {
-                                var flightRm = new FlightRm(
-                                    Guid.NewGuid(),
-                                    flight.Airline.Name,
-                                    "100",
-                                    new TimePlaceRm(flight.Departure.Airport, flight.Departure.Estimated),
-                                    new TimePlaceRm(flight.Arrival.Airport, flight.Arrival.Estimated),
-                                    flight.RemainingNumberOfSeats
-                                );
+                    var flightRm = new FlightRm(
+                        Guid.NewGuid(),
+                        flight.Airline,
+                        "https://www.aviasales.com" + flight.Link,
+                        flight.Price.ToString(),
+                        new TimePlaceRm(flight.Origin, DateTime.Parse(flight.departure_at)),
+                        new TimePlaceRm(flight.Destination, DateTime.Parse(flight.return_at)),
+                        Convert.ToInt32(flight.FlightNumber)/*,
+                        flight.Transfers,
+                        flight.Link*/
+                    );
                                 flightResults.Add(flightRm);
                             }
 
-                            hasMoreData = apiResponse.Pagination.Count > 0;
-                            page++;
-                        }
-                        else
-                        {
-                            hasMoreData = false;
-                        }
-                    }
+                    flightResults.Add(flightRm);
                 }
             }
 
-            // Save the results to a JSON file
-            var jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "flightResults.json");
-            var cacheData = new FlightCache
-            {
-                CachedTime = DateTime.Now,
-                FlightResults = flightResults
-            };
-            var jsonData = JsonConvert.SerializeObject(cacheData);
-            await File.WriteAllTextAsync(jsonFilePath, jsonData);
+            return flightResults;
         }
         catch (Exception ex)
         {
             throw new Exception($"Error occurred while searching for flights: {ex.Message}");
         }
+    }
 
-        return flightResults;
-    } */
+    //public async Task<IEnumerable<FlightRm>> SearchTEST(FlightSearchParametersDTO @params)
+    //{
+    //    var flightResults = new List<FlightRm>();
+    //    string accessKey = _aviationStackSettings.AccessKey; // Your new access key
+    //    //string[] airlines = { "Wizz Air", "Pegasus", "LOT", "Qatar Airways", "Turkish Airlines", "American Airlines", "Lufthansa" };
+    //    string[] airlines = { "Wizz Air" };
+
+    //    foreach (var airline in airlines)
+    //    {
+    //        int page = 0;
+    //        bool hasMoreData = true;
+
+    //        //while (hasMoreData)
+    //        {
+    //            // Build the API request URL with pagination
+    //            string url = $"https://api.aviationstack.com/v1/flights?access_key={accessKey}&airline={airline}&flight_status=active&page={page}&limit=1";
+
+    //            using (var client = new HttpClient())
+    //            {
+    //                var response = await client.GetStringAsync(url);
+    //                var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(response); // Assuming you create a class ApiResponse that matches the structure
+
+    //                // Check if the response contains data
+    //                if (apiResponse != null && apiResponse.Data != null)
+    //                {
+    //                    foreach (var flight in apiResponse.Data)
+    //                    {
+    //                        var flightRm = new FlightRm(
+    //                            Guid.NewGuid(), // Generate a new GUID or adapt according to your requirements
+    //                            flight.Airline.Name,
+    //                            "100",
+    //                            //flight.Price.ToString(), // Assuming price is available, adapt as needed
+    //                            new TimePlaceRm(flight.Departure.Airport, flight.Departure.Estimated),
+    //                            new TimePlaceRm(flight.Arrival.Airport, flight.Arrival.Estimated),
+    //                            flight.RemainingNumberOfSeats // Assuming this field exists, adapt as needed
+    //                        );
+    //                        flightResults.Add(flightRm);
+    //                    }
+
+    //                    hasMoreData = apiResponse.Pagination.Count > 0; // Continue if more data exists
+    //                    page++;
+    //                }
+    //                else
+    //                {
+    //                    hasMoreData = false; // Stop if no data is returned
+    //                }
+    //            }
+    //        }
+    //    }
+
+    //    return flightResults;
+    //}
 
     public async Task<IEnumerable<FlightRm>> SearchBySeason(string seasonName)
     {
@@ -195,10 +245,12 @@ public class FlightService : IFlightService
     }
 
     public async Task<List<FlightRm>> Find(string email)
+    public async Task<FlightRm> Find(Guid id)
     {
         try
         {
             return await _flightRepository.Find(email);
+            return await _flightRepository.Find(id);
         }
         catch (Exception ex)
         {
@@ -207,10 +259,12 @@ public class FlightService : IFlightService
     }
 
     public async Task<string> Book(BookDTO dto, FlightRm flight)
+    public async Task<string> Book(BookDTO dto)
     {
         try
         {
             string result = await _flightRepository.Book(dto, flight);
+            string result = await _flightRepository.Book(dto);
 
             return result;
         }
@@ -232,8 +286,11 @@ public class ApiResponse
     public List<FlightData> Data { get; set; }
 }
 
+public class ApiFlightResponse
 public class Pagination
 {
+    public bool Success { get; set; }
+    public List<FlightData> Data { get; set; }
     public int Limit { get; set; }
     public int Offset { get; set; }
     public int Count { get; set; }
@@ -263,4 +320,13 @@ public class Arrival
 {
     public string Airport { get; set; }
     public DateTime Estimated { get; set; }
+    public string Origin { get; set; }
+    public string Destination { get; set; }
+    public int Price { get; set; }
+    public string Airline { get; set; }
+    public string FlightNumber { get; set; }
+    public string departure_at { get; set; }
+    public string return_at { get; set; }
+    public int Transfers { get; set; }
+    public string Link { get; set; }
 }

@@ -155,6 +155,7 @@ export class FlightService extends BaseService {
    */
   bookFlight$Response(params?: {
     body?: FlightRm
+    body?: BookDto
   }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, FlightService.BookFlightPath, 'post');
@@ -181,6 +182,7 @@ export class FlightService extends BaseService {
    */
   bookFlight(params?: {
     body?: FlightRm,
+    body?: BookDto
   }): Observable<void> {
 
     return this.bookFlight$Response(params).pipe(

@@ -16,7 +16,7 @@ public class BookingRepository : IBookingRepository
         };
 
         var query = @"
-            SELECT
+            SELECT 
                 b.FlightId,
                 b.NumberOfSeats,
                 b.PassengerEmail
@@ -63,6 +63,28 @@ public class BookingRepository : IBookingRepository
     };
 
         var query = @"
+        DECLARE @RemainingSeats INT;
+
+        SELECT @RemainingSeats = NumberOfSeats
+        FROM Booking
+        WHERE FlightId = @FlightId AND PassengerEmail = @PassengerEmail;
+
+        IF @NumberOfSeats IS NULL OR @NumberOfSeats <= 0
+        BEGIN
+            THROW 500, 'Invalid input: Number of seats must be greater than zero.', 1;
+        END
+
+        IF @RemainingSeats IS NULL
+        BEGIN
+            THROW 500, 'Booking not found', 1;
+        END
+
+        IF @NumberOfSeats > @RemainingSeats
+        BEGIN
+            THROW 500, 'Cannot cancel more seats than booked.', 1;
+        END
+
+        IF @NumberOfSeats = @RemainingSeats
         BEGIN
             DELETE FROM Booking
             WHERE FlightId = @FlightId

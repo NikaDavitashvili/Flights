@@ -10,7 +10,7 @@ public class MapController : ControllerBase
     private readonly IMapService _mapService;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IUserContext _userContext;
-    //asd
+
     public MapController(IMapService mapService, IHttpContextAccessor httpContextAccessor, IUserContext userContext)
     {
         _mapService = mapService;
