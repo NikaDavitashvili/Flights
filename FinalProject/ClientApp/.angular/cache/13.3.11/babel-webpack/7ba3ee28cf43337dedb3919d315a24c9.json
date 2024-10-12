@@ -1,0 +1,1 @@
+{"ast":null,"code":"export function noSpacesValidator() {\n  return control => {\n    var _a;\n    const hasSpaces = (_a = control.value) === null || _a === void 0 ? void 0 : _a.includes(' ');\n    return hasSpaces ? {\n      noSpaces: true\n    } : null;\n  };\n}","map":null,"metadata":{},"sourceType":"module"}
