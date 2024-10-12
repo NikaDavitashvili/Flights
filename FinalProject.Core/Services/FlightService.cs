@@ -112,7 +112,7 @@ public class FlightService : IFlightService
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                var flightsResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
+                var flightsResponse = JsonConvert.DeserializeObject<ApiFlightResponse>(content);
 
                 foreach (var flight in flightsResponse.Data)
                 {
@@ -120,9 +120,9 @@ public class FlightService : IFlightService
                     //{
                     var flightRm = new FlightRm(
                         Guid.NewGuid(),
-                        flight.Airline.Name,
-                        "https://www.aviasales.com" + flight.Arrival.Link,
-                        flight.Arrival.Price.ToString(),
+                        flight.Airline,
+                        "https://www.aviasales.com" + flight.Link,
+                        flight.Price.ToString(),
                         new TimePlaceRm(flight.Origin, DateTime.Parse(flight.departure_at)),
                         new TimePlaceRm(flight.Destination, DateTime.Parse(flight.return_at)),
                         Convert.ToInt32(flight.FlightNumber),
@@ -286,7 +286,6 @@ public class ApiResponse
     public List<FlightData> Data { get; set; }
 }
 
-//public class ApiFlightResponse
 public class Pagination
 {
     public bool Success { get; set; }
@@ -295,14 +294,6 @@ public class Pagination
     public int Offset { get; set; }
     public int Count { get; set; }
     public int Total { get; set; }
-}
-
-public class FlightData
-{
-    public Airline Airline { get; set; }
-    public Departure Departure { get; set; }
-    public Arrival Arrival { get; set; }
-    public int RemainingNumberOfSeats { get; set; } // Assuming this field exists, adapt as needed
 }
 
 public class Airline
@@ -320,6 +311,26 @@ public class Arrival
 {
     public string Airport { get; set; }
     public DateTime Estimated { get; set; }
+    public string Origin { get; set; }
+    public string Destination { get; set; }
+    public int Price { get; set; }
+    public string Airline { get; set; }
+    public string FlightNumber { get; set; }
+    public string departure_at { get; set; }
+    public string return_at { get; set; }
+    public int Transfers { get; set; }
+    public string Link { get; set; }
+}
+
+
+public class ApiFlightResponse
+{
+    public bool Success { get; set; }
+    public List<FlightData> Data { get; set; }
+}
+
+public class FlightData
+{
     public string Origin { get; set; }
     public string Destination { get; set; }
     public int Price { get; set; }

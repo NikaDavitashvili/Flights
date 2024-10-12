@@ -80,6 +80,7 @@ public class FlightRepository : IFlightRepository
             Guid.Parse(row["Id"].ToString()),
             row["Airline"].ToString(),
             row["Price"].ToString(),
+            "Link",
             new TimePlaceRm(
                 row["Departure_Place"].ToString(),
                 DateTime.Parse(row["Departure_Time"].ToString())

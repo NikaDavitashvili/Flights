@@ -58,7 +58,7 @@ public class FlightsScheduler : BackgroundService
                         var response = await client.GetStringAsync(url);
                         var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(response);
 
-                        if (apiResponse != null && apiResponse.Data != null)
+                        /*if (apiResponse != null && apiResponse.Data != null)
                         {
                             foreach (var flight in apiResponse.Data)
                             {
@@ -80,7 +80,7 @@ public class FlightsScheduler : BackgroundService
                         else
                         {
                             hasMoreData = false;
-                        }
+                        }*/
                     }
                 }
 
@@ -115,7 +115,7 @@ public class FlightsScheduler : BackgroundService
                     var response = await client.GetStringAsync(url);
                     var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(response);
 
-                    if (apiResponse != null && apiResponse.Data != null)
+                    /*if (apiResponse != null && apiResponse.Data != null)
                     {
                         foreach (var flight in apiResponse.Data)
                         {
@@ -138,7 +138,7 @@ public class FlightsScheduler : BackgroundService
                     else
                     {
                         hasMoreData = false;
-                    }
+                    }*/
                 }
             }
 
