@@ -13,13 +13,11 @@ public class FlightService : IFlightService
 {
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly IFlightRepository _flightRepository;
-    private readonly AviationStackSettings _aviationStackSettings;
 
     public FlightService(IServiceScopeFactory scopeFactory, IFlightRepository flightRepository)
     {
         _scopeFactory = scopeFactory;
         _flightRepository = flightRepository;
-        _aviationStackSettings = aviationStackSettings.Value;
     }
 
     public async Task<IEnumerable<FlightRm>> Search(FlightSearchParametersDTO @params)
@@ -63,6 +61,7 @@ public class FlightService : IFlightService
                     Guid.Parse(row["Id"].ToString()),
                     row["Airline"].ToString(),
                     row["Price"].ToString(),
+                    "Link",
                     new TimePlaceRm(
                         row["Departure_Place"].ToString(),
                         DateTime.Parse(row["Departure_Time"].ToString())
@@ -92,10 +91,10 @@ public class FlightService : IFlightService
         var flightResults = new List<FlightRm>();
         try
         {
-            var flightResults = new List<FlightRm>();
+            //var flightResults = new List<FlightRm>();
             string accessKey = "9dfb38d7c8e19c95700bf9442199fef9";
             int page = 0;
-                bool hasMoreData = true;
+            bool hasMoreData = true;
 
             var fromDate = request.FromDate?.ToString("yyyy-MM-dd");
             var toDate = request.ToDate?.ToString("yyyy-MM-dd");
@@ -113,30 +112,30 @@ public class FlightService : IFlightService
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                var flightsResponse = JsonConvert.DeserializeObject<ApiFlightResponse>(content);
+                var flightsResponse = JsonConvert.DeserializeObject<ApiResponse>(content);
 
                 foreach (var flight in flightsResponse.Data)
                 {
-                            foreach (var flight in apiResponse.Data)
-                            {
+                    //foreach (var flight in apiResponse.Data)
+                    //{
                     var flightRm = new FlightRm(
                         Guid.NewGuid(),
-                        flight.Airline,
-                        "https://www.aviasales.com" + flight.Link,
-                        flight.Price.ToString(),
+                        flight.Airline.Name,
+                        "https://www.aviasales.com" + flight.Arrival.Link,
+                        flight.Arrival.Price.ToString(),
                         new TimePlaceRm(flight.Origin, DateTime.Parse(flight.departure_at)),
                         new TimePlaceRm(flight.Destination, DateTime.Parse(flight.return_at)),
-                        Convert.ToInt32(flight.FlightNumber)/*,
-                        flight.Transfers,
-                        flight.Link*/
+                        Convert.ToInt32(flight.FlightNumber),
+                        0
+                    /*,
+                    flight.Transfers,
+                    flight.Link*/
                     );
-                                flightResults.Add(flightRm);
-                            }
-
                     flightResults.Add(flightRm);
                 }
-            }
 
+                //flightResults.Add(flightRm);
+            }
             return flightResults;
         }
         catch (Exception ex)
@@ -245,12 +244,12 @@ public class FlightService : IFlightService
     }
 
     public async Task<List<FlightRm>> Find(string email)
-    public async Task<FlightRm> Find(Guid id)
+    //public async Task<FlightRm> Find(Guid id)
     {
         try
         {
             return await _flightRepository.Find(email);
-            return await _flightRepository.Find(id);
+            //return await _flightRepository.Find(id);
         }
         catch (Exception ex)
         {
@@ -259,12 +258,12 @@ public class FlightService : IFlightService
     }
 
     public async Task<string> Book(BookDTO dto, FlightRm flight)
-    public async Task<string> Book(BookDTO dto)
+    //public async Task<string> Book(BookDTO dto)
     {
         try
         {
             string result = await _flightRepository.Book(dto, flight);
-            string result = await _flightRepository.Book(dto);
+            //string result = await _flightRepository.Book(dto);
 
             return result;
         }
@@ -279,6 +278,7 @@ public class FlightService : IFlightService
             throw new Exception($"Error occurred while booking the flight: {ex.Message}");
         }
     }
+
 }
 public class ApiResponse
 {
@@ -286,7 +286,7 @@ public class ApiResponse
     public List<FlightData> Data { get; set; }
 }
 
-public class ApiFlightResponse
+//public class ApiFlightResponse
 public class Pagination
 {
     public bool Success { get; set; }

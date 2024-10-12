@@ -10,6 +10,6 @@ public interface IFlightService
     Task<IEnumerable<FlightRm>> SearchBySeason(string seasonName);
     Task<List<FlightRm>> Find(string email);
     Task<string> Book(BookDTO dto, FlightRm flight);
-    Task<FlightRm> Find(Guid id);
-    Task<string> Book(BookDTO dto);
+    //Task<FlightRm> Find(Guid id);
+    //Task<string> Book(BookDTO dto);
 }
