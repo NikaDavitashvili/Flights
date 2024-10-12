@@ -32,9 +32,9 @@ public class FlightRepository : IFlightRepository
             flights = JsonConvert.DeserializeObject<List<FlightRm>>(jsonData);
         }
 
-        foreach(var flight in flights!)
-            if(flight.Departure.Time.Year == currentYear)
-                if(flight.Departure.Time.Month == m1 || flight.Departure.Time.Month == m2 || flight.Departure.Time.Month == m3)
+        foreach (var flight in flights!)
+            if (flight.Departure.Time.Year == currentYear)
+                if (flight.Departure.Time.Month == m1 || flight.Departure.Time.Month == m2 || flight.Departure.Time.Month == m3)
                     result.Add(flight);
 
         return result;
@@ -52,8 +52,8 @@ public class FlightRepository : IFlightRepository
         }
 
         foreach (var flight in flights!)
-                if (flight.Departure.Time.Month == m1 || flight.Departure.Time.Month == m2 || flight.Departure.Time.Month == m3)
-                    result.Add(flight);
+            if (flight.Departure.Time.Month == m1 || flight.Departure.Time.Month == m2 || flight.Departure.Time.Month == m3)
+                result.Add(flight);
 
         return result;
     }
@@ -406,4 +406,6 @@ public class FlightRepository : IFlightRepository
 
         return "Ok";
     }
+}*/
+
 }

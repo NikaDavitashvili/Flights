@@ -2,11 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using FinalProject.Domain.Models.DTOs;
 using FinalProject.Domain.Models.ReadModels;
-using Microsoft.AspNetCore.Mvc;
-using System.Xml;
-using FinalProject.Domain.Interfaces.Services;
-using Microsoft.AspNetCore.Http;
-using System.Security.Claims;
 
 namespace FinalProject.Controllers;
 [ApiController]
@@ -53,7 +48,7 @@ public class FlightController : ControllerBase
             return discountedFlightsBySeasons;
         }
 
-        var flights = await _flightService.Search(@params);
+        //var flights = await _flightService.Search(@params);
         var flights = await _flightService.SearchAviaSales(@params);
         _httpContextAccessor.HttpContext?.Items.Add("Action", "Searching Flights");
         _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
@@ -125,7 +120,7 @@ public class FlightController : ControllerBase
     [ProducesResponseType(500)]
     [ProducesResponseType(typeof(FlightRm), 200)]
     public async Task<ActionResult<FlightRm>> Find(string email)
-    public async Task<ActionResult<FlightRm>> Find(Guid id)
+    //public async Task<ActionResult<FlightRm>> Find(Guid id)
     {
         string userId = string.Empty;
         string userEmail = string.Empty;
@@ -141,14 +136,14 @@ public class FlightController : ControllerBase
         }
 
         var flight = await _flightService.Find(email);
-        var flight = await _flightService.Find(id);
+        //var flight = await _flightService.Find(id);
         if (flight == null)
             return NotFound();
 
         _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
         _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
         _httpContextAccessor.HttpContext?.Items.Add("Action", $"Find Flight With Email - {email}");
-        _httpContextAccessor.HttpContext?.Items.Add("Action", $"Find Flight Id {id}");
+        //_httpContextAccessor.HttpContext?.Items.Add("Action", $"Find Flight Id {id}");
         return Ok(flight);
     }
 
@@ -158,7 +153,7 @@ public class FlightController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(200)]
     public async Task<IActionResult> Book(FlightRm dto)
-    public async Task<IActionResult> Book(BookDTO dto)
+    //public async Task<IActionResult> Book(BookDTO dto)
     {
         string userId = string.Empty;
         string userEmail = string.Empty;
@@ -175,14 +170,14 @@ public class FlightController : ControllerBase
 
         var bookDto = new BookDTO(Guid.NewGuid(), userEmail, (byte)dto.SeatsToBuy);
         string result = await _flightService.Book(bookDto, dto);
-        string result = await _flightService.Book(dto);
+        //string result = await _flightService.Book(dto);
         _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
         _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
         _httpContextAccessor.HttpContext?.Items.Add("Action", $"Booking a New Flight With From '{dto.Departure.Place}' To '{dto.Arrival.Place}'");
-        _httpContextAccessor.HttpContext?.Items.Add("Action", $"Booking a New Flight With Id - {dto.FlightId}");
+        //_httpContextAccessor.HttpContext?.Items.Add("Action", $"Booking a New Flight With Id - {dto.FlightId}");
         HttpContext.Session.SetString("TicketAmountErrorMessage", result);
         return Ok(dto);
         //return CreatedAtAction(nameof(Find), new { email = userEmail }, null);
-        return CreatedAtAction(nameof(Find), new { id = dto.FlightId }, null);
+        //return CreatedAtAction(nameof(Find), new { id = dto.FlightId }, null);
     }
 }

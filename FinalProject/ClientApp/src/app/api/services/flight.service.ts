@@ -154,7 +154,7 @@ export class FlightService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   bookFlight$Response(params?: {
-    body?: FlightRm
+    //body?: FlightRm
     body?: BookDto
   }): Observable<StrictHttpResponse<void>> {
 
@@ -181,7 +181,7 @@ export class FlightService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   bookFlight(params?: {
-    body?: FlightRm,
+    //body?: FlightRm,
     body?: BookDto
   }): Observable<void> {
 
