@@ -10,6 +10,7 @@ public interface IFlightRepository
     Task<IEnumerable<FlightRm>> SearchBySeason(int m1, int m2, int m3);
     Task<List<FlightRm>> Find(string email);
     Task<string> Book(BookDTO dto, FlightRm flight);
+    Task<List<string>> GetAirportIataCodes(string searchWord);
     //Task<FlightRm> Find(Guid id);
     //Task<string> Book(BookDTO dto);
 }

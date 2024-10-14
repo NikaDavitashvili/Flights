@@ -158,6 +158,62 @@ public class FlightRepository : IFlightRepository
         return "Ok";
     }
 
+    public async Task<List<string>> GetAirportIataCodes(string searchWord)
+    {
+        var airportIataCodes = new List<string>();
+
+        var dic = new Dictionary<string, object>
+        {
+            { "searchWord", searchWord }
+        };
+
+        var query = @"
+        WITH SearchResult AS (
+            -- First, try to find in Airport table
+            SELECT Code AS AirportCode, 'Airport' AS Source 
+            FROM Airport 
+            WHERE Name LIKE '%' + @searchWord + '%' AND IataType = 'airport'
+            
+            UNION ALL
+            
+            -- If not found in Airport, check City table and join back to find Airport by CityCode
+            SELECT a.Code AS AirportCode, 'City' AS Source
+            FROM City c
+            JOIN Airport a ON c.Code = a.CityCode
+            WHERE c.Name LIKE '%' + @searchWord + '%' AND a.IataType = 'airport'
+            AND NOT EXISTS (SELECT 1 FROM Airport WHERE Name LIKE '%' + @searchWord + '%' AND IataType = 'airport')
+            
+            UNION ALL
+            
+            -- If not found in City, check Country table and join back to find Airport by CountryCode
+            SELECT a.Code AS AirportCode, 'Country' AS Source
+            FROM Country co
+            JOIN Airport a ON co.Code = a.CountryCode
+            WHERE co.Name LIKE '%' + @searchWord + '%' AND a.IataType = 'airport'
+            AND NOT EXISTS (SELECT 1 FROM City c JOIN Airport a ON c.Code = a.CityCode WHERE c.Name LIKE '%' + @searchWord + '%' AND a.IataType = 'airport')
+        )
+        -- Select only the first non-null result
+        SELECT AirportCode
+        FROM SearchResult
+        WHERE AirportCode IS NOT NULL
+        ORDER BY Source;
+        ";
+
+        DataTable dt = DB.Select(query, dic, out string errorMessage);
+
+        if (errorMessage != null)
+            throw new Exception(errorMessage);
+
+        if (dt == null && dt.Rows.Count == 0)
+            throw new Exception("Airport Not Found!");
+
+        foreach (DataRow row in dt.Rows)
+            airportIataCodes.Add(row[0].ToString());
+
+        return airportIataCodes;
+    }
+
+
     /* public async Task<IEnumerable<FlightRm>> Search(FlightSearchParametersDTO @params)
     {
         var dic = new Dictionary<string, object>
