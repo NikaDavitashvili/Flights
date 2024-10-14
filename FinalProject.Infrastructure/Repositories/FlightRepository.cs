@@ -41,6 +41,7 @@ public class FlightRepository : IFlightRepository
             var flight = new FlightRm(
                 Guid.Parse(row["Id"].ToString()),
                 row["Airline"].ToString(),
+                row["Airline"].ToString(),
                 row["Price"].ToString(),
                 new TimePlaceRm(
                     row["Departure_Place"].ToString(),
@@ -87,6 +88,7 @@ public class FlightRepository : IFlightRepository
             var flight = new FlightRm(
                 Guid.Parse(row["Id"].ToString()),
                 row["Airline"].ToString(),
+                row["Airline"].ToString(),
                 row["Price"].ToString(),
                 new TimePlaceRm(
                     row["Departure_Place"].ToString(),
@@ -132,6 +134,7 @@ public class FlightRepository : IFlightRepository
             var flight = new FlightRm(
                 Guid.Parse(row["Id"].ToString()),
                 row["Airline"].ToString(),
+                row["Airline"].ToString(),
                 row["Price"].ToString(),
                 new TimePlaceRm(
                     row["Departure_Place"].ToString(),
@@ -170,6 +173,7 @@ public class FlightRepository : IFlightRepository
 
         var flight = new FlightRm(
             Guid.Parse(row["Id"].ToString()),
+            row["Airline"].ToString(),
             row["Airline"].ToString(),
             row["Price"].ToString(),
             new TimePlaceRm(

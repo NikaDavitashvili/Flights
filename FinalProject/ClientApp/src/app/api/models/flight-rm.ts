@@ -3,6 +3,7 @@
 import { TimePlaceRm } from './time-place-rm';
 export interface FlightRm {
   airline?: null | string;
+  link?: null | string;
   arrival?: TimePlaceRm;
   departure?: TimePlaceRm;
   id?: string;

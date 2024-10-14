@@ -1,6 +1,3 @@
-# Node.js dependencies
-node_modules/
-
 # Visual Studio Code settings
 .vscode/
 
@@ -22,6 +19,7 @@ dist/
 build/
 
 # Dependency directories
+node_modules/
 jspm_packages/
 
 # Optional npm cache directory
@@ -50,3 +48,10 @@ coverage/
 # Other files
 *.tgz
 .idea/
+
+# Build directories for all projects
+bin/
+obj/
+
+# Proxy settings (optional, if your project generates it)
+spa.proxy.json

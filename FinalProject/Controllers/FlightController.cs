@@ -48,7 +48,7 @@ public class FlightController : ControllerBase
             return discountedFlightsBySeasons;
         }
 
-        var flights = await _flightService.Search(@params);
+        var flights = await _flightService.SearchAviaSales(@params);
         _httpContextAccessor.HttpContext?.Items.Add("Action", "Searching Flights");
         _httpContextAccessor.HttpContext?.Items.Add("UserId", userId);
         _httpContextAccessor.HttpContext?.Items.Add("Email", userEmail);
