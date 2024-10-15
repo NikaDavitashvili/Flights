@@ -101,11 +101,11 @@ public class FlightService : IFlightService
             var fromList = new List<string>();
             var toList = new List<string>();
 
-            //if (!string.IsNullOrEmpty(request.From)) fromList = await _flightRepository.GetAirportIataCodes(request.From);
-            //if (!string.IsNullOrEmpty(request.Destination)) toList = await _flightRepository.GetAirportIataCodes(request.Destination);
+            if (!string.IsNullOrEmpty(request.From)) fromList = await _flightRepository.GetAirportIataCodes(request.From);
+            if (!string.IsNullOrEmpty(request.Destination)) toList = await _flightRepository.GetAirportIataCodes(request.Destination);
 
-            if (!string.IsNullOrEmpty(request.From)) fromList.Add(request.From);
-            if (!string.IsNullOrEmpty(request.Destination)) toList.Add(request.Destination);
+            //if (!string.IsNullOrEmpty(request.From)) fromList.Add(request.From);
+            //if (!string.IsNullOrEmpty(request.Destination)) toList.Add(request.Destination);
 
             if (fromList.Count > 0 && toList.Count > 0)
             {
@@ -147,11 +147,11 @@ public class FlightService : IFlightService
                     {
                         var flightRm = new FlightRm(
                             Guid.NewGuid(),
-                            /*await _flightRepository.GetAirlineName(flight.Airline)*/flight.Airline,
+                            await _flightRepository.GetAirlineName(flight.Airline)/*flight.Airline*/,
                             "https://www.aviasales.com" + flight.Link,
                             flight.Price.ToString(),
-                            new TimePlaceRm(/*await _flightRepository.GetCityName(flight.Origin)*/flight.Origin, DateTime.Parse(flight.departure_at)),
-                            new TimePlaceRm(/*await _flightRepository.GetCityName(flight.Destination)*/flight.Destination, DateTime.Parse(flight.return_at)),
+                            new TimePlaceRm(await _flightRepository.GetCityName(flight.Origin)/*flight.Origin*/, DateTime.Parse(flight.departure_at)),
+                            new TimePlaceRm(await _flightRepository.GetCityName(flight.Destination)/*flight.Destination*/, DateTime.Parse(flight.return_at)),
                             Convert.ToInt32(flight.FlightNumber),
                             0
                         );
