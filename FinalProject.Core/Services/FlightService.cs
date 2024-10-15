@@ -96,6 +96,8 @@ public class FlightService : IFlightService
             var fromDate = request.FromDate?.ToString("yyyy-MM-dd");
             var toDate = request.ToDate?.ToString("yyyy-MM-dd");
 
+            string apiUrl = "";
+            var apiUrlList = new List<string>();
             var fromList = new List<string>();
             var toList = new List<string>();
 
@@ -107,94 +109,50 @@ public class FlightService : IFlightService
                 foreach (var from in fromList)
                     foreach (var to in toList)
                     {
-                        string apiUrl = $"https://api.travelpayouts.com/aviasales/v3/prices_for_dates?origin={from}&destination={to}&departure_at={fromDate}&return_at={toDate}&unique=false&sorting=price&direct=false&currency=usd&limit=30&page=1&one_way=false&token={accessKey}";
-
-                        var client = new HttpClient();
-                        HttpResponseMessage response = await client.GetAsync(apiUrl);
-
-                        if (response.IsSuccessStatusCode)
-                        {
-                            var content = await response.Content.ReadAsStringAsync();
-                            var flightsResponse = JsonConvert.DeserializeObject<ApiFlightResponse>(content);
-
-                            foreach (var flight in flightsResponse.Data)
-                            {
-                                var flightRm = new FlightRm(
-                                    Guid.NewGuid(),
-                                    await _flightRepository.GetAirlineName(flight.Airline),
-                                    "https://www.aviasales.com" + flight.Link,
-                                    flight.Price.ToString(),
-                                    new TimePlaceRm(await _flightRepository.GetCityName(flight.Origin), DateTime.Parse(flight.departure_at)),
-                                    new TimePlaceRm(await _flightRepository.GetCityName(flight.Destination), DateTime.Parse(flight.return_at)),
-                                    Convert.ToInt32(flight.FlightNumber),
-                                    0
-                                );
-                                flightResults.Add(flightRm);
-                            }
-                        }
+                        apiUrl = $"https://api.travelpayouts.com/aviasales/v3/prices_for_dates?origin={from}&destination={to}&departure_at={fromDate}&return_at={toDate}&unique=false&sorting=price&direct=false&currency=usd&limit=30&page=1&one_way=false&token={accessKey}";
+                        apiUrlList.Add(apiUrl);
                     }
             }
-
             else if (fromList.Count > 0 && toList.Count <= 0)
             {
                 foreach (var from in fromList)
                 {
-                    string apiUrl = $"https://api.travelpayouts.com/aviasales/v3/prices_for_dates?origin={from}&departure_at={fromDate}&return_at={toDate}&unique=false&sorting=price&direct=false&currency=usd&limit=30&page=1&one_way=true&token={accessKey}";
-
-                    var client = new HttpClient();
-                    HttpResponseMessage response = await client.GetAsync(apiUrl);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var content = await response.Content.ReadAsStringAsync();
-                        var flightsResponse = JsonConvert.DeserializeObject<ApiFlightResponse>(content);
-
-                        foreach (var flight in flightsResponse.Data)
-                        {
-                            var flightRm = new FlightRm(
-                                Guid.NewGuid(),
-                                await _flightRepository.GetAirlineName(flight.Airline),
-                                "https://www.aviasales.com" + flight.Link,
-                                flight.Price.ToString(),
-                                new TimePlaceRm(await _flightRepository.GetCityName(flight.Origin), DateTime.Parse(flight.departure_at)),
-                                new TimePlaceRm(await _flightRepository.GetCityName(flight.Destination), DateTime.Parse(flight.return_at)),
-                                Convert.ToInt32(flight.FlightNumber),
-                                0
-                            );
-                            flightResults.Add(flightRm);
-                        }
-                    }
+                    apiUrl = $"https://api.travelpayouts.com/aviasales/v3/prices_for_dates?origin={from}&departure_at={fromDate}&return_at={toDate}&unique=false&sorting=price&direct=false&currency=usd&limit=30&page=1&one_way=true&token={accessKey}";
+                    apiUrlList.Add(apiUrl);
                 }
             }
-
             else if (fromList.Count <= 0 && toList.Count > 0)
             {
                 foreach (var to in toList)
                 {
-                    string apiUrl = $"https://api.travelpayouts.com/aviasales/v3/prices_for_dates?destination={to}&departure_at={fromDate}&return_at={toDate}&unique=false&sorting=price&direct=false&currency=usd&limit=30&page=1&one_way=true&token={accessKey}";
+                    apiUrl = $"https://api.travelpayouts.com/aviasales/v3/prices_for_dates?destination={to}&departure_at={fromDate}&return_at={toDate}&unique=false&sorting=price&direct=false&currency=usd&limit=30&page=1&one_way=true&token={accessKey}";
+                    apiUrlList.Add(apiUrl);
+                }
+            }
 
-                    var client = new HttpClient();
-                    HttpResponseMessage response = await client.GetAsync(apiUrl);
+            foreach (var _apiUrl in apiUrlList)
+            {
+                var client = new HttpClient();
+                HttpResponseMessage response = await client.GetAsync(_apiUrl);
 
-                    if (response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var flightsResponse = JsonConvert.DeserializeObject<ApiFlightResponse>(content);
+
+                    foreach (var flight in flightsResponse.Data)
                     {
-                        var content = await response.Content.ReadAsStringAsync();
-                        var flightsResponse = JsonConvert.DeserializeObject<ApiFlightResponse>(content);
-
-                        foreach (var flight in flightsResponse.Data)
-                        {
-                            var flightRm = new FlightRm(
-                                Guid.NewGuid(),
-                                await _flightRepository.GetAirlineName(flight.Airline),
-                                "https://www.aviasales.com" + flight.Link,
-                                flight.Price.ToString(),
-                                new TimePlaceRm(await _flightRepository.GetCityName(flight.Origin), DateTime.Parse(flight.departure_at)),
-                                new TimePlaceRm(await _flightRepository.GetCityName(flight.Destination), DateTime.Parse(flight.return_at)),
-                                Convert.ToInt32(flight.FlightNumber),
-                                0
-                            );
-                            flightResults.Add(flightRm);
-                        }
+                        var flightRm = new FlightRm(
+                            Guid.NewGuid(),
+                            await _flightRepository.GetAirlineName(flight.Airline),
+                            "https://www.aviasales.com" + flight.Link,
+                            flight.Price.ToString(),
+                            new TimePlaceRm(await _flightRepository.GetCityName(flight.Origin), DateTime.Parse(flight.departure_at)),
+                            new TimePlaceRm(await _flightRepository.GetCityName(flight.Destination), DateTime.Parse(flight.return_at)),
+                            Convert.ToInt32(flight.FlightNumber),
+                            0
+                        );
+                        flightResults.Add(flightRm);
                     }
                 }
             }
