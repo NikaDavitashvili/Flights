@@ -11,7 +11,7 @@ public interface IFlightRepository
     Task<List<FlightRm>> Find(string email);
     Task<string> Book(BookDTO dto, FlightRm flight);
     Task<List<string>> GetAirportIataCodes(string searchWord);
-    Task<string> GetAirportName(string airportCode);
+    Task<string> GetAirlineName(string airportCode);
     Task<string> GetCityName(string cityCode);
     Task<string> GetCountryName(string countryCode);
     //Task<FlightRm> Find(Guid id);

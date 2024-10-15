@@ -121,11 +121,11 @@ public class FlightService : IFlightService
                             {
                                 var flightRm = new FlightRm(
                                     Guid.NewGuid(),
-                                    flight.Airline,
+                                    await _flightRepository.GetAirlineName(flight.Airline),
                                     "https://www.aviasales.com" + flight.Link,
                                     flight.Price.ToString(),
-                                    new TimePlaceRm(flight.Origin, DateTime.Parse(flight.departure_at)),
-                                    new TimePlaceRm(flight.Destination, DateTime.Parse(flight.return_at)),
+                                    new TimePlaceRm(await _flightRepository.GetCityName(flight.Origin), DateTime.Parse(flight.departure_at)),
+                                    new TimePlaceRm(await _flightRepository.GetCityName(flight.Destination), DateTime.Parse(flight.return_at)),
                                     Convert.ToInt32(flight.FlightNumber),
                                     0
                                 );
@@ -153,11 +153,11 @@ public class FlightService : IFlightService
                         {
                             var flightRm = new FlightRm(
                                 Guid.NewGuid(),
-                                flight.Airline,
+                                await _flightRepository.GetAirlineName(flight.Airline),
                                 "https://www.aviasales.com" + flight.Link,
                                 flight.Price.ToString(),
-                                new TimePlaceRm(flight.Origin, DateTime.Parse(flight.departure_at)),
-                                new TimePlaceRm(flight.Destination, DateTime.Parse(flight.return_at)),
+                                new TimePlaceRm(await _flightRepository.GetCityName(flight.Origin), DateTime.Parse(flight.departure_at)),
+                                new TimePlaceRm(await _flightRepository.GetCityName(flight.Destination), DateTime.Parse(flight.return_at)),
                                 Convert.ToInt32(flight.FlightNumber),
                                 0
                             );
@@ -185,7 +185,7 @@ public class FlightService : IFlightService
                         {
                             var flightRm = new FlightRm(
                                 Guid.NewGuid(),
-                                await _flightRepository.GetAirportName(flight.Airline),
+                                await _flightRepository.GetAirlineName(flight.Airline),
                                 "https://www.aviasales.com" + flight.Link,
                                 flight.Price.ToString(),
                                 new TimePlaceRm(await _flightRepository.GetCityName(flight.Origin), DateTime.Parse(flight.departure_at)),

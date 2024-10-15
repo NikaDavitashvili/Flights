@@ -213,14 +213,14 @@ public class FlightRepository : IFlightRepository
         return airportIataCodes;
     }
 
-    public async Task<string> GetAirportName(string airportCode)
+    public async Task<string> GetAirlineName(string airlineCode)
     {
         var dic = new Dictionary<string, object>
         {
-            { "airportCode", airportCode }
+            { "airlineCode", airlineCode }
         };
 
-        var query = @"SELECT TOP 1 Name FROM Airport WHERE Code = '@airportCode'";
+        var query = @"SELECT TOP 1 Name FROM Airline WHERE Code = @airlineCode";
 
         DataTable dt = DB.Select(query, dic, out string errorMessage);
 
@@ -228,7 +228,7 @@ public class FlightRepository : IFlightRepository
             throw new Exception(errorMessage);
 
         if (dt == null && dt.Rows.Count == 0)
-            throw new Exception("Airport Not Found!");
+            throw new Exception("Airline Not Found!");
 
         return dt.Rows[0].ItemArray[0].ToString();
     }
@@ -240,7 +240,7 @@ public class FlightRepository : IFlightRepository
             { "cityCode", cityCode }
         };
 
-        var query = @"SELECT TOP 1 Name FROM City WHERE Code = '@cityCode'";
+        var query = @"SELECT TOP 1 Name FROM City WHERE Code = @cityCode";
 
         DataTable dt = DB.Select(query, dic, out string errorMessage);
 
@@ -260,7 +260,7 @@ public class FlightRepository : IFlightRepository
             { "countryCode", countryCode }
         };
 
-        var query = @"SELECT TOP 1 Name FROM Country WHERE Code = '@countryCode'";
+        var query = @"SELECT TOP 1 Name FROM Country WHERE Code = @countryCode";
 
         DataTable dt = DB.Select(query, dic, out string errorMessage);
 
