@@ -9,177 +9,6 @@
       a.appendChild(r);
     })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
   </script>
-  <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-    }
-
-    .seasonal-banner {
-      background: linear-gradient(to right, #3498db, #2980b9);
-      color: white;
-      padding: 2rem;
-      border-radius: 12px;
-      margin-bottom: 2rem;
-    }
-
-    .banner-content {
-      text-align: center;
-      padding: 2rem;
-      border-radius: 15px;
-    }
-
-      .banner-content h1 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        font-weight: 600;
-      }
-
-      .banner-content p {
-        font-size: 1.25rem;
-      }
-
-      .banner-content a {
-        padding: 0.75rem 2rem;
-        font-size: 1.1rem;
-        font-weight: 500;
-        background-color: #f39c12;
-        border-radius: 8px;
-        color: white;
-        text-transform: uppercase;
-        transition: background 0.3s ease;
-      }
-
-        .banner-content a:hover {
-          background-color: #e67e22;
-        }
-
-    form {
-      background-color: #f4f4f9;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    input,
-    button {
-      border-radius: 8px !important;
-      padding: 1rem;
-      box-shadow: none !important;
-    }
-
-    .form-floating input {
-      background: #ffffff;
-      border: 1px solid #ddd;
-      transition: border-color 0.2s ease;
-    }
-
-      .form-floating input:focus {
-        border-color: #3498db;
-        box-shadow: none;
-      }
-
-    label {
-      font-weight: 500;
-      color: #34495e;
-    }
-
-    .input-group-text {
-      background-color: #3498db;
-      color: white;
-    }
-
-    button[type="submit"] {
-      background-color: #2980b9;
-      color: white;
-      transition: background-color 0.2s ease;
-    }
-
-      button[type="submit"]:hover {
-        background-color: #1f618d;
-      }
-
-    /* Ticket Card Design */
-    .ticket-card {
-      background-color: white;
-      border: none;
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      margin-bottom: 2rem;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-      .ticket-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-      }
-
-    .ticket-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #34495e;
-    }
-
-    .ticket-price {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #e74c3c;
-      text-align: right;
-    }
-
-    .discounted-price {
-      text-decoration: line-through;
-      font-size: 0.9rem;
-      color: #7f8c8d;
-    }
-
-    .flight-info {
-      display: flex;
-      justify-content: space-around;
-      padding: 1.5rem;
-      background-color: #ecf0f1;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-    }
-
-      .flight-info div {
-        text-align: center;
-      }
-
-      .flight-info i {
-        font-size: 1.5rem;
-        color: #3498db;
-        margin-bottom: 0.5rem;
-      }
-
-      .flight-info .place {
-        font-size: 1.2rem;
-        font-weight: 600;
-      }
-
-      .flight-info .time {
-        font-size: 1rem;
-        color: #7f8c8d;
-      }
-
-    .purchase-btn {
-      background-color: #27ae60;
-      color: white;
-      font-size: 1.1rem;
-      padding: 0.75rem 2rem;
-      border-radius: 8px;
-      transition: background 0.3s ease;
-      text-transform: uppercase;
-    }
-
-      .purchase-btn:hover {
-        background-color: #229954;
-      }
-  </style>
 </head>
 <div class="seasonal-banner">
   <div class="banner-content">
@@ -210,17 +39,43 @@
     </div>
 
     <div class="row">
+      <!-- Departure Date or Month -->
       <div class="col">
-        <div class="form-floating">
-          <input formControlName="fromDate" type="date" placeholder="Departure Date" class="form-control" />
-          <label>Departure Date</label>
+        <label class="form-label">Departure</label>
+        <div class="input-group">
+          <select formControlName="departureDateType" class="form-select" (change)="onDepartureDateTypeChange($event)">
+            <option value="date">Exact Date</option>
+            <option value="month">Whole Month</option>
+          </select>
+
+          <input *ngIf="departureDateType === 'date'"
+                 formControlName="fromDate"
+                 type="date"
+                 class="form-control" />
+          <input *ngIf="departureDateType === 'month'"
+                 formControlName="fromMonth"
+                 type="month"
+                 class="form-control" />
         </div>
       </div>
 
+      <!-- Return Date or Month -->
       <div class="col">
-        <div class="form-floating">
-          <input formControlName="toDate" type="date" placeholder="Return Date" class="form-control" />
-          <label>Return Date</label>
+        <label class="form-label">Return</label>
+        <div class="input-group">
+          <select formControlName="returnDateType" class="form-select" (change)="onReturnDateTypeChange($event)">
+            <option value="date">Exact Date</option>
+            <option value="month">Whole Month</option>
+          </select>
+
+          <input *ngIf="returnDateType === 'date'"
+                 formControlName="toDate"
+                 type="date"
+                 class="form-control" />
+          <input *ngIf="returnDateType === 'month'"
+                 formControlName="toMonth"
+                 type="month"
+                 class="form-control" />
         </div>
       </div>
     </div>
@@ -286,6 +141,51 @@
       <a [href]="flight.link" target="_blank" class="btn btn-secondary btn-lg mt-2" role="button">
         <i class="fas fa-ticket"></i> Purchase
       </a>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="text-center">
+    <h2>Popular destinations from</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card shadow-sm">
+        <img src="path-to-image.jpg" class="card-img-top" alt="United States">
+        <div class="card-body">
+          <h5 class="card-title">United States</h5>
+          <p class="card-text">from $285</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card shadow-sm">
+        <img src="path-to-image.jpg" class="card-img-top" alt="Russia">
+        <div class="card-body">
+          <h5 class="card-title">Russia</h5>
+          <p class="card-text">from $73</p>
+        </div>
+      </div>
+    </div>
+    <!-- Add more destination cards here -->
+  </div>
+
+  <div class="text-center mt-3">
+    <a href="/all-destinations" class="btn btn-primary">All destinations</a>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row align-items-center">
+    <div class="col-md-6">
+      <img src="path-to-price-map-image.jpg" alt="Price Map" class="img-fluid">
+    </div>
+    <div class="col-md-6">
+      <h2>Price map</h2>
+      <p>Find the cheapest ticket using the price map</p>
+      <a href="/map" class="btn btn-primary">Open</a>
     </div>
   </div>
 </div>

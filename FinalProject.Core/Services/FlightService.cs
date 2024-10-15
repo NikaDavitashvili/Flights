@@ -32,8 +32,8 @@ public class FlightService : IFlightService
         {
             { "Destination", @params.Destination ?? string.Empty },
             { "From", @params.From ?? string.Empty },
-            { "FromDate", @params.FromDate.HasValue ? @params.FromDate.Value.Date : (object)DBNull.Value },
-            { "ToDate", @params.ToDate.HasValue ? @params.ToDate.Value.Date.AddDays(1).AddTicks(-1) : (object)DBNull.Value },
+            { "FromDate", !string.IsNullOrEmpty(@params.FromDate) ? DateTime.Parse(@params.FromDate) : (object)DBNull.Value },
+            { "ToDate", !string.IsNullOrEmpty(@params.ToDate) ? DateTime.Parse(@params.ToDate).Date.AddDays(1).AddTicks(-1) : (object)DBNull.Value },
             { "NumberOfPassengers", @params.NumberOfPassengers ?? 1 }
         };
 
@@ -93,23 +93,26 @@ public class FlightService : IFlightService
         {
             string accessKey = "9dfb38d7c8e19c95700bf9442199fef9";
 
-            var fromDate = request.FromDate?.ToString("yyyy-MM-dd");
-            var toDate = request.ToDate?.ToString("yyyy-MM-dd");
+            //var fromDate = request.FromDate?.ToString("yyyy-MM-dd");
+            //var toDate = request.ToDate?.ToString("yyyy-MM-dd");
 
             string apiUrl = "";
             var apiUrlList = new List<string>();
             var fromList = new List<string>();
             var toList = new List<string>();
 
-            if (!string.IsNullOrEmpty(request.From)) fromList = await _flightRepository.GetAirportIataCodes(request.From);
-            if (!string.IsNullOrEmpty(request.Destination)) toList = await _flightRepository.GetAirportIataCodes(request.Destination);
+            //if (!string.IsNullOrEmpty(request.From)) fromList = await _flightRepository.GetAirportIataCodes(request.From);
+            //if (!string.IsNullOrEmpty(request.Destination)) toList = await _flightRepository.GetAirportIataCodes(request.Destination);
+
+            if (!string.IsNullOrEmpty(request.From)) fromList.Add(request.From);
+            if (!string.IsNullOrEmpty(request.Destination)) toList.Add(request.Destination);
 
             if (fromList.Count > 0 && toList.Count > 0)
             {
                 foreach (var from in fromList)
                     foreach (var to in toList)
                     {
-                        apiUrl = $"https://api.travelpayouts.com/aviasales/v3/prices_for_dates?origin={from}&destination={to}&departure_at={fromDate}&return_at={toDate}&unique=false&sorting=price&direct=false&currency=usd&limit=30&page=1&one_way=false&token={accessKey}";
+                        apiUrl = $"https://api.travelpayouts.com/aviasales/v3/prices_for_dates?origin={from}&destination={to}&departure_at={request.FromDate}&return_at={request.ToDate}&unique=false&sorting=price&direct=false&currency=usd&limit=30&page=1&one_way=false&token={accessKey}";
                         apiUrlList.Add(apiUrl);
                     }
             }
@@ -117,7 +120,7 @@ public class FlightService : IFlightService
             {
                 foreach (var from in fromList)
                 {
-                    apiUrl = $"https://api.travelpayouts.com/aviasales/v3/prices_for_dates?origin={from}&departure_at={fromDate}&return_at={toDate}&unique=false&sorting=price&direct=false&currency=usd&limit=30&page=1&one_way=true&token={accessKey}";
+                    apiUrl = $"https://api.travelpayouts.com/aviasales/v3/prices_for_dates?origin={from}&departure_at={request.FromDate}&return_at={request.ToDate}&unique=false&sorting=price&direct=false&currency=usd&limit=30&page=1&one_way=true&token={accessKey}";
                     apiUrlList.Add(apiUrl);
                 }
             }
@@ -125,7 +128,7 @@ public class FlightService : IFlightService
             {
                 foreach (var to in toList)
                 {
-                    apiUrl = $"https://api.travelpayouts.com/aviasales/v3/prices_for_dates?destination={to}&departure_at={fromDate}&return_at={toDate}&unique=false&sorting=price&direct=false&currency=usd&limit=30&page=1&one_way=true&token={accessKey}";
+                    apiUrl = $"https://api.travelpayouts.com/aviasales/v3/prices_for_dates?destination={to}&departure_at={request.FromDate}&return_at={request.ToDate}&unique=false&sorting=price&direct=false&currency=usd&limit=30&page=1&one_way=true&token={accessKey}";
                     apiUrlList.Add(apiUrl);
                 }
             }
@@ -144,11 +147,11 @@ public class FlightService : IFlightService
                     {
                         var flightRm = new FlightRm(
                             Guid.NewGuid(),
-                            await _flightRepository.GetAirlineName(flight.Airline),
+                            /*await _flightRepository.GetAirlineName(flight.Airline)*/flight.Airline,
                             "https://www.aviasales.com" + flight.Link,
                             flight.Price.ToString(),
-                            new TimePlaceRm(await _flightRepository.GetCityName(flight.Origin), DateTime.Parse(flight.departure_at)),
-                            new TimePlaceRm(await _flightRepository.GetCityName(flight.Destination), DateTime.Parse(flight.return_at)),
+                            new TimePlaceRm(/*await _flightRepository.GetCityName(flight.Origin)*/flight.Origin, DateTime.Parse(flight.departure_at)),
+                            new TimePlaceRm(/*await _flightRepository.GetCityName(flight.Destination)*/flight.Destination, DateTime.Parse(flight.return_at)),
                             Convert.ToInt32(flight.FlightNumber),
                             0
                         );

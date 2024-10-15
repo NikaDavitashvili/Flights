@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';  // Import CommonModule
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
@@ -19,6 +20,7 @@ import { LoginPassengerComponent } from './login-passenger/login-passenger.compo
 import { LogoutPassengerComponent } from './logout-passenger/logout-passenger.component';
 import { PacketComponent } from './packet/packet.component';
 import { NotificationComponent } from './notification/notification.component';
+//import { FlightsComponent } from './flights/flights.component';  // Import the new FlightsComponent
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { NotificationComponent } from './notification/notification.component';
     LoginPassengerComponent,
     LogoutPassengerComponent,
     MyBookingsComponent,
-    PacketComponent
+    PacketComponent,
+    //FlightsComponent  // Add FlightsComponent here
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -41,11 +44,13 @@ import { NotificationComponent } from './notification/notification.component';
     FormsModule,
     ReactiveFormsModule,
     LeafletModule,
+    CommonModule,  // Make sure CommonModule is added here
     RouterModule.forRoot([
       { path: '', component: SearchFlightsComponent, pathMatch: 'full' },
       { path: 'map', component: MapComponent },
       { path: 'season-discounts', component: SeasonDiscountsComponent },
       { path: 'search-flights', component: SearchFlightsComponent },
+      //{ path: 'flights', component: FlightsComponent },
       { path: 'book-flight', component: BookFlightComponent },
       { path: 'login-passenger', component: LoginPassengerComponent },
       { path: 'logout-passenger', component: LogoutPassengerComponent },

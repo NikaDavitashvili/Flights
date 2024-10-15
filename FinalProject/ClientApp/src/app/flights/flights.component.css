@@ -1,0 +1,18 @@
+.flight-card {
+  transition: transform 0.3s ease;
+}
+
+  .flight-card:hover {
+    transform: translateY(-5px);
+  }
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: #3498db;
+  border-color: #3498db;
+}
+

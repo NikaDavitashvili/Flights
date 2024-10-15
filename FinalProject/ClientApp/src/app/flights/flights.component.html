@@ -1,0 +1,15 @@
+<div class="container mt-5">
+  <h2>Available Flights</h2>
+  <div *ngFor="let flight of searchResult" class="flight-card">
+    <div class="card shadow-sm mb-3">
+      <div class="card-body">
+        <h5>{{ flight.airline }}</h5>
+        <p>{{ flight.from }} to {{ flight.destination }}</p>
+        <p>Departure: {{ flight.departureDate | date:'medium' }}</p>
+        <p>Return: {{ flight.returnDate | date:'medium' }}</p>
+        <p>Price: {{ flight.price | currency }}</p>
+        <a href="{{flight.link}}" class="btn btn-primary">Purchase</a>
+      </div>
+    </div>
+  </div>
+</div>
