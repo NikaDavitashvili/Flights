@@ -18,22 +18,47 @@
     <!-- Left arrow -->
     <span class="prev" (click)="moveSlides(-1)">&#10094;</span>
 
-    <!-- Images -->
-    <div class="slider-images">
-      <img src="/assets/images/PLANE1.png" class="slide active" alt="Plane Image 1">
-      <img src="/assets/images/plane.jpg" class="slide" alt="Plane Image 2">
+    <!-- Seasonal Discounts Slide -->
+    <div class="slide active">
+      <div class="seasonal-banner">
+        <div class="row align-items-center seasonal-discount-card">
+          <div class="col-md-6 seasonal-image">
+            <img src="/assets/images/winter.jpg" alt="Seasonal Image" class="img-fluid rounded">
+          </div>
+          <div class="col-md-6 banner-content">
+            <h1>Seasonal Discounts</h1>
+            <p>Get 15% Discounts for current season's top trips and 10% discounts for next season's best upcoming trips!</p>
+            <a routerLink="/season-discounts" class="btn btn-gradient">Explore Seasonal Discounts</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Price Map Slide -->
+    <div class="slide">
+      <div class="price-map-container">
+        <div class="row align-items-center price-map-card">
+          <div class="col-md-6 map-image">
+            <img src="/assets/images/darkmap.png" alt="Price Map" class="img-fluid rounded">
+          </div>
+          <div class="col-md-6 price-map-content">
+            <h2 class="title">Price Map</h2>
+            <p class="subtitle">
+              <i class="fas fa-map-marker-alt"></i> Find the cheapest flights using our innovative map!
+            </p>
+            <a href="/map" class="btn btn-gradient">Open</a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Right arrow -->
     <span class="next" (click)="moveSlides(1)">&#10095;</span>
   </div>
 
-
-
   <div class="container">
     <router-outlet></router-outlet>
   </div>
-  <br /><br /><br /><br /><br /><br /><br /><br /><br />
 
   <footer class="pt-3 footer bg-dark text-light text-center mt-5">
     <div class="pt-5">
@@ -55,24 +80,18 @@
       <i class="fas">SkyConnect</i>
     </div>
 
-    <div class="text-muted">
+    <div class="text">
       <i>© 2024 Copyright: SkyConnect</i>
     </div>
   </footer>
 
-  <!-- Slider functionality using JavaScript -->
   <script>
     let currentSlide = 0;
     const slides = document.getElementsByClassName('slide');
 
     function moveSlides(direction) {
-      // Hide the current slide
       slides[currentSlide].style.display = 'none';
-
-      // Calculate the next slide index
       currentSlide = (currentSlide + direction + slides.length) % slides.length;
-
-      // Show the new slide
       slides[currentSlide].style.display = 'block';
     }
   </script>

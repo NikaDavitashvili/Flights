@@ -216,3 +216,75 @@ button[type="submit"] {
 .img-fluid {
   border-radius: 10px;
 }
+.price-map-container {
+  background: linear-gradient(135deg, #1b1f3a, #3b5998);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.price-map-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+
+  .price-map-card:hover {
+    transform: translateY(-5px);
+  }
+
+.map-image {
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+  .map-image img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+    border-radius: 15px;
+  }
+
+    .map-image img:hover {
+      transform: scale(1.05);
+    }
+
+.price-map-content {
+  padding: 2rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  color: #1b1f3a;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #6c757d;
+  margin-bottom: 1.5rem;
+}
+
+.btn-gradient {
+  background: linear-gradient(45deg, #3498db, #1f618d);
+  border: none;
+  color: white;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  border-radius: 25px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  text-transform: uppercase;
+}
+
+  .btn-gradient:hover {
+    background: linear-gradient(45deg, #1f618d, #3498db);
+    transform: translateY(-3px);
+  }
+
+.card-img-top{
+    height: 14em;
+}

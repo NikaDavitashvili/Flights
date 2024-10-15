@@ -7,26 +7,21 @@
   overflow: hidden;
 }
 
-/* Image styling */
-.slider-images {
-  position: relative;
+/* Slide styling for smoother transitions */
+.slide {
+  opacity: 0; /* Hide slides initially */
+  visibility: hidden; /* Ensure only the active slide is visible */
+  transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out; /* Smooth transition */
+  position: absolute;
   width: 100%;
   height: 100%;
+  top: 0;
+  left: 0;
 }
 
-  .slider-images img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0; /* Initially hidden */
-    transition: opacity 0.5s ease-in-out; /* Smooth transition */
-  }
-
-    .slider-images img.active {
-      opacity: 1; /* Show active slide */
+  .slide.active {
+    opacity: 1; /* Show the active slide */
+    visibility: visible; /* Ensure the active slide is visible */
   }
 
 /* Arrows styling */
@@ -34,7 +29,7 @@
   cursor: pointer;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%); /* Center vertically */
+  transform: translateY(-50%);
   padding: 16px;
   color: white;
   font-weight: bold;
@@ -42,21 +37,104 @@
   transition: 0.6s ease;
   border-radius: 3px;
   user-select: none;
-  z-index: 2; /* Ensure arrows appear on top of the images */
+  z-index: 2;
 }
 
 .prev {
-  left: 10px; /* Position left arrow 10px from the left */
-  }
-
-.next {
-  right: 10px; /* Position right arrow 10px from the right */
+  left: 10px;
 }
 
-  /* Hover effects on the arrows */
+.next {
+  right: 10px;
+}
+
   .prev:hover, .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
   }
+
 .hidden {
   display: none;
 }
+
+.img-fluid {
+  border-radius: 10px;
+}
+
+.price-map-container {
+  height: 70vh;
+  background: linear-gradient(135deg, #1b1f3a, #3b5998);
+  padding: 5rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.price-map-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+
+.map-image, .seasonal-image 
+{
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+  .map-image img, .seasonal-image img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+    border-radius: 15px;
+    position: relative;
+    left: -20px;
+  }
+
+.price-map-content, .banner-content {
+  padding: 2rem;
+  color: black;
+  text-align: center;
+}
+
+.seasonal-banner {
+  background: linear-gradient(to right, #3498db, #2980b9);
+  color: white;
+  padding: 5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  height: 70vh;
+}
+.seasonal-discount-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+.banner-content {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 15px;
+}
+
+  .banner-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .banner-content p {
+    font-size: 1.25rem;
+  }
+
+  .banner-content a {
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    background-color: #f39c12;
+    border-radius: 8px;
+    color: white;
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+  }
