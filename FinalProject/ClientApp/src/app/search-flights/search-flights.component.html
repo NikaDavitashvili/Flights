@@ -1,69 +1,233 @@
 <head>
   <script>
-(function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:5149731,hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');</script>
+    (function (h, o, t, j, a, r) {
+      h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+      h._hjSettings = { hjid: 5149731, hjsv: 6 };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script'); r.async = 1;
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  </script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .seasonal-banner {
+      background: linear-gradient(to right, #3498db, #2980b9);
+      color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+
+    .banner-content {
+      text-align: center;
+      padding: 2rem;
+      border-radius: 15px;
+    }
+
+      .banner-content h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .banner-content p {
+        font-size: 1.25rem;
+      }
+
+      .banner-content a {
+        padding: 0.75rem 2rem;
+        font-size: 1.1rem;
+        font-weight: 500;
+        background-color: #f39c12;
+        border-radius: 8px;
+        color: white;
+        text-transform: uppercase;
+        transition: background 0.3s ease;
+      }
+
+        .banner-content a:hover {
+          background-color: #e67e22;
+        }
+
+    form {
+      background-color: #f4f4f9;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    input,
+    button {
+      border-radius: 8px !important;
+      padding: 1rem;
+      box-shadow: none !important;
+    }
+
+    .form-floating input {
+      background: #ffffff;
+      border: 1px solid #ddd;
+      transition: border-color 0.2s ease;
+    }
+
+      .form-floating input:focus {
+        border-color: #3498db;
+        box-shadow: none;
+      }
+
+    label {
+      font-weight: 500;
+      color: #34495e;
+    }
+
+    .input-group-text {
+      background-color: #3498db;
+      color: white;
+    }
+
+    button[type="submit"] {
+      background-color: #2980b9;
+      color: white;
+      transition: background-color 0.2s ease;
+    }
+
+      button[type="submit"]:hover {
+        background-color: #1f618d;
+      }
+
+    /* Ticket Card Design */
+    .ticket-card {
+      background-color: white;
+      border: none;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+      .ticket-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+    .ticket-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #34495e;
+    }
+
+    .ticket-price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #e74c3c;
+      text-align: right;
+    }
+
+    .discounted-price {
+      text-decoration: line-through;
+      font-size: 0.9rem;
+      color: #7f8c8d;
+    }
+
+    .flight-info {
+      display: flex;
+      justify-content: space-around;
+      padding: 1.5rem;
+      background-color: #ecf0f1;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+
+      .flight-info div {
+        text-align: center;
+      }
+
+      .flight-info i {
+        font-size: 1.5rem;
+        color: #3498db;
+        margin-bottom: 0.5rem;
+      }
+
+      .flight-info .place {
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      .flight-info .time {
+        font-size: 1rem;
+        color: #7f8c8d;
+      }
+
+    .purchase-btn {
+      background-color: #27ae60;
+      color: white;
+      font-size: 1.1rem;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+      text-transform: uppercase;
+    }
+
+      .purchase-btn:hover {
+        background-color: #229954;
+      }
+  </style>
 </head>
-<div class="seasonal-banner" style="background-color: #f8f9fa;">
-  <div class="banner-content text-center p-5" style="border: 2px solid #3498db; border-radius: 15px;">
-    <h1 class="display-4 mb-4">Seasonal Discounts</h1>
-    <p class="lead font-weight-bold">Get 15% Discounts for current season's top trips and 10% discounts for next season's best upcoming trips!</p>
-    <a routerLink="/season-discounts" class="btn btn-primary mt-3 d-inline-block">Explore Seasonal Discounts</a>
+<div class="seasonal-banner">
+  <div class="banner-content">
+    <h1>Seasonal Discounts</h1>
+    <p>Get 15% Discounts for current season's top trips and 10% discounts for next season's best upcoming trips!</p>
+    <a routerLink="/season-discounts">Explore Seasonal Discounts</a>
   </div>
 </div>
 
-<h5 class="text-md-center m-5">Search for Flights</h5>
+<h5 class="text-center mb-4">Search for Flights</h5>
 
 <form [formGroup]="searchForm" (ngSubmit)="search()">
   <div class="m-5 d-grid gap-3">
-
     <div class="row">
-
       <div class="col">
         <div class="form-floating">
           <input formControlName="from" placeholder="From" class="form-control" />
-          <label class="text-primary form-label">From</label>
+          <label>From</label>
         </div>
       </div>
 
       <div class="col">
         <div class="form-floating">
           <input formControlName="destination" placeholder="Destination" class="form-control" />
-          <label class="text-primary form-label">Destination</label>
+          <label>Destination</label>
         </div>
       </div>
-
     </div>
 
     <div class="row">
-
       <div class="col">
         <div class="form-floating">
           <input formControlName="fromDate" type="date" placeholder="Departure Date" class="form-control" />
-          <label class="text-primary form-label">Departure Date</label>
+          <label>Departure Date</label>
         </div>
       </div>
 
       <div class="col">
         <div class="form-floating">
           <input formControlName="toDate" type="date" placeholder="Return Date" class="form-control" />
-          <label class="text-primary form-label">Return Date</label>
+          <label>Return Date</label>
         </div>
       </div>
-
     </div>
 
     <div class="row">
-
       <div class="col text-end">
-        <label class="form-label text-primary mt-2">
-          Number of Passengers
-        </label>
+        <label class="form-label mt-2">Number of Passengers</label>
       </div>
 
       <div class="col">
@@ -72,87 +236,56 @@
           <input formControlName="numberOfPassengers" class="form-control" type="number" placeholder="1" />
           <div class="input-group-text">Passengers</div>
 
-          <button type="submit" class="btn-primary btn">
+          <button type="submit" class="btn btn-primary">
             <i class="fas fa-search"></i>
           </button>
         </div>
       </div>
-
     </div>
-
-
   </div>
 </form>
 
-
-
 <div *ngFor="let flight of searchResult">
-  <div class="card text-dark mt-5 text-center">
-    <div class="card-body" style="padding: 20px; background-color:#e5ecf26e">
-      <h6 class="card-title">{{ flight.airline }}</h6>
-      <!--<div class="card-title" style="color:#ff3939">{{ flight.remainingNumberOfSeats }} remaining seats</div>-->
+  <div class="ticket-card">
+    <div class="ticket-header">
+      <span>{{ flight.airline }}</span>
+      <!--<span>{{ flight.remainingNumberOfSeats }} seats left</span>-->
+    </div>
 
-      <!--<a href="{{flight.link}}">Go To Link</a>-->
-
-      <div class="d-grid text-center g-2">
-        <div class="row">
-          <div class="col">
-            <div class="col m-3">
-              <i class="text-primary fas fa-plane-departure" style="font-size:20px;"></i>
-            </div>
-            <div class="col">
-              <i class="fa-solid fa-location-dot">{{ flight.departure?.place }}</i>
-            </div>
-            <div class="col m-2">
-              <i class="fa-regular"></i>{{ flight.departure?.time | date }}
-            </div>
-            <div class="col">
-              <i class="fa-regular fa-clock"></i>{{ flight.departure?.time | date:'shortTime' }}
-            </div>
-          </div>
-          <div class="col">
-            <div style="display:flex;">
-              <i class="fa-solid fa-circle" style="margin-top:50px; font-size:9px;"></i>
-              <hr style="display:block; width: 100%; margin-top:55px;" />
-              <i class="fas fa-plane" style="margin-top:48px;"></i>
-            </div>
-            <div *ngIf="getDiscountedPrice(flight.price) !== null">
-              <span style="text-decoration: line-through; font-weight: 100; font-size: 14px;">$ {{ flight.price }}</span><br>
-              <span style="font-weight: bolder; font-size: 18px;">$ {{ getDiscountedPrice(flight.price) }}</span>
-            </div>
-            <div *ngIf="getDiscountedPrice(flight.price) === null">
-              <span>$ {{ flight.price }}</span>
-            </div>
-            <br />
-            <!--<button (click)="bookFlight(flight)" class="btn btn-secondary btn-lg mt-2">
-            <i class="fas fa-ticket"></i> Purchase
-            </button>-->
-            <a [href]="flight.link" target="_blank" class="btn btn-secondary btn-lg mt-2" role="button">
-              <i class="fas fa-ticket"></i> Purchase
-            </a>
-
-
-
-            <!--<a [routerLink]="['/book-flight', flight.id]" class="btn btn-secondary btn-lg mt-2"></a>-->
-
-
-          </div>
-          <div class="col">
-            <div class="col m-3">
-              <i class="text-primary fas fa-plane-arrival" style="font-size:20px;"></i>
-            </div>
-            <div class="col">
-              <i class="fa-solid fa-location-dot">{{ flight.arrival?.place }}</i>
-            </div>
-            <div class="col m-2">
-              <i class="fa-regular"></i>{{ flight.arrival?.time | date }}
-            </div>
-            <div class="col">
-              <i class="fa-regular fa-clock"></i>{{ flight.arrival?.time | date:'shortTime' }}
-            </div>
-          </div>
-        </div>
+    <div class="flight-info">
+      <div>
+        <i class="fas fa-plane-departure"></i>
+        <div class="place">{{ flight.departure?.place }}</div>
+        <div class="time">{{ flight.departure?.time | date }}</div>
+        <div class="time">{{ flight.departure?.time | date:'shortTime' }}</div>
       </div>
+
+      <div>
+        <i class="fas fa-plane"></i>
+      </div>
+
+      <div>
+        <i class="fas fa-plane-arrival"></i>
+        <div class="place">{{ flight.arrival?.place }}</div>
+        <div class="time">{{ flight.arrival?.time | date }}</div>
+        <div class="time">{{ flight.arrival?.time | date:'shortTime' }}</div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <div>
+        <span *ngIf="getDiscountedPrice(flight.price) !== null">
+          <span class="discounted-price">$ {{ flight.price }}</span><br />
+          <span class="ticket-price">$ {{ getDiscountedPrice(flight.price) }}</span>
+        </span>
+        <span *ngIf="getDiscountedPrice(flight.price) === null">
+          <span class="ticket-price">$ {{ flight.price }}</span>
+        </span>
+      </div>
+
+      <a [href]="flight.link" target="_blank" class="btn btn-secondary btn-lg mt-2" role="button">
+        <i class="fas fa-ticket"></i> Purchase
+      </a>
     </div>
   </div>
 </div>
