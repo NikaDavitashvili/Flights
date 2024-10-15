@@ -100,51 +100,6 @@
   </div>
 </form>
 
-<div *ngFor="let flight of searchResult">
-  <div class="ticket-card">
-    <div class="ticket-header">
-      <span>{{ flight.airline }}</span>
-      <!--<span>{{ flight.remainingNumberOfSeats }} seats left</span>-->
-    </div>
-
-    <div class="flight-info">
-      <div>
-        <i class="fas fa-plane-departure"></i>
-        <div class="place">{{ flight.departure?.place }}</div>
-        <div class="time">{{ flight.departure?.time | date }}</div>
-        <div class="time">{{ flight.departure?.time | date:'shortTime' }}</div>
-      </div>
-
-      <div>
-        <i class="fas fa-plane"></i>
-      </div>
-
-      <div>
-        <i class="fas fa-plane-arrival"></i>
-        <div class="place">{{ flight.arrival?.place }}</div>
-        <div class="time">{{ flight.arrival?.time | date }}</div>
-        <div class="time">{{ flight.arrival?.time | date:'shortTime' }}</div>
-      </div>
-    </div>
-
-    <div class="d-flex justify-content-between">
-      <div>
-        <span *ngIf="getDiscountedPrice(flight.price) !== null">
-          <span class="discounted-price">$ {{ flight.price }}</span><br />
-          <span class="ticket-price">$ {{ getDiscountedPrice(flight.price) }}</span>
-        </span>
-        <span *ngIf="getDiscountedPrice(flight.price) === null">
-          <span class="ticket-price">$ {{ flight.price }}</span>
-        </span>
-      </div>
-
-      <a [href]="flight.link" target="_blank" class="btn btn-secondary btn-lg mt-2" role="button">
-        <i class="fas fa-ticket"></i> Purchase
-      </a>
-    </div>
-  </div>
-</div>
-
 <div class="container mt-5">
   <div class="text-center">
     <h2>Popular destinations from</h2>

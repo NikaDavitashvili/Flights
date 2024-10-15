@@ -20,7 +20,7 @@ import { LoginPassengerComponent } from './login-passenger/login-passenger.compo
 import { LogoutPassengerComponent } from './logout-passenger/logout-passenger.component';
 import { PacketComponent } from './packet/packet.component';
 import { NotificationComponent } from './notification/notification.component';
-//import { FlightsComponent } from './flights/flights.component';  // Import the new FlightsComponent
+import { FlightsComponent } from './flights/flights.component';  // Import the new FlightsComponent
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { NotificationComponent } from './notification/notification.component';
     LogoutPassengerComponent,
     MyBookingsComponent,
     PacketComponent,
-    //FlightsComponent  // Add FlightsComponent here
+    FlightsComponent  // Add FlightsComponent here
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -46,11 +46,11 @@ import { NotificationComponent } from './notification/notification.component';
     LeafletModule,
     CommonModule,  // Make sure CommonModule is added here
     RouterModule.forRoot([
-      { path: '', component: SearchFlightsComponent, pathMatch: 'full' },
+      { path: '', component: SearchFlightsComponent, pathMatch: 'full' }, //default route
       { path: 'map', component: MapComponent },
       { path: 'season-discounts', component: SeasonDiscountsComponent },
       { path: 'search-flights', component: SearchFlightsComponent },
-      //{ path: 'flights', component: FlightsComponent },
+      { path: 'flights', component: FlightsComponent },
       { path: 'book-flight', component: BookFlightComponent },
       { path: 'login-passenger', component: LoginPassengerComponent },
       { path: 'logout-passenger', component: LogoutPassengerComponent },

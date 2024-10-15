@@ -1,15 +1,124 @@
-<div class="container mt-5">
-  <h2>Available Flights</h2>
-  <div *ngFor="let flight of searchResult" class="flight-card">
-    <div class="card shadow-sm mb-3">
-      <div class="card-body">
-        <h5>{{ flight.airline }}</h5>
-        <p>{{ flight.from }} to {{ flight.destination }}</p>
-        <p>Departure: {{ flight.departureDate | date:'medium' }}</p>
-        <p>Return: {{ flight.returnDate | date:'medium' }}</p>
-        <p>Price: {{ flight.price | currency }}</p>
-        <a href="{{flight.link}}" class="btn btn-primary">Purchase</a>
+<h5 class="text-center mb-4">Search for Flights</h5>
+
+<form [formGroup]="searchForm" (ngSubmit)="search()">
+  <div class="m-5 d-grid gap-3">
+    <div class="row">
+      <div class="col">
+        <div class="form-floating">
+          <input formControlName="from" placeholder="From" class="form-control" />
+          <label>From</label>
+        </div>
       </div>
+
+      <div class="col">
+        <div class="form-floating">
+          <input formControlName="destination" placeholder="Destination" class="form-control" />
+          <label>Destination</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label class="form-label">Departure</label>
+        <div class="input-group">
+          <select formControlName="departureDateType" class="form-select" (change)="onDepartureDateTypeChange($event)">
+            <option value="date">Exact Date</option>
+            <option value="month">Whole Month</option>
+          </select>
+
+          <input *ngIf="departureDateType === 'date'"
+                 formControlName="fromDate"
+                 type="date"
+                 class="form-control" />
+          <input *ngIf="departureDateType === 'month'"
+                 formControlName="fromMonth"
+                 type="month"
+                 class="form-control" />
+        </div>
+      </div>
+
+      <div class="col">
+        <label class="form-label">Return</label>
+        <div class="input-group">
+          <select formControlName="returnDateType" class="form-select" (change)="onReturnDateTypeChange($event)">
+            <option value="date">Exact Date</option>
+            <option value="month">Whole Month</option>
+          </select>
+
+          <input *ngIf="returnDateType === 'date'"
+                 formControlName="toDate"
+                 type="date"
+                 class="form-control" />
+          <input *ngIf="returnDateType === 'month'"
+                 formControlName="toMonth"
+                 type="month"
+                 class="form-control" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col text-end">
+        <label class="form-label mt-2">Number of Passengers</label>
+      </div>
+
+      <div class="col">
+        <div class="input-group">
+          <div class="input-group-text">For</div>
+          <input formControlName="numberOfPassengers" class="form-control" type="number" placeholder="1" />
+          <div class="input-group-text">Passengers</div>
+
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div *ngFor="let flight of searchResult">
+  <div class="ticket-card">
+    <div class="ticket-header">
+      <span>{{ flight.airline }}</span>
+      <!--<span>{{ flight.remainingNumberOfSeats }} seats left</span>-->
+    </div>
+
+    <div class="flight-info">
+      <div>
+        <i class="fas fa-plane-departure"></i>
+        <div class="place">{{ flight.departure?.place }}</div>
+        <div class="time">{{ flight.departure?.time | date }}</div>
+        <div class="time">{{ flight.departure?.time | date:'shortTime' }}</div>
+      </div>
+
+      <div>
+        <i class="fas fa-plane"></i>
+      </div>
+
+      <div>
+        <i class="fas fa-plane-arrival"></i>
+        <div class="place">{{ flight.arrival?.place }}</div>
+        <div class="time">{{ flight.arrival?.time | date }}</div>
+        <div class="time">{{ flight.arrival?.time | date:'shortTime' }}</div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <div>
+        <span *ngIf="getDiscountedPrice(flight.price) !== null">
+          <span class="discounted-price">$ {{ flight.price }}</span><br />
+          <span class="ticket-price">$ {{ getDiscountedPrice(flight.price) }}</span>
+        </span>
+        <span *ngIf="getDiscountedPrice(flight.price) === null">
+          <span class="ticket-price">$ {{ flight.price }}</span>
+        </span>
+      </div>
+
+      <a [href]="flight.link" target="_blank" class="btn btn-secondary btn-lg mt-2" role="button">
+        <i class="fas fa-ticket"></i> Purchase
+      </a>
     </div>
   </div>
 </div>

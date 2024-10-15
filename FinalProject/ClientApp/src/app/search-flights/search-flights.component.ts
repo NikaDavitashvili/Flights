@@ -37,7 +37,6 @@ export class SearchFlightsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.search();
     const userJson = sessionStorage.getItem('CurrentUser');
     if (userJson) {
       this.currentUser = JSON.parse(userJson);
@@ -100,92 +99,27 @@ export class SearchFlightsComponent implements OnInit {
       seasonName: this.seasonName || undefined
     };
 
+    this.router.navigate(['/flights'], {
+      queryParams: {
+        from: formValues.from,
+        destination: formValues.destination,
+        departureDateType: formValues.departureDateType,
+        departureDate: departureDate,  // Pass departure date
+        returnDateType: formValues.returnDateType,
+        returnDate: returnDate,        // Pass return date
+        numberOfPassengers: formValues.numberOfPassengers,
+      }
+    });
+
     // Send request to the backend
-    this.flightService.searchFlight(searchParams).subscribe(
-      response => this.searchResult = response,
-      err => this.handleError(err)
-    );
+    //this.flightService.searchFlight(searchParams).subscribe(
+    //  response => this.searchResult = response,
+    //  err => this.handleError(err)
+    //);
+
 
     this.seasonName = null;
   }
-
-
-  //v2
-  /*
-  search(seasonName?: string): void {
-  if (seasonName) {
-    this.seasonName = seasonName;
-  }
-
-  const formValues = this.searchForm.value;
-
-  // Capture departure date or month properly
-  let departureDate = '';
-  if (formValues.departureDateType === 'date') {
-    departureDate = formValues.fromDate;  // Use exact date if selected
-  } else {
-    departureDate = formValues.fromMonth; // Use month if selected
-  }
-
-  // Capture return date or month properly
-  let returnDate = '';
-  if (formValues.returnDateType === 'date') {
-    returnDate = formValues.toDate;       // Use exact date if selected
-  } else {
-    returnDate = formValues.toMonth;      // Use month if selected
-  }
-
-  // Redirect to the Flights page and pass search parameters via queryParams
-  this.router.navigate(['/flights'], {
-    queryParams: {
-      from: formValues.from,
-      destination: formValues.destination,
-      departureDate: departureDate,
-      returnDate: returnDate,
-      numberOfPassengers: formValues.numberOfPassengers,
-      seasonName: this.seasonName || undefined
-    }
-  });
-}*/
-
-  //v3
-/*
-search(seasonName?: string): void {
-  if (seasonName) {
-    this.seasonName = seasonName;
-  }
-
-  const formValues = this.searchForm.value;
-
-  // Capture departure date or month properly
-  let departureDate = '';
-  if (formValues.departureDateType === 'date') {
-    departureDate = formValues.fromDate;  // Use exact date if selected
-  } else {
-    departureDate = formValues.fromMonth; // Use month if selected
-  }
-
-  // Capture return date or month properly
-  let returnDate = '';
-  if (formValues.returnDateType === 'date') {
-    returnDate = formValues.toDate;       // Use exact date if selected
-  } else {
-    returnDate = formValues.toMonth;      // Use month if selected
-  }
-
-  // Redirect to the Flights page and pass search parameters via queryParams
-  this.router.navigate(['/flights'], {
-    queryParams: {
-      from: formValues.from,
-      destination: formValues.destination,
-      departureDate: departureDate,
-      returnDate: returnDate,
-      numberOfPassengers: formValues.numberOfPassengers,
-      seasonName: this.seasonName || undefined
-    }
-  });
-}
-*/
 
 
   // Booking method that navigates to the booking page
