@@ -213,6 +213,66 @@ public class FlightRepository : IFlightRepository
         return airportIataCodes;
     }
 
+    public async Task<string> GetAirportName(string airportCode)
+    {
+        var dic = new Dictionary<string, object>
+        {
+            { "airportCode", airportCode }
+        };
+
+        var query = @"SELECT TOP 1 Name FROM Airport WHERE Code = '@airportCode'";
+
+        DataTable dt = DB.Select(query, dic, out string errorMessage);
+
+        if (errorMessage != null)
+            throw new Exception(errorMessage);
+
+        if (dt == null && dt.Rows.Count == 0)
+            throw new Exception("Airport Not Found!");
+
+        return dt.Rows[0].ItemArray[0].ToString();
+    }
+
+    public async Task<string> GetCityName(string cityCode)
+    {
+        var dic = new Dictionary<string, object>
+        {
+            { "cityCode", cityCode }
+        };
+
+        var query = @"SELECT TOP 1 Name FROM City WHERE Code = '@cityCode'";
+
+        DataTable dt = DB.Select(query, dic, out string errorMessage);
+
+        if (errorMessage != null)
+            throw new Exception(errorMessage);
+
+        if (dt == null && dt.Rows.Count == 0)
+            throw new Exception("City Not Found!");
+
+        return dt.Rows[0].ItemArray[0].ToString();
+    }
+
+    public async Task<string> GetCountryName(string countryCode)
+    {
+        var dic = new Dictionary<string, object>
+        {
+            { "countryCode", countryCode }
+        };
+
+        var query = @"SELECT TOP 1 Name FROM Country WHERE Code = '@countryCode'";
+
+        DataTable dt = DB.Select(query, dic, out string errorMessage);
+
+        if (errorMessage != null)
+            throw new Exception(errorMessage);
+
+        if (dt == null && dt.Rows.Count == 0)
+            throw new Exception("Country Not Found!");
+
+        return dt.Rows[0].ItemArray[0].ToString();
+    }
+
 
     /* public async Task<IEnumerable<FlightRm>> Search(FlightSearchParametersDTO @params)
     {
