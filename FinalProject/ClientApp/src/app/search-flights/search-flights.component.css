@@ -288,3 +288,13 @@ button[type="submit"] {
 .card-img-top{
     height: 14em;
 }
+.accordion-collapse {
+  overflow: hidden;
+  max-height: 0; /* Initially collapsed */
+  padding: 0; /* Remove padding when collapsed */
+  transition: max-height 0.4s ease-in-out;
+}
+
+  .accordion-collapse.show {
+    max-height: 100px; /* A large enough value to accommodate the content */
+  }

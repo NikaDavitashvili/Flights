@@ -8,13 +8,14 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit, OnDestroy {
   constructor(public router: Router) { }
-
+  seasonalImage: string = '';
   title = 'SkyConnect';
   currentSlide = 0;
   slides: HTMLElement[] = [];
   autoSlideInterval: any; // Store the interval ID for the auto slider
 
   ngOnInit() {
+    this.getSeasonalImage();
     this.slides = Array.from(document.getElementsByClassName('slide') as HTMLCollectionOf<HTMLElement>);
     if (this.slides.length > 0) {
       this.showSlide(this.currentSlide);
@@ -59,5 +60,22 @@ export class AppComponent implements OnInit, OnDestroy {
 
   isMapPage(): boolean {
     return this.router.url === '/map';
+  }
+
+  getSeasonalImage(): void {
+    const currentMonth = new Date().getMonth(); // getMonth() returns 0 for January, 1 for February, etc.
+    if (currentMonth >= 2 && currentMonth <= 4) {
+      // March, April, May - Spring
+      this.seasonalImage = '/assets/images/spring.jpg';
+    } else if (currentMonth >= 5 && currentMonth <= 7) {
+      // June, July, August - Summer
+      this.seasonalImage = '/assets/images/summer.jpg';
+    } else if (currentMonth >= 8 && currentMonth <= 10) {
+      // September, October, November - Fall
+      this.seasonalImage = '/assets/images/fall.jpg';
+    } else {
+      // December, January, February - Winter
+      this.seasonalImage = '/assets/images/winter.jpg';
+    }
   }
 }

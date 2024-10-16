@@ -12,7 +12,7 @@
   })
   export class MapService extends BaseService {
 
-    private apiKey = '0d0d0ae1d3a74fdf98612af8f99f231c';
+    private apiKey = '175ee5034b7f47db9b4d071e2204791e';
     static readonly MapPath = '/api/Map';
     constructor(
       config: ApiConfiguration,

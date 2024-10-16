@@ -18,7 +18,38 @@ export class SearchFlightsComponent implements OnInit {
   seasonName: string | null = null;
   departureDateType: string = 'date';  // 'date' or 'month'
   returnDateType: string = 'date';     // 'date' or 'month'
-
+  faqs = [
+    {
+      id: 0,
+      question: 'How does SkyConnect work?',
+      answer: 'SkyConnect searches multiple airlines to find the best flight options for you, offering a seamless booking experience.',
+      isOpen: false
+    },
+    {
+      id: 1,
+      question: 'Can I book my flight with SkyConnect?',
+      answer: 'Yes, SkyConnect allows you to book flights directly on our platform after finding the best options.',
+      isOpen: false
+    },
+    {
+      id: 2,
+      question: 'How do I find the cheapest flights?',
+      answer: 'Use our flexible search options and filter tools to find the best prices across different dates and airlines.',
+      isOpen: false
+    },
+    {
+      id: 3,
+      question: 'What happens after I book my flight?',
+      answer: 'Once you complete your booking, you will receive a confirmation email with all the necessary details and a link to manage your booking.',
+      isOpen: false
+    },
+    {
+      id: 4,
+      question: 'Does SkyConnect offer customer support?',
+      answer: 'Yes, we provide 24/7 customer support to assist with any booking or travel-related questions you may have.',
+      isOpen: false
+    }
+  ];
   constructor(private flightService: FlightService, private bookService: BookingService,
     private fb: FormBuilder,
     private router: Router) {
@@ -37,10 +68,39 @@ export class SearchFlightsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Set all faqs to be closed initially.
+    this.faqs.forEach(faq => faq.isOpen = false);
+
     const userJson = sessionStorage.getItem('CurrentUser');
     if (userJson) {
       this.currentUser = JSON.parse(userJson);
     }
+  }
+
+  toggleFaq(index: number) {
+    this.faqs.forEach((faq, i) => {
+      if (i === index) {
+        faq.isOpen = !faq.isOpen;
+
+        // Dynamically adjust max-height for smooth transitions
+        setTimeout(() => {
+          const element = document.getElementById('collapse' + faq.id);
+          if (element) {
+            if (faq.isOpen) {
+              element.style.maxHeight = element.scrollHeight + 'px'; // Smoothly expand to fit content
+            } else {
+              element.style.maxHeight = '0px'; // Collapse smoothly
+            }
+          }
+        }, 0);
+      } else {
+        faq.isOpen = false;
+        const otherElement = document.getElementById('collapse' + faq.id);
+        if (otherElement) {
+          otherElement.style.maxHeight = '0px';
+        }
+      }
+    });
   }
 
   // Method to update the form when departure date type changes
