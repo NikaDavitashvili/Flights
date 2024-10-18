@@ -31,7 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // Automatically change slides every 5 seconds (5000ms)
     this.autoSlideInterval = setInterval(() => {
       this.moveSlides(1); // Move to the next slide
-    }, 5000);
+    }, 10000);
   }
 
   stopAutoSlide() {

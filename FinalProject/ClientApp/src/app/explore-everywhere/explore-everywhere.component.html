@@ -1,0 +1,26 @@
+<head>
+  <script>
+    (function (h, o, t, j, a, r) {
+      h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+      h._hjSettings = { hjid: 5149731, hjsv: 6 };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script'); r.async = 1;
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  </script>
+</head>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Explore Popular Destinations</h2>
+  <div class="row">
+    <div class="col-md-3" *ngFor="let flight of popularFlights">
+      <div class="card shadow-sm">
+        <img [src]="flight.image" class="card-img-top" [alt]="flight.destination">
+        <div class="card-body">
+          <h5 class="card-title">{{ flight.destination }}</h5>
+          <p class="card-text">from ${{ flight.price }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

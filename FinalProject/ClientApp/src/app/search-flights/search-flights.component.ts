@@ -103,6 +103,19 @@ export class SearchFlightsComponent implements OnInit {
     });
   }
 
+ /* exploreEverywhere(): void {
+    const defaultParams = {
+      from: this.searchForm.get('from')?.value || 'Tbilisi',  // Defaulting to Tbilisi as the departure
+      destination: 'Everywhere',  // You can set it to 'Everywhere' as Skyscanner does
+      numberOfPassengers: this.searchForm.get('numberOfPassengers')?.value || 1,
+      departureDate: this.searchForm.get('fromDate')?.value || '',
+      returnDate: this.searchForm.get('toDate')?.value || ''
+    };
+
+    // Navigate with these parameters
+    this.router.navigate(['/flights'], { queryParams: defaultParams });
+  }*/
+
   // Method to update the form when departure date type changes
   onDepartureDateTypeChange(event: Event) {
     const selectElement = event.target as HTMLSelectElement;

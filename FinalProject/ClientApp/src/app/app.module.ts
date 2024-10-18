@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';  // Import CommonModule
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
@@ -12,6 +11,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { MapComponent } from './map/map.component';
 import { SeasonDiscountsComponent } from './season-discounts/season-discounts.component';
 import { SearchFlightsComponent } from './search-flights/search-flights.component';
+import { ExploreEverywhereComponent } from './explore-everywhere/explore-everywhere.component';
 import { BookFlightComponent } from './book-flight/book-flight.component';
 import { RegisterPassengerComponent } from './register-passenger/register-passenger.component';
 import { MyBookingsComponent } from './my-bookings/my-bookings.component';
@@ -36,7 +36,8 @@ import { FlightsComponent } from './flights/flights.component';  // Import the n
     LogoutPassengerComponent,
     MyBookingsComponent,
     PacketComponent,
-    FlightsComponent  // Add FlightsComponent here
+    FlightsComponent,
+    ExploreEverywhereComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -44,12 +45,12 @@ import { FlightsComponent } from './flights/flights.component';  // Import the n
     FormsModule,
     ReactiveFormsModule,
     LeafletModule,
-    CommonModule,  // Make sure CommonModule is added here
     RouterModule.forRoot([
       { path: '', component: SearchFlightsComponent, pathMatch: 'full' }, //default route
       { path: 'map', component: MapComponent },
       { path: 'season-discounts', component: SeasonDiscountsComponent },
       { path: 'search-flights', component: SearchFlightsComponent },
+      { path: 'explore-everywhere', component: ExploreEverywhereComponent },
       { path: 'flights', component: FlightsComponent },
       { path: 'book-flight', component: BookFlightComponent },
       { path: 'login-passenger', component: LoginPassengerComponent },

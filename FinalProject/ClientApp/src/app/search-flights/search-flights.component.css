@@ -298,3 +298,67 @@ button[type="submit"] {
   .accordion-collapse.show {
     max-height: 100px; /* A large enough value to accommodate the content */
   }
+
+.explore-banner-container {
+  position: relative;
+  background-image: url('/assets/images/explore-everywhere.jpg'); /* Ensure your image path is correct */
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  display: flex;
+  justify-content: flex-start; /* Align to the left */
+  align-items: center;
+  border-radius: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  margin-bottom: 60px;
+  color: white;
+  padding-left: 50px; /* Add left padding to create space from the edge */
+}
+
+  .explore-banner-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+.explore-content {
+  position: relative;
+  z-index: 2;
+  text-align: left; /* Align text to the left */
+}
+
+  .explore-content h1 {
+    font-size: 2.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .explore-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .explore-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+
+.btn-explore {
+  background: white;
+  padding: 12px 36px;
+  font-size: 1.1rem;
+  color: black;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: background 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+
+  .btn-explore:hover {
+    background: lightgrey;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    transition: background 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+  }
